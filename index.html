@@ -61,6 +61,16 @@
                 <br/>
                 <mat-linear-progress params="isDeterminate: false"></mat-linear-progress>
             </div>
+            <!-- Tooltip -->
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <h5 class="mdc-typography--headline5">Tooltip</h5>
+            </div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <a id="googleLink" href="www.google.com">Google</a>
+                <mat-tooltip params="anchor: '#googleLink', data: { title: $data.title }, showDelay: 1, hideDelay: 1, yPosition: ko.materialcomponents.Tooltip.Y_POSITION.ABOVE">
+                    Lorem <b data-bind="text: title"></b> ipsum dolor
+                </mat-tooltip>
+            </div>
         </div>
     </div>
     <script src="wwwroot/js/libs/material-components-web.min.js" type="text/javascript"></script>

@@ -25,8 +25,8 @@
                 "js/utils/register.js",
                 "js/icon.js",
                 "js/circularprogress.js",
-                "js/linearprogress.js"
-                // "js/tooltip.js",
+                "js/linearprogress.js",
+                "js/tooltip.js"
                 // "js/rich-tooltip.js",
                 // "js/button.js",
                 // "js/icon-button.js",
