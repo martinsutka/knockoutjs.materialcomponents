@@ -1,0 +1,13 @@
+{
+	"short_name": "KnockoutJs MaterialComponents",
+	"name": "KnockoutJs MaterialComponents",
+	"icons": [{
+		"src": "img/icon.png",
+		"type": "image/png",
+		"sizes": "192x192"
+	}],
+	"start_url": "/index.html",
+	"display": "standalone",
+	"background_color": "#fafafa",
+	"theme_color": "#fafafa"
+}

@@ -1,0 +1,135 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="description" content="Quickly generate icons and logos for iOS, Android and the Web" />
+    <meta name="keywords" content="icon,logo,generator" />
+    <meta name="author" content="Martin Šutka" />
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:image:alt" content="" />
+    <meta name="theme-color" content="#fafafa" />
+    <title>IconGenerator</title>
+    <link rel="icon" href="img/icon.ico" sizes="any" />
+    <link rel="icon" href="img/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="img/icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="css/material-components-web.min.css" />
+    <link rel="stylesheet" href="css/site.css" />
+</head>
+<body class="mdc-typography" data-bind="attr: { 'data-version': version }">
+    <div class="container mdc-layout-grid">
+        <div class="mdc-layout-grid__inner">
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <h1 class="mdc-typography--headline1">Icon Generator</h1>
+            </div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                <msu-tools></msu-tools>
+            </div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                <msu-templateselector params="logo: $data"></msu-templateselector>
+            </div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                <div class="mdc-layout-grid__inner">
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 guidinglines-wrapper">
+                        <msu-renderer params="iconSize: iconSize,
+                                              iconX: iconX,
+                                              iconY: iconY,
+                                              iconColor: iconColor,
+                                              iconShadowColor: iconShadowColor,
+                                              iconShadowSize: iconShadowSize,
+                                              iconShadowIntensity: iconShadowIntensity,
+                                              iconSvg: iconSvg,
+                                              isBackgroundTransparent: isBackgroundTransparent,
+                                              backgroundWidth: backgroundWidth,
+                                              backgroundHeight: backgroundHeight,
+                                              backgroundColor: backgroundColor,
+                                              backgroundLightColor: backgroundLightColor,
+                                              backgroundLightIntensity: backgroundLightIntensity,
+                                              backgroundShadowColor: backgroundShadowColor,
+                                              backgroundShadowSize: backgroundShadowSize,
+                                              backgroundBorderRadius: backgroundBorderRadius,
+                                              isBadgeTransparent: isBadgeTransparent,
+                                              badgeColor: badgeColor,
+                                              badgeBackgroundColor: badgeBackgroundColor,
+                                              badgeText: badgeText,
+                                              badgeFont: badgeFont,
+                                              badgeSize: badgeSize,
+                                              downloadAction: renderer.downloadAction"></msu-renderer>
+                        <msu-guidinglines params="areVisible: showGuides,
+                                                  x: guidesX,
+                                                  y: guidesY,
+                                                  size: guidesSize,
+                                                  iconSize: iconSize,
+                                                  backgroundWidth: backgroundWidth,
+                                                  backgroundHeight: backgroundHeight"></msu-guidinglines>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <msu-toolbar params="shareCallback: share.bind($root),
+                                             downloadCallback: download.bind($root)"></msu-toolbar>
+                    </div>
+                </div>
+            </div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                <div class="mdc-layout-grid__inner">
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+                        <msu-tabs params="tab: tab"></msu-tabs>
+                    </div>
+                    <!-- ko if: tab() === 0 -->
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <msu-icon params="color: iconColor,
+                                          size: iconSize,
+                                          x: iconX,
+                                          y: iconY,
+                                          shadowColor: iconShadowColor,
+                                          shadowSize: iconShadowSize,
+                                          shadowIntensity: iconShadowIntensity,
+                                          svg: iconSvg"></msu-icon>
+                    </div>
+                    <!-- /ko -->
+                    <!-- ko if: tab() === 1 -->
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <msu-background params="isTransparent: isBackgroundTransparent,
+                                                width: backgroundWidth,
+                                                height: backgroundHeight,
+                                                color: backgroundColor,
+                                                lightColor: backgroundLightColor,
+                                                lightIntensity: backgroundLightIntensity,
+                                                shadowColor: backgroundShadowColor,
+                                                shadowSize: backgroundShadowSize,
+                                                borderRadius: backgroundBorderRadius"></msu-background>
+                    </div>
+                    <!-- /ko -->
+                     <!-- ko if: tab() === 2 -->
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <msu-badge params="isTransparent: isBadgeTransparent,
+                                           color: badgeColor,
+                                           backgroundColor: badgeBackgroundColor,
+                                           text: badgeText,
+                                           font: badgeFont,
+                                           size: badgeSize"></msu-badge>
+                    </div>
+                    <!-- /ko -->
+                    <!-- ko if: tab() === 3 -->
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <msu-guides params="areVisible: showGuides,
+                                            x: guidesX,
+                                            y: guidesY,
+                                            size: guidesSize"></msu-guides>
+                    </div>
+                    <!-- /ko -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script data-main="../icongenerator/js/index.js" src="js/lib/require.js"></script>
+</body>
+</html>
