@@ -1,24 +1,42 @@
-﻿@font-family: "Google Sans", Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
-@text-shadow: 0 1px 2px var(--mdc-theme-text-secondary-on-light);
+﻿html, body {
+    --mdc-typography-font-family: "Open Sans";
 
-html, body {
-    --mdc-typography-font-family: @font-family;
-    --mdc-theme-primary: #289048;
-    --mdc-theme-secondary: #f36e21;
+    --mdc-typography-headline1-font-size: 40px;
+    --mdc-typography-headline1-line-height: 40px;
+    --mdc-typography-headline1-font-weight: 700;
+    --mdc-typography-headline1-margin: 0;
+
+    --mdc-typography-headline5-font-size: 24px;
+    --mdc-typography-headline5-line-height: 28px;
+    --mdc-typography-headline5-font-weight: 500;
+    --mdc-typography-headline5-margin: 0;
+
+    --mdc-theme-background: #f4f5f7;
+    --mdc-theme-surface: #1e2738;
+    --mdc-theme-primary: #fe655c;
+    --mdc-theme-secondary: #465981;
+    --mdc-theme-link: #629feb;
+    --mdc-theme-icon: #d7dde9;
 
     font-size: 16px;
     font-weight: normal;
     margin: 0;
     padding: 0;
+    background-color: var(--mdc-theme-background);
+}
+
+body {
+    min-height: 100vh;
 }
 
 .mdc-typography {
-    &--headline3 {
-        color: var(--mdc-theme-primary);
-        margin: 0;
+    &--headline1 {
+        margin: var(--mdc-typography-headline1-margin);
+        color: var(--mdc-theme-secondary);
     }
 
     &--headline5 {
-        margin: 0;
+        margin: var(--mdc-typography-headline5-margin);
+        color: var(--mdc-theme-secondary);
     }
 }

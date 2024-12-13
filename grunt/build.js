@@ -39,7 +39,7 @@
             case "DEBUG":
                 break;
             case "RELEASE":
-                grunt.config("jshint.options.debug", false);
+                //grunt.config("jshint.options.debug", false);
 
                 tasks.push("uglify:release");
                 break;

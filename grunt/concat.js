@@ -21,8 +21,9 @@
             src: [
                 "js/utils/global.js",
                 "js/utils/guid.js",
-                "js/utils/throttle.js"
-                // "js/icon.js",
+                "js/utils/throttle.js",
+                "js/utils/register.js",
+                "js/icon.js"
                 // "js/tooltip.js",
                 // "js/rich-tooltip.js",
                 // "js/linear-progress.js",

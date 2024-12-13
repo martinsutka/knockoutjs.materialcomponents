@@ -3,6 +3,6 @@
  * 
  * @returns Randwom UUID string.
  */
-ko.materialcomponents.utils.guid = function() {
+utils.guid = function() {
     return global.crypto.randomUUID();
 };
