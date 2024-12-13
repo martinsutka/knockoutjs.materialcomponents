@@ -31,8 +31,8 @@
                 "js/iconbutton.js",
                 "js/button.js",
                 "js/fab.js",
-                "js/switch.js"
-                // "js/chip.js",
+                "js/switch.js",
+                "js/chip.js"
                 // "js/checkbox.js",
                 // "js/radio.js",
                 // "js/slider.js",
