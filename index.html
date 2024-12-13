@@ -115,6 +115,15 @@
                     </mat-rich-tooltip>
                 </div>
             </div>
+            <!-- Icon Button -->
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <h5 class="mdc-typography--headline5">Icon Button</h5>
+            </div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <mat-icon-button params="icon: 'arrow_back', isEnabled: false"></mat-icon-button>
+                <mat-icon-button params="icon: 'arrow_back', onClick: () => alert('Message')"></mat-icon-button>
+                <mat-icon-button params="icon: 'arrow_back', onClick: alertAsync"></mat-icon-button>
+            </div>
         </div>
     </div>
     <script src="wwwroot/js/libs/material-components-web.min.js" type="text/javascript"></script>
@@ -130,6 +139,19 @@
         
 
         //#region [ Methods ]
+
+        /**
+         * Simulates async method.
+         */
+        const alertAsync = function () {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(true);
+                    alert("Message");
+                }, 3000);
+            });
+        };
+
 
         /**
          * Fires function when DOM is ready.

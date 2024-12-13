@@ -1,5 +1,33 @@
+.mdc-circular-progress--icon-button {
+  position: absolute;
+  left: 0.75rem;
+  top: 0.75rem;
+}
+.mdc-circular-progress--fab {
+  --mdc-theme-primary: var(--mdc-theme-on-primary);
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+}
+.mdc-circular-progress--fab-mini {
+  --mdc-theme-primary: var(--mdc-theme-on-primary);
+  position: absolute;
+  left: 0.5rem;
+  top: 0.5rem;
+}
+.mdc-circular-progress--fab-extended-start {
+  --mdc-theme-primary: var(--mdc-theme-on-primary);
+  position: absolute;
+  left: 0.75rem;
+  top: 0.75rem;
+}
+.mdc-circular-progress--fab-extended-end {
+  --mdc-theme-primary: var(--mdc-theme-on-primary);
+  position: absolute;
+  right: 0.75rem;
+  top: 0.75rem;
+}
 /*
 @import "mdc/linear-progress.less";
-@import "mdc/circular-progress.less";
 @import "mdc/switch.less";
 */
