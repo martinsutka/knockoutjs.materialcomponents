@@ -30,8 +30,7 @@
             "jshint",
             "less",
             "cssmin",
-            "concat:components",
-            // "copy:index"
+            "concat:components"
         ];
 
         // Set up dynamic parameters
@@ -41,7 +40,7 @@
             case "RELEASE":
                 grunt.config("jshint.options.debug", false);
 
-                // tasks.push("uglify:release");
+                tasks.push("uglify:release");
                 break;
             default:
                 grunt.fail.fatal(`Unknown build configuration '${configuration.toUpperCase()}'.`);
