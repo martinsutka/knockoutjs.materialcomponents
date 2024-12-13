@@ -30,7 +30,7 @@
             "jshint",
             "less",
             "cssmin",
-            // "concat:components",
+            "concat:components",
             // "copy:index"
         ];
 
