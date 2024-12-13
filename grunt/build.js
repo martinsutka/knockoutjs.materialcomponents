@@ -27,8 +27,7 @@
             "clean:wwwroot",
             "copy:dependencies",
             "rename:dependencies",
-            // "copy:images",
-            // "jshint",
+            "jshint",
             // "less",
             // "cssmin",
             // "concat:components",
@@ -40,7 +39,7 @@
             case "DEBUG":
                 break;
             case "RELEASE":
-                //grunt.config("jshint.options.debug", false);
+                grunt.config("jshint.options.debug", false);
 
                 // tasks.push("uglify:release");
                 break;
