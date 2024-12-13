@@ -26,7 +26,7 @@
         const tasks = [
             "clean:wwwroot",
             "copy:dependencies",
-            // "rename:dependencies",
+            "rename:dependencies",
             // "copy:images",
             // "jshint",
             // "less",
