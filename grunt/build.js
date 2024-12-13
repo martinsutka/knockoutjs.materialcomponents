@@ -3,6 +3,7 @@
 
     grunt.registerTask("build", build);
     grunt.registerTask("clean", clean);
+    grunt.registerTask("patchversion", patchversion);
 
     //#endregion
 
@@ -59,13 +60,29 @@
         grunt.log.writeln("Cleaning");
 
         // List of tasks
-        var tasks = [
+        const tasks = [
             "clean:wwwroot"
         ];
 
         // Run tasks
         grunt.task.run.apply(grunt.task, tasks);
     }  
+
+
+    /**
+     * Patch version task.
+     */
+    function patchversion() {
+        grunt.log.writeln("Patching version");
+
+        // List of tasks
+        const tasks = [
+            "version:project:patch"
+        ];
+
+        // Run tasks
+        grunt.task.run.apply(grunt.task, tasks);
+    } 
 
     //#endregion
 };

@@ -1,19 +1,35 @@
 {
     "version": "2.0.0",
-    "tasks": [
-        {
+    "tasks": [{
             "label": "Restore packages",
             "type": "npm",
             "script": "install",
             "group": "build",
             "presentation": {
-				"panel": "new"
-			},
+                "panel": "new"
+            },
             "problemMatcher": []
-        },
-		{
+        }, {
+            "label": "Patch version",
+            "type": "shell",
+            "windows": {
+                "command": ".\\node_modules\\.bin\\grunt"
+            },
+            "args": [
+                "--gruntfile",
+                "'gruntfile.js'",
+                "patchversion",
+                "--color"
+            ],
+            "presentation": {
+                "panel": "new"
+            },
+            "problemMatcher": []
+        }, {
             "label": "Build",
             "type": "shell",
+            "dependsOrder": "sequence",
+            "dependsOn": ["Patch version"],
             "windows": {
                 "command": ".\\node_modules\\.bin\\grunt"
             },
@@ -25,11 +41,10 @@
             ],
             "group": "build",
             "presentation": {
-				"panel": "new"
-			},
+                "panel": "new"
+            },
             "problemMatcher": []
-        },
-		{
+        }, {
             "label": "Clean",
             "type": "shell",
             "windows": {
@@ -43,8 +58,8 @@
             ],
             "group": "build",
             "presentation": {
-				"panel": "new"
-			},
+                "panel": "new"
+            },
             "problemMatcher": []
         }
     ]
