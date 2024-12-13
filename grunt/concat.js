@@ -26,8 +26,8 @@
                 "js/icon.js",
                 "js/circularprogress.js",
                 "js/linearprogress.js",
-                "js/tooltip.js"
-                // "js/rich-tooltip.js",
+                "js/tooltip.js",
+                "js/richtooltip.js"
                 // "js/button.js",
                 // "js/icon-button.js",
                 // "js/fab.js",
