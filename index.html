@@ -44,13 +44,22 @@
             </div>
             <!-- Circular Progress -->
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <h1 class="mdc-typography--headline5">Circular Progress</h1>
+                <h5 class="mdc-typography--headline5">Circular Progress</h5>
             </div>
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                 <mat-circular-progress params="progress: .65"></mat-circular-progress>
                 <mat-circular-progress params="isDeterminate: false, label: 'test'"></mat-circular-progress>
                 <mat-circular-progress-medium params="isDeterminate: false"></mat-circular-progress-medium>
                 <mat-circular-progress-small params="isDeterminate: false"></mat-circular-progress-small>
+            </div>
+            <!-- Linear Progress -->
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <h5 class="mdc-typography--headline5">Linear Progress</h5>
+            </div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <mat-linear-progress params="buffer: .3, progress: .1"></mat-linear-progress>
+                <br/>
+                <mat-linear-progress params="isDeterminate: false"></mat-linear-progress>
             </div>
         </div>
     </div>

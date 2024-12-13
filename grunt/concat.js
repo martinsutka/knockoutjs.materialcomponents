@@ -24,10 +24,10 @@
                 "js/utils/throttle.js",
                 "js/utils/register.js",
                 "js/icon.js",
-                "js/circularprogress.js"
+                "js/circularprogress.js",
+                "js/linearprogress.js"
                 // "js/tooltip.js",
                 // "js/rich-tooltip.js",
-                // "js/linear-progress.js",
                 // "js/button.js",
                 // "js/icon-button.js",
                 // "js/fab.js",
