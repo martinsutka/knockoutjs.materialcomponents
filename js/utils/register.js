@@ -3,11 +3,12 @@
  *
  * @param {string} name Component name.
  * @param {function} Model Component constructor.
+ * @param {string} template Template name.
  */
-utils.register = function (name, Model) {
+utils.register = function (name, Model, template = "template") {
     register[Model.name] = Model;
     ko.components.register(name, {
-        template: Model.template,
+        template: Model[template],
         viewModel: { 
             createViewModel: (params, componentInfo) => {
                 params = params || {};

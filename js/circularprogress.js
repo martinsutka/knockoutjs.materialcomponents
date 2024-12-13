@@ -1,4 +1,108 @@
-((e,r)=>{"function"==typeof define&&define.amd?define("knockoutjs.materialcomponents",["knockout","material-components-web"],r):r(e.ko,e.mdc)})("undefined"!=typeof self?self:this,(i,s)=>{let e=function(){return this}(),c=i.materialcomponents=i.materialcomponents||{},r=i.materialcomponents.utils=i.materialcomponents.utils||{};r.guid=function(){return e.crypto.randomUUID()},r.throttle=function(s,i){let c=0;return function(...e){var r=(new Date).getTime();r-c<i||(c=r,s(...e))}},r.register=function(e,s,r="template"){c[s.name]=s,i.components.register(e,{template:s[r],viewModel:{createViewModel:(e,r)=>((e=e||{}).element=r.element.querySelector?r.element:r.element.parentElement||r.element.parentNode,new s(e))}})};function t(e){console.debug("Icon()"),this.id=i.isObservable(e.id)?e.id:i.observable(e.id||"_icon_"+r.guid()),this.icon=i.isObservable(e.icon)?e.icon:i.observable(e.icon||""),this.classes=i.isObservable(e.classes)?e.classes:i.observable(e.classes||"")}function a(e){console.debug("CircularProgress()"),this.mdcComponent=null,this.id=i.isObservable(e.id)?e.id:i.observable(e.id||"_circular-progress_"+r.guid()),this.label=i.isObservable(e.label)?e.label:i.observable(e.label||""),this.isOpen=i.isObservable(e.isOpen)?e.isOpen:i.observable("boolean"!=typeof e.isOpen||e.isOpen),this.isDeterminate=i.isObservable(e.isDeterminate)?e.isDeterminate:i.observable("boolean"!=typeof e.isDeterminate||e.isDeterminate),this.progress=i.isObservable(e.progress)?e.progress:i.observable("number"==typeof e.progress?e.progress:0),this.classes=i.isObservable(e.classes)?e.classes:i.observable(e.classes||""),this._isOpenChangedSubscribe=null,this._isDeterminateChangedSubscribe=null,this._progressChangedSubscribe=null}t.prototype.koDescendantsComplete=function(e){e.replaceWith(e.firstElementChild)},t.prototype.dispose=function(){console.log("~Icon()")},t.template='<i class="material-icons" data-bind="text: icon, class: classes, attr: { id: id }"></i>',r.register("mat-icon",t);a.prototype.koDescendantsComplete=function(e){var r=e.firstElementChild;e.replaceWith(r),this.mdcComponent=new s.circularProgress.MDCCircularProgress(r),this._isOpenChangedSubscribe=this.isOpen.subscribe(this._isOpenChanged,this),this._isDeterminateChangedSubscribe=this.isDeterminate.subscribe(this._isDeterminateChanged,this),this._progressChangedSubscribe=this.progress.subscribe(this._progressChanged,this),this.isOpen.valueHasMutated(),this.isDeterminate.valueHasMutated(),this.progress.valueHasMutated()},a.prototype.dispose=function(){console.log("~CircularProgress()"),this._isOpenChangedSubscribe.dispose(),this._isDeterminateChangedSubscribe.dispose(),this._progressChangedSubscribe.dispose(),this.mdcComponent.destroy()},a.prototype._isOpenChanged=function(e){this.mdcComponent[e?"open":"close"]()},a.prototype._isDeterminateChanged=function(e){this.mdcComponent.determinate=e},a.prototype._progressChanged=function(e){this.mdcComponent.progress=e},a.template=`<div class="mdc-circular-progress" style="width:48px;height:48px;" role="progressbar" aria-valuemin="0" aria-valuemax="1"
+//#region [ Constructor ]
+
+/**
+ * Creates instance of the circular progress component.
+ * 
+ * @param {object} args Arguments. 
+ */
+const CircularProgress = function(args) {
+    console.debug("CircularProgress()");
+
+    this.mdcComponent = null;
+
+    this.id = ko.isObservable(args.id) ? args.id : ko.observable(args.id || "_circular-progress_" + utils.guid());
+    this.label = ko.isObservable(args.label) ? args.label : ko.observable(args.label || "");
+    this.isOpen = ko.isObservable(args.isOpen) ? args.isOpen : ko.observable(typeof(args.isOpen) === "boolean" ? args.isOpen : true);
+    this.isDeterminate = ko.isObservable(args.isDeterminate) ? args.isDeterminate : ko.observable(typeof(args.isDeterminate) === "boolean" ? args.isDeterminate : true);
+    this.progress = ko.isObservable(args.progress) ? args.progress : ko.observable(typeof(args.progress) === "number" ? args.progress : 0);
+    this.classes = ko.isObservable(args.classes) ? args.classes : ko.observable(args.classes || "");
+
+    this._isOpenChangedSubscribe = null;
+    this._isDeterminateChangedSubscribe = null;
+    this._progressChangedSubscribe = null;
+};
+
+//#endregion
+
+
+//#region [ Methods : Public ]
+
+/**
+ * Direct method to receive a descendantsComplete notification.
+ * Knockout will call it with the component’s node once all descendants are bound.
+ * 
+ * @param {element} node Html element. 
+ */
+CircularProgress.prototype.koDescendantsComplete = function (node) {
+    // Replace custom element placehoder
+    const root = node.firstElementChild;
+    node.replaceWith(root);
+
+    this.mdcComponent = new mdc.circularProgress.MDCCircularProgress(root);
+
+    this._isOpenChangedSubscribe = this.isOpen.subscribe(this._isOpenChanged, this);
+    this._isDeterminateChangedSubscribe = this.isDeterminate.subscribe(this._isDeterminateChanged, this);
+    this._progressChangedSubscribe = this.progress.subscribe(this._progressChanged, this);
+
+    this.isOpen.valueHasMutated();
+    this.isDeterminate.valueHasMutated();
+    this.progress.valueHasMutated();
+};
+
+
+/**
+ * Dispose.
+ */
+CircularProgress.prototype.dispose = function () {
+    console.log("~CircularProgress()");
+
+    this._isOpenChangedSubscribe.dispose();
+    this._isDeterminateChangedSubscribe.dispose();
+    this._progressChangedSubscribe.dispose();
+    this.mdcComponent.destroy();
+};
+
+//#endregion
+
+
+//#region [ Event Handlers ]
+
+/**
+ * Handles the isOpen property change event.
+ * 
+ * @param {boolean} value If set to true, progress is visible.
+ **/
+CircularProgress.prototype._isOpenChanged = function (value) {
+    this.mdcComponent[value ? "open" : "close"]();
+};
+
+
+/**
+ * Handles the isDeterminate property change event.
+ * 
+ * @param {boolean} value If set to true, progress is determinate.
+ **/
+CircularProgress.prototype._isDeterminateChanged = function (value) {
+    this.mdcComponent.determinate = value;
+};
+
+
+/**
+ * Handles the progress property change event.
+ * 
+ * @param {boolean} value Progress value between [0, 1].
+ **/
+CircularProgress.prototype._progressChanged = function (value) {
+    this.mdcComponent.progress = value;
+};
+
+//#endregion
+
+
+//#region [ Template ]
+
+CircularProgress.template =
+`<div class="mdc-circular-progress" style="width:48px;height:48px;" role="progressbar" aria-valuemin="0" aria-valuemax="1"
     data-bind="attr: { id: id, 'aria-label': label }, class: classes">
     <div class="mdc-circular-progress__determinate-container">
         <svg class="mdc-circular-progress__determinate-circle-graphic" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
@@ -25,7 +129,10 @@
             </div>
         </div>
     </div>
-</div>`,a.templateMedium=`<div class="mdc-circular-progress" style="width:36px;height:36px;" role="progressbar" aria-valuemin="0" aria-valuemax="1"
+</div>`;
+
+CircularProgress.templateMedium =
+`<div class="mdc-circular-progress" style="width:36px;height:36px;" role="progressbar" aria-valuemin="0" aria-valuemax="1"
     data-bind="attr: { id: id, 'aria-label': label }, class: classes">
     <div class="mdc-circular-progress__determinate-container">
         <svg class="mdc-circular-progress__determinate-circle-graphic" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
@@ -52,7 +159,10 @@
             </div>
         </div>
     </div>
-</div>`,a.templateSmall=`<div class="mdc-circular-progress" style="width:24px;height:24px;" role="progressbar" aria-valuemin="0" aria-valuemax="1"
+</div>`;
+
+CircularProgress.templateSmall =
+`<div class="mdc-circular-progress" style="width:24px;height:24px;" role="progressbar" aria-valuemin="0" aria-valuemax="1"
     data-bind="attr: { id: id, 'aria-label': label }, class: classes">
     <div class="mdc-circular-progress__determinate-container">
         <svg class="mdc-circular-progress__determinate-circle-graphic" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -79,4 +189,15 @@
             </div>
         </div>
     </div>
-</div>`,r.register("mat-circular-progress",a),r.register("mat-circular-progress-medium",a,"templateMedium"),r.register("mat-circular-progress-small",a,"templateSmall")});
+</div>`;
+
+//#endregion
+
+
+//#region [ Registration ]
+
+utils.register("mat-circular-progress", CircularProgress);
+utils.register("mat-circular-progress-medium", CircularProgress, "templateMedium");
+utils.register("mat-circular-progress-small", CircularProgress, "templateSmall");
+
+//#endregion
