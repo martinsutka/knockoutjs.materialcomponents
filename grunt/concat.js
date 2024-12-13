@@ -4,7 +4,7 @@
     grunt.config("concat", {
         components: {
             options: {
-                separator: ";",
+                separator: "\n\n\n",
                 banner: "/*!\n * <%= package.name %> v<%= package.version %>\n" +
                         " * <%= grunt.template.today('yyyy-mm-dd') %>\n" +
                         " */\n\n" +
@@ -19,7 +19,8 @@
                 footer: "\n}));"
             },
             src: [
-                // "js/guid.js",
+                "js/utils/global.js",
+                "js/utils/guid.js"
                 // "js/throttle.js",
                 // "js/icon.js",
                 // "js/tooltip.js",
