@@ -29,7 +29,7 @@
             "rename:dependencies",
             "jshint",
             "less",
-            // "cssmin",
+            "cssmin",
             // "concat:components",
             // "copy:index"
         ];
