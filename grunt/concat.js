@@ -29,8 +29,8 @@
                 "js/tooltip.js",
                 "js/richtooltip.js",
                 "js/iconbutton.js",
-                "js/button.js"
-                // "js/fab.js",
+                "js/button.js",
+                "js/fab.js"
                 // "js/chip.js",
                 // "js/switch.js",
                 // "js/checkbox.js",

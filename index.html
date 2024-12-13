@@ -141,6 +141,17 @@
                 <mat-button params="text: 'disabled outlined', type: ko.materialcomponents.Button.TYPE.outlined, isEnabled: false"></mat-button><br/><br/>
                 <mat-button params="text: 'disabled raised', type: ko.materialcomponents.Button.TYPE.raised, isEnabled: false"></mat-button>
             </div>
+            <!-- Floating Action Button -->
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <h5 class="mdc-typography--headline5">Floating Action Button</h5>
+            </div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <mat-fab params="icon: 'arrow_back', onClick: () => alert('Message')"></mat-fab>
+                <mat-fab params="icon: 'arrow_back', onClick: alertAsync"></mat-fab>
+                <mat-fab params="icon: 'edit', type: ko.materialcomponents.Fab.TYPE.mini, onClick: alertAsync"></mat-fab>
+                <mat-fab params="icon: 'edit', type: ko.materialcomponents.Fab.TYPE.extended, text: 'Icon on Left', onClick: alertAsync"></mat-fab>
+                <mat-fab params="icon: 'edit', type: ko.materialcomponents.Fab.TYPE.extended, text: 'Icon on Right', iconPosition: ko.materialcomponents.Fab.ICON_POSITION.end, onClick: alertAsync"></mat-fab>
+            </div>
         </div>
     </div>
     <script src="wwwroot/js/libs/material-components-web.min.js" type="text/javascript"></script>
