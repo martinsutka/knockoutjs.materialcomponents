@@ -1,4 +1,4 @@
-﻿module.exports = function (grunt) {
+﻿module.exports = (grunt) => {
     //#region [ Registration ]
 
     grunt.registerTask("build", build);
@@ -15,34 +15,34 @@
      * @param {string} configuration Build konfigurácia.
      */
     function build(configuration) {
-        var name = grunt.config("package").name;
-        var version = grunt.config("package").version;
+        const name = grunt.config("package").name;
+        const version = grunt.config("package").version;
+        const config = configuration.toUpperCase();
 
-        grunt.log.writeln(`Building ${name} v${version} ${configuration.toUpperCase()}`);
-
-        grunt.config("configuration", "release");
+        grunt.log.writeln(`Building ${name} v${version} ${config}`);
+        //grunt.config("configuration", "release");
 
         // List of tasks
-        var tasks = [
+        const tasks = [
             "clean:wwwroot",
             "copy:dependencies",
-            "rename:dependencies",
-            "copy:images",
-            "jshint",
-            "less",
-            "cssmin",
-            "concat:components",
-            "copy:index"
+            // "rename:dependencies",
+            // "copy:images",
+            // "jshint",
+            // "less",
+            // "cssmin",
+            // "concat:components",
+            // "copy:index"
         ];
 
         // Set up dynamic parameters
-        switch (configuration.toUpperCase()) {
+        switch (config) {
             case "DEBUG":
                 break;
             case "RELEASE":
                 //grunt.config("jshint.options.debug", false);
 
-                tasks.push("uglify:release");
+                // tasks.push("uglify:release");
                 break;
             default:
                 grunt.fail.fatal(`Unknown build configuration '${configuration.toUpperCase()}'.`);
