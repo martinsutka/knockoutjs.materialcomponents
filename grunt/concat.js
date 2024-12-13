@@ -32,10 +32,10 @@
                 "js/button.js",
                 "js/fab.js",
                 "js/switch.js",
-                "js/chip.js"
+                "js/chip.js",
+                "js/slider.js"
                 // "js/checkbox.js",
                 // "js/radio.js",
-                // "js/slider.js",
                 // "js/range-slider.js",
                 // "js/tab.js",
                 // "js/tab-bar.js"

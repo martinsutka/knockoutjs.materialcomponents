@@ -193,6 +193,16 @@
                     <mat-chip params="text: 'Chip Three', type: ko.materialcomponents.Chip.TYPE.filter, icon: 'face', trailingIcon: 'clear'"></mat-chip>
                 </div>
             </div>
+            <!-- Slider -->
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <h5 class="mdc-typography--headline5">Slider</h5>
+            </div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <mat-slider params="value: 10"></mat-slider>
+                <mat-slider params="value: 10, isEnabled: false"></mat-slider>
+                <mat-slider params="value: 20, isDiscrete: true"></mat-slider>
+                <mat-slider params="value: 20, isDiscrete: true, showTickMarks: true"></mat-slider>
+            </div>
         </div>
     </div>
     <script src="wwwroot/js/libs/material-components-web.min.js" type="text/javascript"></script>
