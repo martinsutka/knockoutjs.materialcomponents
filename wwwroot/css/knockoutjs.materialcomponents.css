@@ -27,7 +27,12 @@
   right: 0.75rem;
   top: 0.75rem;
 }
+.mdc-linear-progress--button {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: var(--mdc-outlined-button-container-shape, var(--mdc-shape-small, 4px)) var(--mdc-outlined-button-container-shape, var(--mdc-shape-small, 4px)) 0 0;
+}
 /*
-@import "mdc/linear-progress.less";
 @import "mdc/switch.less";
 */
