@@ -20,8 +20,8 @@
             },
             src: [
                 "js/utils/global.js",
-                "js/utils/guid.js"
-                // "js/throttle.js",
+                "js/utils/guid.js",
+                "js/utils/throttle.js"
                 // "js/icon.js",
                 // "js/tooltip.js",
                 // "js/rich-tooltip.js",

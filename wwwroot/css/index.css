@@ -1,0 +1,17 @@
+html,
+body {
+  --mdc-typography-font-family: "Google Sans", Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  --mdc-theme-primary: #289048;
+  --mdc-theme-secondary: #f36e21;
+  font-size: 16px;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+}
+.mdc-typography--headline3 {
+  color: var(--mdc-theme-primary);
+  margin: 0;
+}
+.mdc-typography--headline5 {
+  margin: 0;
+}
