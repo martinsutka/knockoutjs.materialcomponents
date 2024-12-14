@@ -34,10 +34,10 @@
                 "js/switch.js",
                 "js/chip.js",
                 "js/slider.js",
-                "js/rangeslider.js"
+                "js/rangeslider.js",
+                "js/tab.js"
                 // "js/checkbox.js",
                 // "js/radio.js",
-                // "js/tab.js",
                 // "js/tab-bar.js"
             ],
             dest: "wwwroot/js/knockoutjs.materialcomponents.js"
