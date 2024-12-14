@@ -253,6 +253,27 @@
                 <br/>
                 <div data-bind="text: areChecked().join(', ')"></div>
             </div>
+            <!-- Radio -->
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <h5 class="mdc-typography--headline5">Radio</h5>
+            </div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <mat-radio params="value: 111"></mat-radio><br/>
+                <mat-radio params="text: 'My Radio', value: 123"></mat-radio><br/>
+                <mat-radio params="text: 'This one is disabled', isEnabled: false"></mat-radio><br/>
+                <mat-radio params="text: 'Checked by default', isChecked: true"></mat-radio>
+            </div>
+            <!-- Radio List -->
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <h5 class="mdc-typography--headline5">Radio List</h5>
+            </div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <mat-radio params="text: 'Option 1', name: 'options', value: '1', isChecked: radioValue"></mat-radio>
+                <mat-radio params="text: 'Option 2', name: 'options', value: '2', isChecked: radioValue"></mat-radio>
+                <mat-radio params="text: 'Option 3', name: 'options', value: '3', isChecked: radioValue"></mat-radio>
+                <br/>
+                <div data-bind="text: radioValue"></div>
+            </div>
         </div>
     </div>
     <script src="wwwroot/js/libs/material-components-web.min.js" type="text/javascript"></script>
@@ -301,7 +322,8 @@
         ready(() => {
             global.app = {
                 title: ko.observable("KnockoutJs Material Components"),
-                areChecked: ko.observableArray([])
+                areChecked: ko.observableArray([]),
+                radioValue: ko.observable()
             };
 
             ko.applyBindings(app, doc.body);
