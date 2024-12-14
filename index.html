@@ -220,6 +220,17 @@
                 <mat-tab params="icon: 'favorite', text: 'Add to favorites', isActive: true, isStacked: true"></mat-tab>
                 <mat-tab params="icon: 'arrow_forward_ios', text: 'Go Forward', isActive: true, indicator: ko.materialcomponents.Tab.INDICATOR.onlyContent"></mat-tab>
             </div>
+            <!-- Tab Bar -->
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <h5 class="mdc-typography--headline5">Tab Bar</h5>
+            </div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <mat-tab-bar params="activeTab: 1">
+                    <mat-tab params="icon: 'arrow_back_ios', text: 'Go Back', tabs: tabs"></mat-tab>
+                    <mat-tab params="icon: 'favorite', text: 'Add to favorites', tabs: tabs"></mat-tab>
+                    <mat-tab params="icon: 'arrow_forward_ios', text: 'Go Forward', tabs: tabs"></mat-tab>
+                </mat-tab-bar>
+            </div>
         </div>
     </div>
     <script src="wwwroot/js/libs/material-components-web.min.js" type="text/javascript"></script>

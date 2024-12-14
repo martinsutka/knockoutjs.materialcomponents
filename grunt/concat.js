@@ -35,10 +35,10 @@
                 "js/chip.js",
                 "js/slider.js",
                 "js/rangeslider.js",
-                "js/tab.js"
+                "js/tab.js",
+                "js/tabbar.js"
                 // "js/checkbox.js",
                 // "js/radio.js",
-                // "js/tab-bar.js"
             ],
             dest: "wwwroot/js/knockoutjs.materialcomponents.js"
         }
