@@ -1,5 +1,5 @@
 /*!
- * knockoutjs.materialcomponents v1.0.44
+ * knockoutjs.materialcomponents v1.0.55
  * 2024-12-14
  */
 
@@ -2098,6 +2098,7 @@ const Checkbox = function(args) {
 
     this.id = ko.isObservable(args.id) ? args.id : ko.observable(args.id || "_checkbox_" + utils.guid());
     this.text = ko.isObservable(args.text) ? args.text : ko.observable(args.text || "");
+    this.note = ko.isObservable(args.note) ? args.note : ko.observable(args.note || "");
     this.value = ko.isObservable(args.value) ? args.value : ko.observable(args.value || "");
     this.isEnabled = ko.isObservable(args.isEnabled) ? args.isEnabled : ko.observable(typeof(args.isEnabled) === "boolean" ? args.isEnabled : true);
     this.isChecked = ko.isObservableArray(args.isChecked) ? args.isChecked : ko.isObservable(args.isChecked) ? args.isChecked : ko.observable(typeof(args.isChecked) === "boolean" ? args.isChecked : false);
@@ -2178,7 +2179,15 @@ Checkbox.template =
         <div class="mdc-checkbox__ripple"></div>
         <div class="mdc-checkbox__focus-ring"></div>
     </div>
-    <label data-bind="text: text, visible: text().length, attr: { for: id() + '_input' }"></label>
+    <label class="mdc-checkbox__label"
+           data-bind="visible: text().length,
+                      attr: { for: id() + '_input' },
+                      css: {
+                        'mdc-checkbox__label--note': note().length
+                      }">
+        <span data-bind="text: text"></span>
+        <small class="mdc-checkbox__note" data-bind="text: note, visible: note().length"></small>
+    </label>
 </div>`;
 
 //#endregion
