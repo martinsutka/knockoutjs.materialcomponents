@@ -36,8 +36,8 @@
                 "js/slider.js",
                 "js/rangeslider.js",
                 "js/tab.js",
-                "js/tabbar.js"
-                // "js/checkbox.js",
+                "js/tabbar.js",
+                "js/checkbox.js"
                 // "js/radio.js",
             ],
             dest: "wwwroot/js/knockoutjs.materialcomponents.js"
