@@ -14,6 +14,10 @@ const TextField = function(args) {
     this.text = ko.isObservable(args.text) ? args.text : ko.observable(args.text || "");
     this.value = ko.isObservable(args.value) ? args.value : ko.observable(args.value || "");
     this.type = ko.isObservable(args.type) ? args.type : ko.observable(args.type || TextField.TYPE.text);
+    this.isEnabled = ko.isObservable(args.isEnabled) ? args.isEnabled : ko.observable(typeof(args.isEnabled) === "boolean" ? args.isEnabled : true);
+    this.min = ko.isObservable(args.min) ? args.min : ko.observable(typeof(args.min) === "number" ? args.min : null);
+    this.max = ko.isObservable(args.max) ? args.max : ko.observable(typeof(args.max) === "number" ? args.max : null);
+    this.step = ko.isObservable(args.step) ? args.step : ko.observable(typeof(args.step) === "number" ? args.step : null);
     this.classes = ko.isObservable(args.classes) ? args.classes : ko.observable(args.classes || "");
 };
 
@@ -85,7 +89,8 @@ TextField.template =
     </span>
     <input class="mdc-text-field__input"
            data-bind="textInput: value,
-                      attr: { type: type },
+                      attr: { type: type, min: min, max: max, step: step },
+                      enable: isEnabled,
                       css: {
                         'mdc-text-field__input--text': type() === '${TextField.TYPE.text}',
                         'mdc-text-field__input--number': type() === '${TextField.TYPE.number}',
