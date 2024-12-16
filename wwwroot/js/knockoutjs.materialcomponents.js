@@ -1,5 +1,5 @@
 /*!
- * knockoutjs.materialcomponents v1.0.94
+ * knockoutjs.materialcomponents v1.0.99
  * 2024-12-16
  */
 
@@ -2342,6 +2342,7 @@ const TextField = function(args) {
     this.id = ko.isObservable(args.id) ? args.id : ko.observable(args.id || "_textfield_" + utils.guid());
     this.text = ko.isObservable(args.text) ? args.text : ko.observable(args.text || "");
     this.value = ko.isObservable(args.value) ? args.value : ko.observable(args.value || "");
+    this.type = ko.isObservable(args.type) ? args.type : ko.observable(args.type || TextField.TYPE.text);
     this.classes = ko.isObservable(args.classes) ? args.classes : ko.observable(args.classes || "");
 };
 
@@ -2378,6 +2379,15 @@ TextField.prototype.dispose = function () {
 
 
 //#region [ Enums ]
+
+/**
+ * Text field types.
+ */
+TextField.TYPE = {
+    text: "text",
+    number: "number"
+};
+
 //#endregion
 
 
@@ -2393,8 +2403,13 @@ TextField.template =
         </span>
         <span class="mdc-notched-outline__trailing"></span>
     </span>
-    <input type="text" class="mdc-text-field__input"
-           data-bind="textInput: value" />
+    <input class="mdc-text-field__input"
+           data-bind="textInput: value,
+                      attr: { type: type },
+                      css: {
+                        'mdc-text-field__input--text': type() === '${TextField.TYPE.text}',
+                        'mdc-text-field__input--number': type() === '${TextField.TYPE.number}'
+                      }" />
 </label>`;
 
 //#endregion
