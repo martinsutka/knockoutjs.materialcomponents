@@ -1,0 +1,95 @@
+﻿.mdc-text-field {
+    &--outlined {
+        /*
+        .mdc-notched-outline .mdc-notched-outline__leading {
+            border-radius: 28px 0 0 28px;
+            width: 28px;
+        }
+
+        .mdc-notched-outline .mdc-notched-outline__trailing {
+            border-radius: 0 28px 28px 0;
+        }
+        */
+        &:not(.mdc-text-field--disabled) {
+            .mdc-notched-outline__leading,
+            .mdc-notched-outline__notch,
+            .mdc-notched-outline__trailing {
+                border-color: var(--mdc-theme-secondary);
+                background-color: rgba(0, 0, 0, .025);
+            }
+
+            &:not(.mdc-text-field--focused) {
+                &:hover {
+                    .mdc-notched-outline .mdc-notched-outline__leading,
+                    .mdc-notched-outline .mdc-notched-outline__notch,
+                    .mdc-notched-outline .mdc-notched-outline__trailing {
+                        border-color: var(--mdc-theme-secondary);
+                    }
+                }
+            }
+
+            .mdc-floating-label {
+                color: var(--mdc-theme-secondary);
+            }
+        }
+    }
+    
+    &--focused {
+        &:not(.mdc-text-field--disabled) {
+            .mdc-floating-label {
+                color: var(--mdc-theme-primary);
+            }
+
+            &.mdc-text-field--select:after {
+                border-top-color: var(--mdc-theme-primary);
+            }
+        }
+    }
+
+    &--full-width {
+        width: 100%;
+    }
+
+    &--pixels:after {
+        content: "\00a0px";
+        color: var(--mdc-theme-secondary);
+    }
+    
+    &--percentages:after {
+        content: "\00a0%";
+        color: var(--mdc-theme-secondary);
+    }
+    
+    &--color:after {
+        content: attr(data-value);
+        position: absolute;
+        color: var(--mdc-theme-secondary);
+        right: rem(62px);
+        top: rem(17px);
+    }
+    
+    &--select {
+        select {
+            padding-right: rem(16px);
+        }
+
+        option {
+            font-family: var(--mdc-typography-button-font-family);
+        }
+
+        &:after {
+            content: "\00a0";
+            position: absolute;
+            top: 50%;
+            right: rem(15px);
+            pointer-events: none;
+            -webkit-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid var(--mdc-theme-text-secondary-on-light);
+        }
+    }
+}

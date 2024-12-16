@@ -61,3 +61,73 @@
 .mdc-form-field--full-width {
   width: 100%;
 }
+.mdc-text-field--outlined {
+  /*
+        .mdc-notched-outline .mdc-notched-outline__leading {
+            border-radius: 28px 0 0 28px;
+            width: 28px;
+        }
+
+        .mdc-notched-outline .mdc-notched-outline__trailing {
+            border-radius: 0 28px 28px 0;
+        }
+        */
+}
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing {
+  border-color: var(--mdc-theme-secondary);
+  background-color: rgba(0, 0, 0, 0.025);
+}
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__leading,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__notch,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline .mdc-notched-outline__trailing {
+  border-color: var(--mdc-theme-secondary);
+}
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-floating-label {
+  color: var(--mdc-theme-secondary);
+}
+.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+  color: var(--mdc-theme-primary);
+}
+.mdc-text-field--focused:not(.mdc-text-field--disabled).mdc-text-field--select:after {
+  border-top-color: var(--mdc-theme-primary);
+}
+.mdc-text-field--full-width {
+  width: 100%;
+}
+.mdc-text-field--pixels:after {
+  content: "\00a0px";
+  color: var(--mdc-theme-secondary);
+}
+.mdc-text-field--percentages:after {
+  content: "\00a0%";
+  color: var(--mdc-theme-secondary);
+}
+.mdc-text-field--color:after {
+  content: attr(data-value);
+  position: absolute;
+  color: var(--mdc-theme-secondary);
+  right: 3.875rem;
+  top: 1.0625rem;
+}
+.mdc-text-field--select select {
+  padding-right: 1rem;
+}
+.mdc-text-field--select option {
+  font-family: var(--mdc-typography-button-font-family);
+}
+.mdc-text-field--select:after {
+  content: "\00a0";
+  position: absolute;
+  top: 50%;
+  right: 0.9375rem;
+  pointer-events: none;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid var(--mdc-theme-text-secondary-on-light);
+}

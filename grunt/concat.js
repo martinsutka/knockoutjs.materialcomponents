@@ -38,7 +38,8 @@
                 "js/tab.js",
                 "js/tabbar.js",
                 "js/checkbox.js",
-                "js/radio.js"
+                "js/radio.js",
+                "js/textfield.js"
             ],
             dest: "wwwroot/js/knockoutjs.materialcomponents.js"
         }
