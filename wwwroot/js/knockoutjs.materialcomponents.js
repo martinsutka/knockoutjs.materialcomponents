@@ -1,5 +1,5 @@
 /*!
- * knockoutjs.materialcomponents v1.0.99
+ * knockoutjs.materialcomponents v1.0.103
  * 2024-12-16
  */
 
@@ -2385,7 +2385,12 @@ TextField.prototype.dispose = function () {
  */
 TextField.TYPE = {
     text: "text",
-    number: "number"
+    number: "number",
+    color: "color",
+    date: "date",
+    time: "time",
+    email: "email",
+    password: "password"
 };
 
 //#endregion
@@ -2395,7 +2400,11 @@ TextField.TYPE = {
 
 TextField.template =
 `<label class="mdc-text-field mdc-text-field--outlined"
-        data-bind="attr: { id: id }, class: classes">
+        data-bind="class: classes,
+                   attr: { 
+                        id: id,
+                        'data-value': value
+                   }">
     <span class="mdc-notched-outline mdc-notched-outline--upgraded">
         <span class="mdc-notched-outline__leading"></span>
         <span class="mdc-notched-outline__notch">
@@ -2408,7 +2417,12 @@ TextField.template =
                       attr: { type: type },
                       css: {
                         'mdc-text-field__input--text': type() === '${TextField.TYPE.text}',
-                        'mdc-text-field__input--number': type() === '${TextField.TYPE.number}'
+                        'mdc-text-field__input--number': type() === '${TextField.TYPE.number}',
+                        'mdc-text-field__input--color': type() === '${TextField.TYPE.color}',
+                        'mdc-text-field__input--date': type() === '${TextField.TYPE.date}',
+                        'mdc-text-field__input--time': type() === '${TextField.TYPE.time}',
+                        'mdc-text-field__input--email': type() === '${TextField.TYPE.email}',
+                        'mdc-text-field__input--password': type() === '${TextField.TYPE.password}'
                       }" />
 </label>`;
 

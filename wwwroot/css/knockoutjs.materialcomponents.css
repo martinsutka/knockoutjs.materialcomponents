@@ -99,6 +99,9 @@
   content: "\00a0%";
   color: var(--mdc-theme-secondary);
 }
+.mdc-text-field--color {
+  min-width: 10rem;
+}
 .mdc-text-field--color:after {
   content: attr(data-value);
   position: absolute;

@@ -55,22 +55,30 @@
         width: 100%;
     }
 
-    &--pixels:after {
-        content: "\00a0px";
-        color: var(--mdc-theme-secondary);
+    &--pixels {
+        &:after {
+            content: "\00a0px";
+            color: var(--mdc-theme-secondary);
+        }
     }
     
-    &--percentages:after {
-        content: "\00a0%";
-        color: var(--mdc-theme-secondary);
+    &--percentages {
+        &:after {
+            content: "\00a0%";
+            color: var(--mdc-theme-secondary);
+        }
     }
     
-    &--color:after {
-        content: attr(data-value);
-        position: absolute;
-        color: var(--mdc-theme-secondary);
-        right: rem(62px);
-        top: rem(17px);
+    &--color {
+        min-width: rem(160px);
+
+        &:after {
+            content: attr(data-value);
+            position: absolute;
+            color: var(--mdc-theme-secondary);
+            right: rem(62px);
+            top: rem(17px);
+        }
     }
     
     &--select {
