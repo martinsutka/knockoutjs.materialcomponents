@@ -143,8 +143,7 @@
 }
 .mdc-text-field__input--date::-webkit-calendar-picker-indicator {
   -webkit-appearance: none;
-  display: none !important;
-  visibility: hidden !important;
+  display: none;
   margin: 0;
 }
 .mdc-text-field__input--color {
@@ -157,4 +156,12 @@
 }
 .mdc-text-field :not(.mdc-text-field--disabled) .mdc-text-field__input {
   color: var(--mdc-theme-secondary);
+}
+.mdc-text-field-helper-text {
+  color: var(--mdc-theme-text-secondary-on-background);
+  font-size: 0.6875rem;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.25px;
 }

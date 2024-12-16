@@ -12,6 +12,7 @@ const TextField = function(args) {
 
     this.id = ko.isObservable(args.id) ? args.id : ko.observable(args.id || "_textfield_" + utils.guid());
     this.text = ko.isObservable(args.text) ? args.text : ko.observable(args.text || "");
+    this.note = ko.isObservable(args.note) ? args.note : ko.observable(args.note || "");
     this.value = ko.isObservable(args.value) ? args.value : ko.observable(args.value || "");
     this.type = ko.isObservable(args.type) ? args.type : ko.observable(args.type || TextField.TYPE.text);
     this.isEnabled = ko.isObservable(args.isEnabled) ? args.isEnabled : ko.observable(typeof(args.isEnabled) === "boolean" ? args.isEnabled : true);
@@ -34,8 +35,11 @@ const TextField = function(args) {
  */
 TextField.prototype.koDescendantsComplete = function (node) {
     // Replace custom element placehoder
-    const root = node.firstElementChild;
+    const root = node.children[0];
+    const helper = node.children[1];
+
     node.replaceWith(root);
+    root.after(helper);
 
     this.mdcComponent = new mdc.textField.MDCTextField(root);
 };
@@ -79,12 +83,17 @@ TextField.template =
                    attr: { 
                         id: id,
                         'data-value': value
+                   },
+                   css: {
+                        'mdc-text-field--no-label': !text().length
                    }">
-    <span class="mdc-notched-outline mdc-notched-outline--upgraded">
+    <span class="mdc-notched-outline">
         <span class="mdc-notched-outline__leading"></span>
+        <!-- ko if: text().length -->
         <span class="mdc-notched-outline__notch">
             <span class="mdc-floating-label" data-bind="text: text"></span>
         </span>
+        <!-- /ko -->
         <span class="mdc-notched-outline__trailing"></span>
     </span>
     <input class="mdc-text-field__input"
@@ -100,7 +109,10 @@ TextField.template =
                         'mdc-text-field__input--email': type() === '${TextField.TYPE.email}',
                         'mdc-text-field__input--password': type() === '${TextField.TYPE.password}'
                       }" />
-</label>`;
+</label>
+<div class="mdc-text-field-helper-line" data-bind="visible: note().length">
+    <div class="mdc-text-field-helper-text" aria-hidden="true" data-bind="text: note"></div>
+</div>`;
 
 //#endregion
 
