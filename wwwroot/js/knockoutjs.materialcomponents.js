@@ -1,5 +1,5 @@
 /*!
- * knockoutjs.materialcomponents v1.0.123
+ * knockoutjs.materialcomponents v1.0.126
  * 2024-12-16
  */
 
@@ -2345,6 +2345,8 @@ const TextField = function(args) {
     this.value = ko.isObservable(args.value) ? args.value : ko.observable(args.value || "");
     this.type = ko.isObservable(args.type) ? args.type : ko.observable(args.type || TextField.TYPE.text);
     this.isEnabled = ko.isObservable(args.isEnabled) ? args.isEnabled : ko.observable(typeof(args.isEnabled) === "boolean" ? args.isEnabled : true);
+    this.prefix = ko.isObservable(args.prefix) ? args.prefix : ko.observable(args.prefix || "");
+    this.suffix = ko.isObservable(args.suffix) ? args.suffix : ko.observable(args.suffix || "");
     this.min = ko.isObservable(args.min) ? args.min : ko.observable(typeof(args.min) === "number" ? args.min : null);
     this.max = ko.isObservable(args.max) ? args.max : ko.observable(typeof(args.max) === "number" ? args.max : null);
     this.step = ko.isObservable(args.step) ? args.step : ko.observable(typeof(args.step) === "number" ? args.step : null);
@@ -2425,6 +2427,9 @@ TextField.template =
         <!-- /ko -->
         <span class="mdc-notched-outline__trailing"></span>
     </span>
+    <!-- ko if: prefix().length -->
+        <span class="mdc-text-field__affix mdc-text-field__affix--prefix" data-bind="text: prefix"></span>
+    <!-- /ko -->
     <input class="mdc-text-field__input"
            data-bind="textInput: value,
                       attr: { type: type, min: min, max: max, step: step },
@@ -2438,6 +2443,9 @@ TextField.template =
                         'mdc-text-field__input--email': type() === '${TextField.TYPE.email}',
                         'mdc-text-field__input--password': type() === '${TextField.TYPE.password}'
                       }" />
+    <!-- ko if: suffix().length -->
+        <span class="mdc-text-field__affix mdc-text-field__affix--suffix" data-bind="text: suffix"></span>
+    <!-- /ko -->
 </label>
 <div class="mdc-text-field-helper-line" data-bind="visible: note().length">
     <div class="mdc-text-field-helper-text" aria-hidden="true" data-bind="text: note"></div>

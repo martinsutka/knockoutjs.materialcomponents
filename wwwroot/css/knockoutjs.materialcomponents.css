@@ -91,14 +91,6 @@
 .mdc-text-field--full-width {
   width: 100%;
 }
-.mdc-text-field--pixels:after {
-  content: "\00a0px";
-  color: var(--mdc-theme-secondary);
-}
-.mdc-text-field--percentages:after {
-  content: "\00a0%";
-  color: var(--mdc-theme-secondary);
-}
 .mdc-text-field--color {
   min-width: 10rem;
 }
