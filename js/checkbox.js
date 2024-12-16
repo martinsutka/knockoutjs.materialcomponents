@@ -44,8 +44,10 @@ Checkbox.prototype.koDescendantsComplete = function (node) {
     this.mdcComponentField.input = this.mdcComponent;
 
     this._isIndeterminateChangedSubscribe = this.isIndeterminate.subscribe(this._isIndeterminateChanged, this);
+    this._isCheckedChangedSubscribe = this.isChecked.subscribe(this._isCheckedChanged, this);
 
     this.isIndeterminate.valueHasMutated();
+    this.isChecked.valueHasMutated();
 };
 
 
@@ -56,6 +58,7 @@ Checkbox.prototype.dispose = function () {
     console.log("~Checkbox()");
 
     this._isIndeterminateChangedSubscribe.dispose();
+    this._isCheckedChangedSubscribe.dispose();
     this.mdcComponentField.destroy();
     this.mdcComponent.destroy();
 };
@@ -72,6 +75,21 @@ Checkbox.prototype.dispose = function () {
  **/
 Checkbox.prototype._isIndeterminateChanged = function (value) {
     this.mdcComponent.indeterminate = value;
+};
+
+
+/**
+ * Handles the isChecked property change event.
+ * 
+ * @param {boolean} value If set to true, the checkbox is checked.
+ **/
+Checkbox.prototype._isCheckedChanged = function (value) {
+    if (Array.isArray(value)) {
+        this.mdcComponent.checked = value.includes(this.value());
+        return;
+    }
+
+    this.mdcComponent.checked = value;
 };
 
 //#endregion
