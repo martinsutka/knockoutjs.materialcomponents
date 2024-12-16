@@ -16,6 +16,7 @@ const TextField = function(args) {
     this.value = ko.isObservable(args.value) ? args.value : ko.observable(args.value || "");
     this.type = ko.isObservable(args.type) ? args.type : ko.observable(args.type || TextField.TYPE.text);
     this.isEnabled = ko.isObservable(args.isEnabled) ? args.isEnabled : ko.observable(typeof(args.isEnabled) === "boolean" ? args.isEnabled : true);
+    this.isAutoSelect = ko.isObservable(args.isAutoSelect) ? args.isAutoSelect : ko.observable(typeof(args.isAutoSelect) === "boolean" ? args.isAutoSelect : false);
     this.prefix = ko.isObservable(args.prefix) ? args.prefix : ko.observable(args.prefix || "");
     this.suffix = ko.isObservable(args.suffix) ? args.suffix : ko.observable(args.suffix || "");
     this.min = ko.isObservable(args.min) ? args.min : ko.observable(typeof(args.min) === "number" ? args.min : null);
@@ -42,6 +43,15 @@ TextField.prototype.koDescendantsComplete = function (node) {
 
     node.replaceWith(root);
     root.after(helper);
+
+    if (this.isAutoSelect()) {
+        const input = root.querySelector("input");
+        input.addEventListener("focus", function() {
+            if (typeof (this.select) === "function") {
+                this.select();
+            }
+        });
+    }
 
     this.mdcComponent = new mdc.textField.MDCTextField(root);
 };
