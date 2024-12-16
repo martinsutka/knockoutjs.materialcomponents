@@ -39,6 +39,10 @@ Radio.prototype.koDescendantsComplete = function (node) {
     this.mdcComponent = new mdc.radio.MDCRadio(root.querySelector(".mdc-radio"));
     this.mdcComponentField = new mdc.formField.MDCFormField(root);
     this.mdcComponentField.input = this.mdcComponent;
+
+    this._isCheckedChangedSubscribe = this.isChecked.subscribe(this._isCheckedChanged, this);
+
+    this.isChecked.valueHasMutated();
 };
 
 
@@ -48,8 +52,28 @@ Radio.prototype.koDescendantsComplete = function (node) {
 Radio.prototype.dispose = function () {
     console.log("~Radio()");
 
+    this._isCheckedChangedSubscribe.dispose();
     this.mdcComponentField.destroy();
     this.mdcComponent.destroy();
+};
+
+//#endregion
+
+
+//#region [ Event Handlers ]
+
+/**
+ * Handles the isChecked property change event.
+ * 
+ * @param {boolean} value If set to true, the checkbox is checked.
+ **/
+Radio.prototype._isCheckedChanged = function (value) {
+    if (typeof(value) === "boolean") {
+        this.mdcComponent.checked = value;
+        return;
+    }
+    
+    this.mdcComponent.checked = value == this.value();
 };
 
 //#endregion
@@ -62,7 +86,7 @@ Radio.template =
       data-bind="attr: { id: id }, class: classes">
     <div class="mdc-radio mdc-radio--touch">
         <input class="mdc-radio__native-control" type="radio"
-               data-bind="attr: { id: id() + '_input', name: name, value: value }, enable: isEnabled, checked: isChecked"/>
+               data-bind="attr: { id: id() + '_input', name: name }, checkedValue: value, enable: isEnabled, checked: isChecked"/>
         <div class="mdc-radio__background">
             <div class="mdc-radio__outer-circle"></div>
             <div class="mdc-radio__inner-circle"></div>
