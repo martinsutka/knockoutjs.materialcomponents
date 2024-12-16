@@ -1,15 +1,5 @@
 ﻿.mdc-text-field {
     &--outlined {
-        /*
-        .mdc-notched-outline .mdc-notched-outline__leading {
-            border-radius: 28px 0 0 28px;
-            width: 28px;
-        }
-
-        .mdc-notched-outline .mdc-notched-outline__trailing {
-            border-radius: 0 28px 28px 0;
-        }
-        */
         &:not(.mdc-text-field--disabled) {
             .mdc-notched-outline__leading,
             .mdc-notched-outline__notch,
@@ -20,16 +10,31 @@
 
             &:not(.mdc-text-field--focused) {
                 &:hover {
-                    .mdc-notched-outline .mdc-notched-outline__leading,
-                    .mdc-notched-outline .mdc-notched-outline__notch,
-                    .mdc-notched-outline .mdc-notched-outline__trailing {
-                        border-color: var(--mdc-theme-secondary);
+                    .mdc-notched-outline {
+                        .mdc-notched-outline__leading,
+                        .mdc-notched-outline__notch,
+                        .mdc-notched-outline__trailing {
+                            border-color: var(--mdc-theme-secondary);
+                        }
                     }
                 }
             }
 
             .mdc-floating-label {
                 color: var(--mdc-theme-secondary);
+            }
+        }
+    }
+
+    &--rounded {
+        .mdc-notched-outline {
+            .mdc-notched-outline__leading {
+                border-radius: rem(28px) 0 0 rem(28px);
+                width: rem(28px);
+            }
+
+            .mdc-notched-outline__trailing {
+                border-radius: 0 rem(28px) rem(28px) 0;
             }
         }
     }
@@ -90,6 +95,34 @@
             border-left: 5px solid transparent;
             border-right: 5px solid transparent;
             border-top: 5px solid var(--mdc-theme-text-secondary-on-light);
+        }
+    }
+
+    &__input {
+        &--number {
+            text-align: right;
+            -moz-appearance: textfield;
+
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+        }
+
+        &--color {
+            width: rem(32px);
+            height: rem(32px) !important;
+            border-radius: rem(4px);
+            position: absolute;
+            right: rem(24px);
+            top: rem(12px);
+        }
+    }
+
+    :not(.mdc-text-field--disabled)  {
+        .mdc-text-field__input {
+            color: var(--mdc-theme-secondary);
         }
     }
 }
