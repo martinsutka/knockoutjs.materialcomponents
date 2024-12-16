@@ -1,5 +1,5 @@
 /*!
- * knockoutjs.materialcomponents v1.0.134
+ * knockoutjs.materialcomponents v1.0.135
  * 2024-12-16
  */
 
@@ -2341,6 +2341,8 @@ const TextField = function(args) {
 
     this.id = ko.isObservable(args.id) ? args.id : ko.observable(args.id || "_textfield_" + utils.guid());
     this.text = ko.isObservable(args.text) ? args.text : ko.observable(args.text || "");
+    this.icon = ko.isObservable(args.icon) ? args.icon : ko.observable(args.icon || "");
+    this.iconPosition = ko.isObservable(args.iconPosition) ? args.iconPosition : ko.observable(args.iconPosition || TextField.ICON_POSITION.start);
     this.note = ko.isObservable(args.note) ? args.note : ko.observable(args.note || "");
     this.value = ko.isObservable(args.value) ? args.value : ko.observable(args.value || "");
     this.type = ko.isObservable(args.type) ? args.type : ko.observable(args.type || TextField.TYPE.text);
@@ -2413,6 +2415,15 @@ TextField.TYPE = {
     password: "password"
 };
 
+
+/**
+ * Icon positions.
+ */
+TextField.ICON_POSITION = {
+    start: 0,
+    end: 1
+};
+
 //#endregion
 
 
@@ -2426,7 +2437,9 @@ TextField.template =
                         'data-value': value
                    },
                    css: {
-                        'mdc-text-field--no-label': !text().length
+                        'mdc-text-field--no-label': !text().length,
+                        'mdc-text-field--with-leading-icon': icon().length && iconPosition() === ${TextField.ICON_POSITION.start},
+                        'mdc-text-field--with-trailing-icon': icon().length && iconPosition() === ${TextField.ICON_POSITION.end}
                    }">
     <span class="mdc-notched-outline">
         <span class="mdc-notched-outline__leading"></span>
@@ -2440,6 +2453,8 @@ TextField.template =
     <!-- ko if: prefix().length -->
         <span class="mdc-text-field__affix mdc-text-field__affix--prefix" data-bind="text: prefix"></span>
     <!-- /ko -->
+    <i class="material-icons mdc-text-field__icon mdc-text-field__icon--leading" tabindex="0" role="button"
+       data-bind="text: icon, visible: icon().length && iconPosition() === ${TextField.ICON_POSITION.start}"></i>
     <input class="mdc-text-field__input"
            data-bind="textInput: value,
                       attr: { type: type, min: min, max: max, step: step },
@@ -2453,6 +2468,8 @@ TextField.template =
                         'mdc-text-field__input--email': type() === '${TextField.TYPE.email}',
                         'mdc-text-field__input--password': type() === '${TextField.TYPE.password}'
                       }" />
+    <i class="material-icons mdc-text-field__icon mdc-text-field__icon--trailing" tabindex="0" role="button"
+       data-bind="text: icon, visible: icon().length && iconPosition() === ${TextField.ICON_POSITION.end}"></i>
     <!-- ko if: suffix().length -->
         <span class="mdc-text-field__affix mdc-text-field__affix--suffix" data-bind="text: suffix"></span>
     <!-- /ko -->
