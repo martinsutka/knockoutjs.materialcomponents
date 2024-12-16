@@ -1,5 +1,5 @@
 /*!
- * knockoutjs.materialcomponents v1.0.135
+ * knockoutjs.materialcomponents v1.0.136
  * 2024-12-16
  */
 

@@ -51,6 +51,14 @@
         }
     }
 
+    &--invalid {
+        :not(.mdc-text-field--disabled) {
+            .mdc-floating-label {
+                color: var(--mdc-theme-error, #b00020);
+            }
+        }
+    }
+
     &--full-width {
         width: 100%;
     }

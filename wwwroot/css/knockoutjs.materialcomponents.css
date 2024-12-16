@@ -88,6 +88,9 @@
 .mdc-text-field--focused:not(.mdc-text-field--disabled).mdc-text-field--select:after {
   border-top-color: var(--mdc-theme-primary);
 }
+.mdc-text-field--invalid :not(.mdc-text-field--disabled) .mdc-floating-label {
+  color: var(--mdc-theme-error, #b00020);
+}
 .mdc-text-field--full-width {
   width: 100%;
 }
