@@ -95,7 +95,7 @@
   color: var(--mdc-theme-primary);
 }
 .mdc-text-field--focused:not(.mdc-text-field--disabled).mdc-text-field--select:after {
-  border-top-color: var(--mdc-theme-primary);
+  background-color: var(--mdc-theme-primary);
 }
 .mdc-text-field--invalid :not(.mdc-text-field--disabled) .mdc-floating-label {
   color: var(--mdc-theme-error, #b00020);
@@ -127,11 +127,11 @@
   pointer-events: none;
   -webkit-transform: translate(0, -50%);
   transform: translate(0, -50%);
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid var(--mdc-theme-text-secondary-on-light);
+  width: 0.625rem;
+  height: 0.625rem;
+  background-color: var(--mdc-theme-secondary);
+  -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 13.1l-8-8 2.1-2.2 5.9 5.9 5.9-5.9 2.1 2.2z'/></svg>");
+  mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 13.1l-8-8 2.1-2.2 5.9 5.9 5.9-5.9 2.1 2.2z'/></svg>");
 }
 .mdc-text-field__input--number {
   text-align: right;
