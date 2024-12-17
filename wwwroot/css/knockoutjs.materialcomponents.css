@@ -152,6 +152,9 @@
 .mdc-text-field :not(.mdc-text-field--disabled) .mdc-text-field__input {
   color: var(--mdc-theme-secondary);
 }
+.mdc-text-field-helper-line {
+  flex-direction: column;
+}
 .mdc-text-field-helper-text {
   color: var(--mdc-theme-text-secondary-on-background);
   font-size: 0.6875rem;

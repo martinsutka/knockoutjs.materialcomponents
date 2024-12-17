@@ -15,6 +15,7 @@ const TextField = function(args) {
     this.icon = ko.isObservable(args.icon) ? args.icon : ko.observable(args.icon || "");
     this.iconPosition = ko.isObservable(args.iconPosition) ? args.iconPosition : ko.observable(args.iconPosition || TextField.ICON_POSITION.start);
     this.note = ko.isObservable(args.note) ? args.note : ko.observable(args.note || "");
+    this.error = ko.isObservable(args.error) ? args.error : ko.observable(args.error || "");
     this.isNotePersistent = ko.isObservable(args.isNotePersistent) ? args.isNotePersistent : ko.observable(typeof(args.isNotePersistent) === "boolean" ? args.isNotePersistent : false);
     this.value = ko.isObservable(args.value) ? args.value : ko.observable(args.value || "");
     this.pattern = ko.isObservable(args.pattern) ? args.pattern : ko.observable(args.pattern || null);
@@ -151,12 +152,14 @@ TextField.template =
         <span class="mdc-text-field__affix mdc-text-field__affix--suffix" data-bind="text: suffix"></span>
     <!-- /ko -->
 </label>
-<div class="mdc-text-field-helper-line" data-bind="visible: note().length">
+<div class="mdc-text-field-helper-line" data-bind="visible: note().length || error().length">
     <div class="mdc-text-field-helper-text" aria-hidden="true"
-         data-bind="text: note,
+         data-bind="text: note, visible: note().length,
                     css: {
                         'mdc-text-field-helper-text--persistent': isNotePersistent
                     }"></div>
+    <div class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg" aria-hidden="true"
+         data-bind="text: error, visible: error().length"></div>
 </div>`;
 
 //#endregion
