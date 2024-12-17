@@ -25,6 +25,8 @@ const TextField = function(args) {
     this.min = ko.isObservable(args.min) ? args.min : ko.observable(typeof(args.min) === "number" ? args.min : null);
     this.max = ko.isObservable(args.max) ? args.max : ko.observable(typeof(args.max) === "number" ? args.max : null);
     this.step = ko.isObservable(args.step) ? args.step : ko.observable(typeof(args.step) === "number" ? args.step : null);
+    this.minLength = ko.isObservable(args.minLength) ? args.minLength : ko.observable(typeof(args.minLength) === "number" ? args.minLength : null);
+    this.maxLength = ko.isObservable(args.maxLength) ? args.maxLength : ko.observable(typeof(args.maxLength) === "number" ? args.maxLength : null);
     this.classes = ko.isObservable(args.classes) ? args.classes : ko.observable(args.classes || "");
 };
 
@@ -129,7 +131,7 @@ TextField.template =
        data-bind="text: icon, visible: icon().length && iconPosition() === ${TextField.ICON_POSITION.start}"></i>
     <input class="mdc-text-field__input"
            data-bind="textInput: value,
-                      attr: { type: type, min: min, max: max, step: step, required: isRequired },
+                      attr: { type: type, min: min, max: max, step: step, required: isRequired, minlength: minLength, maxlength: maxLength },
                       enable: isEnabled,
                       css: {
                         'mdc-text-field__input--text': type() === '${TextField.TYPE.text}',
