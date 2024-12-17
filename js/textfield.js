@@ -16,9 +16,11 @@ const TextField = function(args) {
     this.iconPosition = ko.isObservable(args.iconPosition) ? args.iconPosition : ko.observable(args.iconPosition || TextField.ICON_POSITION.start);
     this.note = ko.isObservable(args.note) ? args.note : ko.observable(args.note || "");
     this.value = ko.isObservable(args.value) ? args.value : ko.observable(args.value || "");
+    this.pattern = ko.isObservable(args.pattern) ? args.pattern : ko.observable(args.pattern || null);
     this.type = ko.isObservable(args.type) ? args.type : ko.observable(args.type || TextField.TYPE.text);
     this.isEnabled = ko.isObservable(args.isEnabled) ? args.isEnabled : ko.observable(typeof(args.isEnabled) === "boolean" ? args.isEnabled : true);
     this.isRequired = ko.isObservable(args.isRequired) ? args.isRequired : ko.observable(typeof(args.isRequired) === "boolean" ? args.isRequired : false);
+    this.isReadonly = ko.isObservable(args.isReadonly) ? args.isReadonly : ko.observable(typeof(args.isReadonly) === "boolean" ? args.isReadonly : false);
     this.isAutoSelect = ko.isObservable(args.isAutoSelect) ? args.isAutoSelect : ko.observable(typeof(args.isAutoSelect) === "boolean" ? args.isAutoSelect : false);
     this.prefix = ko.isObservable(args.prefix) ? args.prefix : ko.observable(args.prefix || "");
     this.suffix = ko.isObservable(args.suffix) ? args.suffix : ko.observable(args.suffix || "");
@@ -131,7 +133,7 @@ TextField.template =
        data-bind="text: icon, visible: icon().length && iconPosition() === ${TextField.ICON_POSITION.start}"></i>
     <input class="mdc-text-field__input"
            data-bind="textInput: value,
-                      attr: { type: type, min: min, max: max, step: step, required: isRequired, minlength: minLength, maxlength: maxLength },
+                      attr: { type: type, min: min, max: max, step: step, required: isRequired, minlength: minLength, maxlength: maxLength, readonly: isReadonly, pattern: pattern },
                       enable: isEnabled,
                       css: {
                         'mdc-text-field__input--text': type() === '${TextField.TYPE.text}',
