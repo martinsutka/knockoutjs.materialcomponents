@@ -1,5 +1,5 @@
 /*!
- * knockoutjs.materialcomponents v1.0.152
+ * knockoutjs.materialcomponents v1.0.157
  * 2024-12-17
  */
 
@@ -2354,6 +2354,7 @@ const TextField = function(args) {
     this.isRequired = ko.isObservable(args.isRequired) ? args.isRequired : ko.observable(typeof(args.isRequired) === "boolean" ? args.isRequired : false);
     this.isReadonly = ko.isObservable(args.isReadonly) ? args.isReadonly : ko.observable(typeof(args.isReadonly) === "boolean" ? args.isReadonly : false);
     this.isAutoSelect = ko.isObservable(args.isAutoSelect) ? args.isAutoSelect : ko.observable(typeof(args.isAutoSelect) === "boolean" ? args.isAutoSelect : false);
+    this.isMultiline = ko.isObservable(args.isMultiline) ? args.isMultiline : ko.observable(typeof(args.isMultiline) === "boolean" ? args.isMultiline : false);
     this.prefix = ko.isObservable(args.prefix) ? args.prefix : ko.observable(args.prefix || "");
     this.suffix = ko.isObservable(args.suffix) ? args.suffix : ko.observable(args.suffix || "");
     this.min = ko.isObservable(args.min) ? args.min : ko.observable(typeof(args.min) === "number" ? args.min : null);
@@ -2361,6 +2362,8 @@ const TextField = function(args) {
     this.step = ko.isObservable(args.step) ? args.step : ko.observable(typeof(args.step) === "number" ? args.step : null);
     this.minLength = ko.isObservable(args.minLength) ? args.minLength : ko.observable(typeof(args.minLength) === "number" ? args.minLength : null);
     this.maxLength = ko.isObservable(args.maxLength) ? args.maxLength : ko.observable(typeof(args.maxLength) === "number" ? args.maxLength : null);
+    this.rows = ko.isObservable(args.rows) ? args.rows : ko.observable(typeof(args.rows) === "number" ? args.rows : 8);
+    this.cols = ko.isObservable(args.cols) ? args.cols : ko.observable(typeof(args.cols) === "number" ? args.cols : 40);
     this.classes = ko.isObservable(args.classes) ? args.classes : ko.observable(args.classes || "");
 };
 
@@ -2455,6 +2458,7 @@ TextField.template =
                    css: {
                         'mdc-text-field--outlined': style() === ${TextField.STYLE.outlined},
                         'mdc-text-field--filled': style() === ${TextField.STYLE.filled},
+                        'mdc-text-field--textarea': isMultiline,
                         'mdc-text-field--no-label': !text().length,
                         'mdc-text-field--with-leading-icon': icon().length && iconPosition() === ${TextField.ICON_POSITION.start},
                         'mdc-text-field--with-trailing-icon': icon().length && iconPosition() === ${TextField.ICON_POSITION.end}
@@ -2479,19 +2483,28 @@ TextField.template =
     <!-- /ko -->
     <i class="material-icons mdc-text-field__icon mdc-text-field__icon--leading" tabindex="0" role="button"
        data-bind="text: icon, visible: icon().length && iconPosition() === ${TextField.ICON_POSITION.start}"></i>
-    <input class="mdc-text-field__input"
-           data-bind="textInput: value,
-                      attr: { type: type, min: min, max: max, step: step, required: isRequired, minlength: minLength, maxlength: maxLength, readonly: isReadonly, pattern: pattern },
-                      enable: isEnabled,
-                      css: {
-                        'mdc-text-field__input--text': type() === '${TextField.TYPE.text}',
-                        'mdc-text-field__input--number': type() === '${TextField.TYPE.number}',
-                        'mdc-text-field__input--color': type() === '${TextField.TYPE.color}',
-                        'mdc-text-field__input--date': type() === '${TextField.TYPE.date}',
-                        'mdc-text-field__input--time': type() === '${TextField.TYPE.time}',
-                        'mdc-text-field__input--email': type() === '${TextField.TYPE.email}',
-                        'mdc-text-field__input--password': type() === '${TextField.TYPE.password}'
-                      }" />
+    <!-- ko ifnot: isMultiline -->
+        <input class="mdc-text-field__input"
+            data-bind="textInput: value,
+                        attr: { type: type, min: min, max: max, step: step, required: isRequired, minlength: minLength, maxlength: maxLength, readonly: isReadonly, pattern: pattern },
+                        enable: isEnabled,
+                        css: {
+                            'mdc-text-field__input--text': type() === '${TextField.TYPE.text}',
+                            'mdc-text-field__input--number': type() === '${TextField.TYPE.number}',
+                            'mdc-text-field__input--color': type() === '${TextField.TYPE.color}',
+                            'mdc-text-field__input--date': type() === '${TextField.TYPE.date}',
+                            'mdc-text-field__input--time': type() === '${TextField.TYPE.time}',
+                            'mdc-text-field__input--email': type() === '${TextField.TYPE.email}',
+                            'mdc-text-field__input--password': type() === '${TextField.TYPE.password}'
+                        }" />
+    <!-- /ko -->
+    <!-- ko if: isMultiline -->
+    <span class="mdc-text-field__resizer">
+        <textarea class="mdc-text-field__input" rows="8" cols="40"
+                  data-bind="textInput: value,
+                             attr: { rows: rows, cols: cols, required: isRequired, minlength: minLength, maxlength: maxLength, readonly: isReadonly }"></textarea>
+    </span>    
+    <!-- /ko -->
     <i class="material-icons mdc-text-field__icon mdc-text-field__icon--trailing" tabindex="0" role="button"
        data-bind="text: icon, visible: icon().length && iconPosition() === ${TextField.ICON_POSITION.end}"></i>
     <!-- ko if: suffix().length -->
