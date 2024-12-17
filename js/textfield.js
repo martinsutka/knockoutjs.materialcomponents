@@ -15,6 +15,7 @@ const TextField = function(args) {
     this.icon = ko.isObservable(args.icon) ? args.icon : ko.observable(args.icon || "");
     this.iconPosition = ko.isObservable(args.iconPosition) ? args.iconPosition : ko.observable(args.iconPosition || TextField.ICON_POSITION.start);
     this.note = ko.isObservable(args.note) ? args.note : ko.observable(args.note || "");
+    this.isNotePersistent = ko.isObservable(args.isNotePersistent) ? args.isNotePersistent : ko.observable(typeof(args.isNotePersistent) === "boolean" ? args.isNotePersistent : false);
     this.value = ko.isObservable(args.value) ? args.value : ko.observable(args.value || "");
     this.pattern = ko.isObservable(args.pattern) ? args.pattern : ko.observable(args.pattern || null);
     this.type = ko.isObservable(args.type) ? args.type : ko.observable(args.type || TextField.TYPE.text);
@@ -151,7 +152,11 @@ TextField.template =
     <!-- /ko -->
 </label>
 <div class="mdc-text-field-helper-line" data-bind="visible: note().length">
-    <div class="mdc-text-field-helper-text" aria-hidden="true" data-bind="text: note"></div>
+    <div class="mdc-text-field-helper-text" aria-hidden="true"
+         data-bind="text: note,
+                    css: {
+                        'mdc-text-field-helper-text--persistent': isNotePersistent
+                    }"></div>
 </div>`;
 
 //#endregion
