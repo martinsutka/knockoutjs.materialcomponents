@@ -26,6 +26,7 @@ const TextField = function(args) {
     this.isReadonly = ko.isObservable(args.isReadonly) ? args.isReadonly : ko.observable(typeof(args.isReadonly) === "boolean" ? args.isReadonly : false);
     this.isAutoSelect = ko.isObservable(args.isAutoSelect) ? args.isAutoSelect : ko.observable(typeof(args.isAutoSelect) === "boolean" ? args.isAutoSelect : false);
     this.isMultiline = ko.isObservable(args.isMultiline) ? args.isMultiline : ko.observable(typeof(args.isMultiline) === "boolean" ? args.isMultiline : false);
+    this.showCounter = ko.isObservable(args.showCounter) ? args.showCounter : ko.observable(typeof(args.showCounter) === "boolean" ? args.showCounter : false);
     this.prefix = ko.isObservable(args.prefix) ? args.prefix : ko.observable(args.prefix || "");
     this.suffix = ko.isObservable(args.suffix) ? args.suffix : ko.observable(args.suffix || "");
     this.min = ko.isObservable(args.min) ? args.min : ko.observable(typeof(args.min) === "number" ? args.min : null);
@@ -185,12 +186,13 @@ TextField.template =
         <span class="mdc-line-ripple"></span>
     <!-- /ko -->
 </label>
-<div class="mdc-text-field-helper-line" data-bind="visible: note().length || error().length">
+<div class="mdc-text-field-helper-line" data-bind="visible: note().length || error().length || showCounter()">
     <div class="mdc-text-field-helper-text" aria-hidden="true"
          data-bind="text: note, visible: note().length,
                     css: {
                         'mdc-text-field-helper-text--persistent': isNotePersistent
                     }"></div>
+    <!-- ko if: showCounter --><div class="mdc-text-field-character-counter"></div><!-- /ko -->
     <div class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg" aria-hidden="true"
          data-bind="text: error, visible: error().length"></div>
 </div>`;
