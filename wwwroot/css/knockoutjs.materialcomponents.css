@@ -61,6 +61,15 @@
 .mdc-form-field--full-width {
   width: 100%;
 }
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
+  color: var(--mdc-theme-secondary);
+}
+.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple:before {
+  border-bottom-color: var(--mdc-theme-secondary);
+}
+.mdc-text-field--filled:not(.mdc-text-field--disabled):hover .mdc-line-ripple:before {
+  border-bottom-color: var(--mdc-theme-secondary);
+}
 .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,
 .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,
 .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing {

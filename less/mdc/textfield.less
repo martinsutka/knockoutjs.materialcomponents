@@ -1,4 +1,28 @@
 ﻿.mdc-text-field {
+    &:not(.mdc-text-field--disabled) {
+        .mdc-floating-label {
+            color: var(--mdc-theme-secondary);
+        }
+    }
+
+    &--filled {
+        &:not(.mdc-text-field--disabled) {
+            .mdc-line-ripple {
+                &:before {
+                    border-bottom-color: var(--mdc-theme-secondary);
+                }
+            }
+
+            &:hover {
+                .mdc-line-ripple {
+                    &:before {
+                        border-bottom-color: var(--mdc-theme-secondary);
+                    }
+                }
+            }
+        }
+    }
+
     &--outlined {
         &:not(.mdc-text-field--disabled) {
             .mdc-notched-outline__leading,

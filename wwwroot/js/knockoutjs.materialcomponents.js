@@ -1,5 +1,5 @@
 /*!
- * knockoutjs.materialcomponents v1.0.145
+ * knockoutjs.materialcomponents v1.0.152
  * 2024-12-17
  */
 
@@ -2341,6 +2341,7 @@ const TextField = function(args) {
 
     this.id = ko.isObservable(args.id) ? args.id : ko.observable(args.id || "_textfield_" + utils.guid());
     this.text = ko.isObservable(args.text) ? args.text : ko.observable(args.text || "");
+    this.style = ko.isObservable(args.style) ? args.style : ko.observable(args.style || TextField.STYLE.outlined);
     this.icon = ko.isObservable(args.icon) ? args.icon : ko.observable(args.icon || "");
     this.iconPosition = ko.isObservable(args.iconPosition) ? args.iconPosition : ko.observable(args.iconPosition || TextField.ICON_POSITION.start);
     this.note = ko.isObservable(args.note) ? args.note : ko.observable(args.note || "");
@@ -2412,6 +2413,14 @@ TextField.prototype.dispose = function () {
 /**
  * Text field types.
  */
+TextField.STYLE = {
+    outlined: 0,
+    filled: 1
+};
+
+/**
+ * Text field types.
+ */
 TextField.TYPE = {
     text: "text",
     number: "number",
@@ -2437,26 +2446,34 @@ TextField.ICON_POSITION = {
 //#region [ Template ]
 
 TextField.template =
-`<label class="mdc-text-field mdc-text-field--outlined"
+`<label class="mdc-text-field"
         data-bind="class: classes,
                    attr: { 
                         id: id,
                         'data-value': value
                    },
                    css: {
+                        'mdc-text-field--outlined': style() === ${TextField.STYLE.outlined},
+                        'mdc-text-field--filled': style() === ${TextField.STYLE.filled},
                         'mdc-text-field--no-label': !text().length,
                         'mdc-text-field--with-leading-icon': icon().length && iconPosition() === ${TextField.ICON_POSITION.start},
                         'mdc-text-field--with-trailing-icon': icon().length && iconPosition() === ${TextField.ICON_POSITION.end}
                    }">
-    <span class="mdc-notched-outline">
-        <span class="mdc-notched-outline__leading"></span>
-        <!-- ko if: text().length -->
-        <span class="mdc-notched-outline__notch">
-            <span class="mdc-floating-label" data-bind="text: text"></span>
+    <!-- ko if: style() === ${TextField.STYLE.outlined} -->
+        <span class="mdc-notched-outline">
+            <span class="mdc-notched-outline__leading"></span>
+            <!-- ko if: text().length -->
+            <span class="mdc-notched-outline__notch">
+                <span class="mdc-floating-label" data-bind="text: text"></span>
+            </span>
+            <!-- /ko -->
+            <span class="mdc-notched-outline__trailing"></span>
         </span>
-        <!-- /ko -->
-        <span class="mdc-notched-outline__trailing"></span>
-    </span>
+    <!-- /ko -->
+    <!-- ko if: style() === ${TextField.STYLE.filled} -->
+        <span class="mdc-text-field__ripple"></span>
+        <span class="mdc-floating-label" data-bind="text: text"></span>
+    <!-- /ko -->    
     <!-- ko if: prefix().length -->
         <span class="mdc-text-field__affix mdc-text-field__affix--prefix" data-bind="text: prefix"></span>
     <!-- /ko -->
@@ -2479,6 +2496,9 @@ TextField.template =
        data-bind="text: icon, visible: icon().length && iconPosition() === ${TextField.ICON_POSITION.end}"></i>
     <!-- ko if: suffix().length -->
         <span class="mdc-text-field__affix mdc-text-field__affix--suffix" data-bind="text: suffix"></span>
+    <!-- /ko -->
+    <!-- ko if: style() === ${TextField.STYLE.filled} -->
+        <span class="mdc-line-ripple"></span>
     <!-- /ko -->
 </label>
 <div class="mdc-text-field-helper-line" data-bind="visible: note().length || error().length">
