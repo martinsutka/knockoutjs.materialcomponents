@@ -16,6 +16,15 @@ module.exports = (grunt) => {
             }, {
                 src: "node_modules/material-components-web/dist/material-components-web.min.css",
                 dest: "wwwroot/css/material-components-web.min.css"
+            }, {
+                src: "js/libs/highlight.min.js",
+                dest: "wwwroot/js/libs/highlight.min.js"
+            }, {
+                src: "js/libs/highlight.xml.min.js",
+                dest: "wwwroot/js/libs/highlight.xml.min.js"
+            }, {
+                src: "css/highlight.min.css",
+                dest: "wwwroot/css/highlight.min.css"
             }]
         }
     });

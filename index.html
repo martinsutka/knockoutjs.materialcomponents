@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" href="wwwroot/css/material-components-web.min.css" />
+    <link rel="stylesheet" href="wwwroot/css/highlight.min.css" />
     <link rel="stylesheet" href="wwwroot/css/knockoutjs.materialcomponents.css" />
     <link rel="stylesheet" href="wwwroot/css/index.css" />
 </head>
@@ -62,6 +63,10 @@
                                 <mat-text-field params="text: 'icon', value: icon.icon, isAutoSelect: true, note: 'Name of the icon', isNotePersistent: true"></mat-text-field>
                             </div> 
                         </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Html</h6>
+                        <pre><code class="language-xml" data-bind="html: iconHtml"></code></pre>
                     </div>
                     <!-- /ko -->
                 </div>
@@ -339,6 +344,8 @@
         </div>
     </div>
     <script src="wwwroot/js/libs/material-components-web.min.js" type="text/javascript"></script>
+    <script src="wwwroot/js/libs/highlight.min.js" type="text/javascript"></script>
+    <script src="wwwroot/js/libs/highlight.xml.min.js" type="text/javascript"></script>
     <script src="wwwroot/js/libs/knockout.min.js" type="text/javascript"></script>
     <script src="wwwroot/js/knockoutjs.materialcomponents.js" type="text/javascript"></script>
     <script>
@@ -400,33 +407,33 @@
         ready(() => {
             global.addEventListener("hashchange", onHashChanged);
 
-            global.app = {
+            const app = global.app = {
                 title: ko.observable("KnockoutJs Material Components"),
                 subTitle: ko.observable(""),
                 section: ko.observable(""),
-                menu: [{
-                    text: "Icon",
-                    url: "#icon"
-                }, {
-                    text: "Circular Progress",
-                    url: "#circular-progress"
-                }],
+                menu: [
+                    { text: "Icon", url: "#icon" }, 
+                    { text: "Circular Progress", url: "#circular-progress" }
+                ],
                 icon: {
                     icon: ko.observable("favorite")
                 },
                 navigateTo: (e) => global.location.hash = e.url,
                 areChecked: ko.observableArray([]),
                 radioValue: ko.observable(),
-                options: ko.observableArray([{
-                    text: "Apple touch icon", value: 1
-                }, {
-                    text: "Azure DevOps Extension Preview Image", value: 4
-                }, {
-                    text: "Windows tile", value: 2
-                }, {
-                    text: "Windows tile wide", value: 3
-                }])
+                options: ko.observableArray([
+                    { text: "Apple touch icon", value: 1 }, 
+                    { text: "Windows tile", value: 2 }, 
+                    { text: "Windows tile wide", value: 3 },
+                    { text: "Azure DevOps Extension Preview Image", value: 4 }
+                ])
             };
+
+            global.app.iconHtml = ko.computed(() => {
+                const icon = app.icon.icon();
+                const html = `<mat-icon params="icon: '${icon}'"></mat-icon>`;
+                return global.hljs.highlight(html, { language: 'xml' }).value;
+            });
 
             ko.applyBindings(app, doc.body);
 
