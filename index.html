@@ -45,16 +45,26 @@
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                         <h5 class="mdc-typography--headline5" data-bind="text: subTitle"></h5>
                     </div>
+                    <!-- ko if: section() === 'icon'-->
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <p class="mdc-typography--body1">
+                            Icons are appropriate for buttons that allow a user to take actions or make a selection, such as adding or removing a star to an item. 
+                        </p>
+                        <h6 class="mdc-typography--headline6">Demo</h6>
+                        <div class="center">
+                            <mat-icon params="icon: icon.icon"></mat-icon>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Parameters</h6>
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                                <mat-text-field params="text: 'icon', value: icon.icon, isAutoSelect: true, note: 'Name of the icon', isNotePersistent: true"></mat-text-field>
+                            </div> 
+                        </div>
+                    </div>
+                    <!-- /ko -->
                 </div>
-            </div>
-            <!-- Icon -->
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <h5 class="mdc-typography--headline5">Icon</h5>
-            </div>
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <mat-icon params="icon: 'favorite'"></mat-icon>
-                <mat-icon params="icon: 'arrow_back_ios'"></mat-icon>
-                <mat-icon params="icon: 'arrow_back'"></mat-icon>
             </div>
             <!-- Circular Progress -->
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
@@ -401,6 +411,9 @@
                     text: "Circular Progress",
                     url: "#circular-progress"
                 }],
+                icon: {
+                    icon: ko.observable("favorite")
+                },
                 navigateTo: (e) => global.location.hash = e.url,
                 areChecked: ko.observableArray([]),
                 radioValue: ko.observable(),
