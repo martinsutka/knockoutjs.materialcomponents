@@ -27,11 +27,25 @@
     <link rel="stylesheet" href="wwwroot/css/index.css" />
 </head>
 <body class="mdc-typography">
-    <div class="mdc-layout-grid">
+    <div class="mdc-layout-grid container">
         <div class="mdc-layout-grid__inner">
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <h1 class="mdc-typography--headline1"
-                    data-bind="text: title"></h1>
+                <h1 class="mdc-typography--headline1" data-bind="text: title"></h1>
+            </div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
+                <ul class="mdc-deprecated-list" data-bind="foreach: menu">
+                    <li class="mdc-deprecated-list-item" data-bind="click: $parent.navigateTo">
+                        <span class="mdc-deprecated-list-item__ripple"></span>
+                        <span class="mdc-deprecated-list-item__text" data-bind="text: text"></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-9-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-4-phone">
+                <div class="mdc-layout-grid__inner">
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h5 class="mdc-typography--headline5" data-bind="text: subTitle"></h5>
+                    </div>
+                </div>
             </div>
             <!-- Icon -->
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
@@ -304,6 +318,13 @@
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                 <mat-select-field params="text: 'Select field', options: options"></mat-select-field><br/><br/>
                 <mat-select-field params="text: 'Select field', options: options, style: ko.materialcomponents.TextField.STYLE.filled"></mat-select-field><br/><br/>
+            </div>
+            <!-- Lists -->
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                <h5 class="mdc-typography--headline5">Lists</h5>
+            </div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                TODO
             </div>             
         </div>
     </div>
@@ -348,11 +369,39 @@
             }
         };
 
+        /**
+         * Handles the hash changed event.
+         */
+        const onHashChanged = function () {
+            const url = global.location.hash;
+            const item = global.app.menu.find((i) => i.url === url);
+            
+            if (!item) {
+                global.app.subTitle("");
+                global.app.section("");
+            }
+
+            global.app.subTitle(item.text);
+            global.app.section(item.url.substring(1));
+        };
+
         //#endregion
 
         ready(() => {
+            global.addEventListener("hashchange", onHashChanged);
+
             global.app = {
                 title: ko.observable("KnockoutJs Material Components"),
+                subTitle: ko.observable(""),
+                section: ko.observable(""),
+                menu: [{
+                    text: "Icon",
+                    url: "#icon"
+                }, {
+                    text: "Circular Progress",
+                    url: "#circular-progress"
+                }],
+                navigateTo: (e) => global.location.hash = e.url,
                 areChecked: ko.observableArray([]),
                 radioValue: ko.observable(),
                 options: ko.observableArray([{
@@ -367,6 +416,8 @@
             };
 
             ko.applyBindings(app, doc.body);
+
+            onHashChanged();
         });
     </script>
 </body>
