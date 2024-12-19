@@ -58,6 +58,22 @@
   position: relative;
   top: 0.5rem;
 }
+.mdc-radio__note {
+  color: var(--mdc-theme-text-secondary-on-background);
+  margin-top: -0.25rem;
+  font-size: 0.6875rem;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mdc-radio__label--note {
+  display: flex;
+  flex-direction: column;
+  max-width: calc(100% - 3.25rem);
+  position: relative;
+  top: 0.5rem;
+}
 .mdc-form-field--full-width {
   width: 100%;
 }

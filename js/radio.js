@@ -15,6 +15,7 @@ const Radio = function(args) {
     this.name = ko.isObservable(args.name) ? args.name : ko.observable(args.name || "");
     this.value = ko.isObservable(args.value) ? args.value : ko.observable(args.value || "");
     this.text = ko.isObservable(args.text) ? args.text : ko.observable(args.text || "");
+    this.note = ko.isObservable(args.note) ? args.note : ko.observable(args.note || "");
     this.isEnabled = ko.isObservable(args.isEnabled) ? args.isEnabled : ko.observable(typeof(args.isEnabled) === "boolean" ? args.isEnabled : true);
     this.isChecked = ko.isObservable(args.isChecked) ? args.isChecked : ko.observable(typeof(args.isChecked) === "boolean" ? args.isChecked : false);
     this.classes = ko.isObservable(args.classes) ? args.classes : ko.observable(args.classes || "");
@@ -94,7 +95,15 @@ Radio.template =
         <div class="mdc-radio__ripple"></div>
         <div class="mdc-radio__focus-ring"></div>
     </div>
-    <label data-bind="text: text, visible: text().length, attr: { for: id() + '_input' }"></label>
+    <label class="mdc-radio__label"
+           data-bind="visible: text().length,
+                      attr: { for: id() + '_input' },
+                      css: {
+                        'mdc-checkbox__label--note': note().length
+                      }">
+        <span data-bind="text: text"></span>
+        <small class="mdc-radio__note" data-bind="text: note, visible: note().length"></small>
+    </label>
 </div>`;
 
 //#endregion

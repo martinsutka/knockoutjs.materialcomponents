@@ -1,0 +1,21 @@
+﻿.mdc-radio {
+    &__note {
+        color: var(--mdc-theme-text-secondary-on-background);
+        margin-top: rem(-4px);
+        font-size: rem(11px);
+        white-space: nowrap;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__label {
+        &--note {
+            display: flex;
+            flex-direction: column;
+            max-width: calc(100% - rem(52px));
+            position: relative;
+            top: rem(8px);
+        }
+    }
+}
