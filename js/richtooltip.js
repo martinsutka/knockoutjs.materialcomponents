@@ -16,7 +16,8 @@ const RichTooltip = function(args) {
     this.showDelay = ko.isObservable(args.showDelay) ? args.showDelay : ko.observable(typeof(args.showDelay) === "number" ? args.showDelay : Tooltip.SHOW_DELAY);
     this.hideDelay = ko.isObservable(args.hideDelay) ? args.hideDelay : ko.observable(typeof(args.hideDelay) === "number" ? args.hideDelay : Tooltip.HIDE_DELAY);
     this.isPersistent = ko.isObservable(args.isPersistent) ? args.isPersistent : ko.observable(typeof(args.isPersistent) === "boolean" ? args.isPersistent : false);
-    this.anchor = args.anchor || null;
+    this.anchor = ko.isObservable(args.anchor) ? args.anchor : ko.observable(args.anchor || null);
+    this.anchorNode = null;
 
     this._showDelayChangedSubscribe = null;
     this._hideDelayChangedSubscribe = null;
@@ -35,17 +36,17 @@ const RichTooltip = function(args) {
  */
 RichTooltip.prototype.koDescendantsComplete = function (node) {
     // Find the anchor element within parent
-    this.anchor = node.parentElement.querySelector(this.anchor);
-    if(!this.anchor) {
+    this.anchorNode = node.parentElement.querySelector(this.anchor());
+    if(!this.anchorNode) {
         console.warn("RichTooltip : Missing anchor element for tooltip '%s'.", this.id());
         return;
     }
 
     // The tooltip can be hidden from the screenreader by annotating the anchor element
     // with data-tooltip-id instead of aria-describedby
-    this.anchor.setAttribute("data-tooltip-id", this.id());
-    this.anchor.setAttribute("aria-haspopup", "dialog");
-    this.anchor.setAttribute("aria-expanded", "false");
+    this.anchorNode.setAttribute("data-tooltip-id", this.id());
+    this.anchorNode.setAttribute("aria-haspopup", "dialog");
+    this.anchorNode.setAttribute("aria-expanded", "false");
 
     // Replace custom element placehoder
     const root = node.firstElementChild;
@@ -67,16 +68,16 @@ RichTooltip.prototype.koDescendantsComplete = function (node) {
 RichTooltip.prototype.dispose = function () {
     console.log("~RichTooltip()");
     
-    if (!this.anchor) {
+    if (!this.anchorNode) {
         return;
     }
 
     this._showDelayChangedSubscribe.dispose();
     this._hideDelayChangedSubscribe.dispose();
     this.mdcComponent.destroy();
-    this.anchor.removeAttribute("data-tooltip-id");
-    this.anchor.removeAttribute("aria-haspopup");
-    this.anchor.removeAttribute("aria-expanded");
+    this.anchorNode.removeAttribute("data-tooltip-id");
+    this.anchorNode.removeAttribute("aria-haspopup");
+    this.anchorNode.removeAttribute("aria-expanded");
 };
 
 //#endregion

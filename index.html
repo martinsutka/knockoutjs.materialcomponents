@@ -260,63 +260,99 @@
                         <pre><code class="language-xml" data-bind="html: tooltipHtml"></code></pre>
                     </div>
                     <!-- /ko -->
-                </div>
-            </div>
-
-
-
-
-
-
-
-
-            
-            
-            
-            <!-- Rich Tooltip -->
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <h5 class="mdc-typography--headline5">Rich Tooltip</h5>
-            </div>
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <div class="mdc-tooltip-wrapper--rich">
-                    <a id="googleLinkRich" href="javascript:void(0)">Rich Tooltip</a>
-                    <mat-rich-tooltip params="anchor: '#googleLinkRich'">
-                        <h2 class="mdc-tooltip__title">Lorem Ipsum</h2>
-                        <p class="mdc-tooltip__content">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-                          pretium vitae est et dapibus. Aenean sit amet felis eu lorem fermentum
-                          aliquam sit amet sit amet eros.
-                          <a class="mdc-tooltip__content-link" href="google.com">link</a>
+                    <!-- ko if: section() === 'rich-tooltip'-->
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <p class="mdc-typography--body1">
+                            Rich tooltips have two variants: default and persistent.
                         </p>
-                        <div class="mdc-tooltip--rich-actions">
-                          <button class="mdc-button mdc-tooltip--rich-action">
-                            <div class="mdc-button__ripple"></div>
-                            <span class="mdc-button__focus-ring"></span>
-                            <span class="mdc-button__label">Action</span>
-                          </button>
+                        <h6 class="mdc-typography--headline6">Demo</h6>
+                        <div class="center">
+                            <div class="mdc-tooltip-wrapper--rich">
+                                <a id="richtooltipdemo" href="javascript:void(0)">Google</a>
+                                <mat-rich-tooltip params="anchor: richTooltip.anchor, showDelay: richTooltip.showDelay, hideDelay: richTooltip.hideDelay, isPersistent: richTooltip.isPersistent">
+                                    <h2 class="mdc-tooltip__title">Lorem Ipsum</h2>
+                                    <p class="mdc-tooltip__content">
+                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+                                      pretium vitae est et dapibus. Aenean sit amet felis eu lorem fermentum
+                                      aliquam sit amet sit amet eros.
+                                      <a class="mdc-tooltip__content-link" href="google.com">link</a>
+                                    </p>
+                                    <div class="mdc-tooltip--rich-actions">
+                                        <button class="mdc-button mdc-tooltip--rich-action">
+                                            <div class="mdc-button__ripple"></div>
+                                            <span class="mdc-button__focus-ring"></span>
+                                            <span class="mdc-button__label">Action</span>
+                                        </button>
+                                    </div>
+                                </mat-rich-tooltip>
+                            </div>
                         </div>
-                    </mat-rich-tooltip>
-                </div>
-                <div class="mdc-tooltip-wrapper--rich">
-                    <a id="googleLinkPersitent" href="javascript:void(0)">Persitent Tooltip</a>
-                    <mat-rich-tooltip params="anchor: '#googleLinkPersitent', isPersistent: true">
-                        <h2 class="mdc-tooltip__title">Lorem Ipsum</h2>
-                        <p class="mdc-tooltip__content">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-                          pretium vitae est et dapibus. Aenean sit amet felis eu lorem fermentum
-                          aliquam sit amet sit amet eros.
-                          <a class="mdc-tooltip__content-link" href="google.com">link</a>
-                        </p>
-                        <div class="mdc-tooltip--rich-actions">
-                          <button class="mdc-button mdc-tooltip--rich-action">
-                            <div class="mdc-button__ripple"></div>
-                            <span class="mdc-button__focus-ring"></span>
-                            <span class="mdc-button__label">Action</span>
-                          </button>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Parameters</h6>
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'anchor', 
+                                    value: richTooltip.anchor, 
+                                    isAutoSelect: true, 
+                                    note: 'Css selector of the target anchor element', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'showDelay', 
+                                    type: ko.materialcomponents.TextField.TYPE.number,
+                                    min: 100,
+                                    max: 9000,
+                                    step: 100, 
+                                    value: richTooltip.showDelay, 
+                                    note: 'Specify the delay prior to a tooltip being shown',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'hideDelay', 
+                                    type: ko.materialcomponents.TextField.TYPE.number,
+                                    min: 100,
+                                    max: 9000,
+                                    step: 100, 
+                                    value: richTooltip.hideDelay, 
+                                    note: 'Specify the delay prior to a tooltip being hidden',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isPersistent',
+                                    isChecked: richTooltip.isPersistent,
+                                    value: true,
+                                    note: 'Visibility is toggled by clicks and enter/space bar keystrokes on their anchor element',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
                         </div>
-                    </mat-rich-tooltip>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Html</h6>
+                        <pre><code class="language-xml" data-bind="html: richTooltipHtml"></code></pre>
+                    </div>
+                    <!-- /ko -->
                 </div>
             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+            
+            
+            
+            
             <!-- Icon Button -->
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                 <h5 class="mdc-typography--headline5">Icon Button</h5>
@@ -588,7 +624,8 @@
                     { text: "Icon", url: "#icon" }, 
                     { text: "Circular Progress", url: "#circular-progress" },
                     { text: "Linear Progress", url: "#linear-rogress" },
-                    { text: "Tooltip", url: "#tooltip" }
+                    { text: "Tooltip", url: "#tooltip" },
+                    { text: "Rich Tooltip", url: "#rich-tooltip" }
                 ],
                 icon: {
                     icon: ko.observable("favorite")
@@ -611,6 +648,12 @@
                     hideDelay: ko.observable(600),
                     xPosition: ko.observable(0),
                     yPosition: ko.observable(0)
+                },
+                richTooltip: {
+                    anchor: ko.observable("#richtooltipdemo"),
+                    showDelay: ko.observable(500),
+                    hideDelay: ko.observable(600),
+                    isPersistent: ko.observable(false)
                 },
                 navigateTo: (e) => global.location.hash = e.url,
                 areChecked: ko.observableArray([]),
@@ -665,6 +708,26 @@
     and more. Google <b>has many</b> special features to help you find exactly what
     you're looking.
 </mat-tooltip>`;
+                return global.hljs.highlight(html, { language: 'xml' }).value;
+            });
+
+            global.app.richTooltipHtml = ko.computed(() => {
+                const anchor = app.richTooltip.anchor();
+                const showDelay = app.richTooltip.showDelay();
+                const hideDelay = app.richTooltip.hideDelay();
+                const isPersistent = app.richTooltip.isPersistent();
+                const html = `<div class="mdc-tooltip-wrapper--rich">
+    <a id="richtooltipdemo">Google</a>
+    <mat-rich-tooltip params="anchor: ${anchor}, showDelay: ${showDelay}, hideDelay: ${hideDelay}, isPersistent: ${isPersistent ? 'true' : 'false'}">
+        <h2 class="mdc-tooltip__title">Lorem Ipsum</h2>
+        <p class="mdc-tooltip__content">
+            ...
+        </p>
+        <div class="mdc-tooltip--rich-actions">
+            ...
+        </div>
+    </mat-rich-tooltip>
+</div>`;
                 return global.hljs.highlight(html, { language: 'xml' }).value;
             });
 
