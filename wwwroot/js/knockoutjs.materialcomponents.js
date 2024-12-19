@@ -1,5 +1,5 @@
 /*!
- * knockoutjs.materialcomponents v1.0.196
+ * knockoutjs.materialcomponents v1.0.198
  * 2024-12-19
  */
 
@@ -496,7 +496,8 @@ const Tooltip = function(args) {
     this.hideDelay = ko.isObservable(args.hideDelay) ? args.hideDelay : ko.observable(typeof(args.hideDelay) === "number" ? args.hideDelay : Tooltip.HIDE_DELAY);
     this.xPosition = ko.isObservable(args.xPosition) ? args.xPosition : ko.observable(args.xPosition || Tooltip.X_POSITION.DETECTED);
     this.yPosition = ko.isObservable(args.yPosition) ? args.yPosition : ko.observable(args.yPosition || Tooltip.Y_POSITION.DETECTED);
-    this.anchor = args.anchor || null;
+    this.anchor = ko.isObservable(args.anchor) ? args.anchor : ko.observable(args.anchor || null);
+    this.anchorNode = null;
 
     this._showDelayChangedSubscribe = null;
     this._hideDelayChangedSubscribe = null;
@@ -516,15 +517,15 @@ const Tooltip = function(args) {
  */
 Tooltip.prototype.koDescendantsComplete = function (node) {
     // Find the anchor element within parent
-    this.anchor = node.parentElement.querySelector(this.anchor);
-    if(!this.anchor) {
+    this.anchorNode = node.parentElement.querySelector(this.anchor());
+    if(!this.anchorNode) {
         console.warn("Tooltip : Missing anchor element for tooltip '%s'.", this.id());
         return;
     }
 
     // Set the aria-describedby attribute to the id for of the tooltip
     // to designate an element as being the anchor element for a particular tooltip
-    this.anchor.setAttribute("aria-describedby", this.id());
+    this.anchorNode.setAttribute("aria-describedby", this.id());
     
     // Move the tooltip to the body element
     global.document.body.append(node);
@@ -553,7 +554,7 @@ Tooltip.prototype.koDescendantsComplete = function (node) {
 Tooltip.prototype.dispose = function () {
     console.log("~Tooltip()");
     
-    if (!this.anchor) {
+    if (!this.anchorNode) {
         return;
     }
 
@@ -561,7 +562,7 @@ Tooltip.prototype.dispose = function () {
     this._hideDelayChangedSubscribe.dispose();
     this._positionChangedSubscribe.dispose();
     this.mdcComponent.destroy();
-    this.anchor.removeAttribute("aria-describedby");
+    this.anchorNode.removeAttribute("aria-describedby");
 };
 
 //#endregion

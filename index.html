@@ -191,6 +191,75 @@
                         <pre><code class="language-xml" data-bind="html: linearPogressHtml"></code></pre>
                     </div>
                     <!-- /ko -->
+                    <!-- ko if: section() === 'tooltip'-->
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <p class="mdc-typography--body1">
+                            Tooltips display informative text when users hover over, focus on, or tap an element.
+                        </p>
+                        <h6 class="mdc-typography--headline6">Demo</h6>
+                        <div class="center">
+                            <a id="tooltipdemo" href="www.google.com">Google</a>
+                            <mat-tooltip params="anchor: tooltip.anchor, data: { items: ['webpages', 'images', 'videos'] }, showDelay: tooltip.showDelay, hideDelay: tooltip.hideDelay, xPosition: tooltip.xPosition, yPosition: tooltip.yPosition">
+                                Search the world's information, including <i data-bind="text: items.join(', ')"></i> and more. Google <b>has many</b> special features to help you find exactly what you're looking.
+                            </mat-tooltip>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Parameters</h6>
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'anchor', 
+                                    value: tooltip.anchor, 
+                                    isAutoSelect: true, 
+                                    note: 'Css selector of the target anchor element', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'showDelay', 
+                                    type: ko.materialcomponents.TextField.TYPE.number,
+                                    min: 100,
+                                    max: 9000,
+                                    step: 100, 
+                                    value: tooltip.showDelay, 
+                                    note: 'Specify the delay prior to a tooltip being shown',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'hideDelay', 
+                                    type: ko.materialcomponents.TextField.TYPE.number,
+                                    min: 100,
+                                    max: 9000,
+                                    step: 100, 
+                                    value: tooltip.hideDelay, 
+                                    note: 'Specify the delay prior to a tooltip being hidden',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-select-field params="text: 'xPosition',
+                                    value: tooltip.xPosition,
+                                    options: [{ text: 'Detected', value: 0 }, { text: 'Start', value: 1 }, { text: 'Center', value: 2 }, { text: 'End', value: 3 }, { text: 'Side start', value: 4 }, { text: 'Side end', value: 5 }],
+                                    note: 'Specify how the tooltip should be aligned with the anchor element',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-select-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-select-field params="text: 'yPosition',
+                                    value: tooltip.yPosition,
+                                    options: [{ text: 'Detected', value: 0 }, { text: 'Above', value: 1 }, { text: 'Below', value: 2 }, { text: 'Side', value: 3 }],
+                                    note: 'Specify how the tooltip should be aligned with the anchor element',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-select-field>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Html</h6>
+                        <pre><code class="language-xml" data-bind="html: tooltipHtml"></code></pre>
+                    </div>
+                    <!-- /ko -->
                 </div>
             </div>
 
@@ -203,16 +272,7 @@
 
             
             
-            <!-- Tooltip -->
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <h5 class="mdc-typography--headline5">Tooltip</h5>
-            </div>
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <a id="googleLink" href="www.google.com">Google</a>
-                <mat-tooltip params="anchor: '#googleLink', data: { title: $data.title }, showDelay: 1, hideDelay: 1, yPosition: ko.materialcomponents.Tooltip.Y_POSITION.ABOVE">
-                    Lorem <b data-bind="text: title"></b> ipsum dolor
-                </mat-tooltip>
-            </div>
+            
             <!-- Rich Tooltip -->
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                 <h5 class="mdc-typography--headline5">Rich Tooltip</h5>
@@ -527,7 +587,8 @@
                 menu: [
                     { text: "Icon", url: "#icon" }, 
                     { text: "Circular Progress", url: "#circular-progress" },
-                    { text: "Linear Progress", url: "#linear-rogress" }
+                    { text: "Linear Progress", url: "#linear-rogress" },
+                    { text: "Tooltip", url: "#tooltip" }
                 ],
                 icon: {
                     icon: ko.observable("favorite")
@@ -543,6 +604,13 @@
                     isDeterminate: ko.observable(true),
                     isOpen: ko.observable(true),
                     buffer: ko.observable(0.8)
+                },
+                tooltip: {
+                    anchor: ko.observable("#tooltipdemo"),
+                    showDelay: ko.observable(500),
+                    hideDelay: ko.observable(600),
+                    xPosition: ko.observable(0),
+                    yPosition: ko.observable(0)
                 },
                 navigateTo: (e) => global.location.hash = e.url,
                 areChecked: ko.observableArray([]),
@@ -560,7 +628,7 @@
                 const html = `<mat-icon params="icon: '${icon}'"></mat-icon>`;
                 return global.hljs.highlight(html, { language: 'xml' }).value;
             });
-                        
+                                    
             global.app.circularProgressHtml = ko.computed(() => {
                 const size = app.circularProgress.size();
                 const tag = (size == 1) ? "mat-circular-progress" :
@@ -582,6 +650,22 @@
                 const html = `<mat-linear-progress params="progress: ${progress}, buffer: ${buffer}, isDeterminate: ${isDeterminate ? 'true' : 'false'}, isOpen: ${isOpen ? 'true' : 'false'}"></mat-linear-progress>`;
                 return global.hljs.highlight(html, { language: 'xml' }).value;
                 return global.hljs.highlight("<p>TODO</p>", { language: 'xml' }).value;
+            });
+
+            global.app.tooltipHtml = ko.computed(() => {
+                const anchor = app.tooltip.anchor();
+                const showDelay = app.tooltip.showDelay();
+                const hideDelay = app.tooltip.hideDelay();
+                const xPosition = app.tooltip.xPosition();
+                const yPosition = app.tooltip.yPosition();
+                const html = `<a id="tooltipdemo" href="www.google.com">Google</a>
+
+<mat-tooltip params="anchor: '${anchor}', showDelay: ${showDelay}, hideDelay: ${hideDelay}, xPosition: ${xPosition}, yPosition: ${yPosition}">
+    Search the world's information, including <i data-bind="text: items.join(', ')"></i>
+    and more. Google <b>has many</b> special features to help you find exactly what
+    you're looking.
+</mat-tooltip>`;
+                return global.hljs.highlight(html, { language: 'xml' }).value;
             });
 
             ko.applyBindings(app, doc.body);
