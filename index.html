@@ -82,13 +82,13 @@
                         <h6 class="mdc-typography--headline6">Demo</h6>
                         <div class="center">
                             <!-- ko if: circularProgress.size() == 1 -->
-                            <mat-circular-progress params="progress: circularProgress.progress"></mat-circular-progress>
+                            <mat-circular-progress params="progress: circularProgress.progress, isDeterminate: circularProgress.isDeterminate, isOpen: circularProgress.isOpen"></mat-circular-progress>
                             <!-- /ko -->
                             <!-- ko if: circularProgress.size() == 2 -->
-                            <mat-circular-progress-medium params="progress: circularProgress.progress"></mat-circular-progress-medium>
+                            <mat-circular-progress-medium params="progress: circularProgress.progress, isDeterminate: circularProgress.isDeterminate, isOpen: circularProgress.isOpen"></mat-circular-progress-medium>
                             <!-- /ko -->
                             <!-- ko if: circularProgress.size() == 3 -->
-                            <mat-circular-progress-small params="progress: circularProgress.progress"></mat-circular-progress-small>
+                            <mat-circular-progress-small params="progress: circularProgress.progress, isDeterminate: circularProgress.isDeterminate, isOpen: circularProgress.isOpen"></mat-circular-progress-small>
                             <!-- /ko -->
                         </div>
                     </div>
@@ -114,6 +114,20 @@
                                     isNotePersistent: true,
                                     classes: 'mdc-text-field--full-width'"></mat-text-field>
                             </div> 
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isDeterminate',
+                                    isChecked: circularProgress.isDeterminate,
+                                    value: true,
+                                    note: 'Toggles the component between the determinate and indeterminate state',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isOpen',
+                                    isChecked: circularProgress.isOpen,
+                                    value: true,
+                                    note: 'Puts the component in the open state',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div> 
                         </div>
                     </div>
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
@@ -131,16 +145,7 @@
 
 
 
-            <!-- Circular Progress -->
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <h5 class="mdc-typography--headline5">Circular Progress</h5>
-            </div>
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <mat-circular-progress params="progress: .65"></mat-circular-progress>
-                <mat-circular-progress params="isDeterminate: false, label: 'test'"></mat-circular-progress>
-                <mat-circular-progress-medium params="isDeterminate: false"></mat-circular-progress-medium>
-                <mat-circular-progress-small params="isDeterminate: false"></mat-circular-progress-small>
-            </div>
+            
             <!-- Linear Progress -->
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                 <h5 class="mdc-typography--headline5">Linear Progress</h5>
@@ -480,7 +485,9 @@
                 },
                 circularProgress: {
                     size: ko.observable(1),
-                    progress: ko.observable(0.6)
+                    progress: ko.observable(0.6),
+                    isDeterminate: ko.observable(true),
+                    isOpen: ko.observable(true)
                 },
                 navigateTo: (e) => global.location.hash = e.url,
                 areChecked: ko.observableArray([]),
@@ -505,7 +512,9 @@
                             (size == 2) ? "mat-circular-progress-medium" :
                             "mat-circular-progress-small";
                 const progress = app.circularProgress.progress();
-                const html = `<${tag} params="progress: ${progress}"></${tag}>`;
+                const isDeterminate = app.circularProgress.isDeterminate();
+                const isOpen = app.circularProgress.isOpen();
+                const html = `<${tag} params="progress: ${progress}, isDeterminate: ${isDeterminate ? 'true' : 'false'}, isOpen: ${isOpen ? 'true' : 'false'}"></${tag}>`;
                 return global.hljs.highlight(html, { language: 'xml' }).value;
             });
 
