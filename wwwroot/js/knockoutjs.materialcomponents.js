@@ -1,5 +1,5 @@
 /*!
- * knockoutjs.materialcomponents v1.0.194
+ * knockoutjs.materialcomponents v1.0.195
  * 2024-12-19
  */
 
@@ -2397,7 +2397,7 @@ TextField.prototype.koDescendantsComplete = function (node) {
     }
 
     this.mdcComponent = new mdc.textField.MDCTextField(root);
-    if (this.value()) {
+    if (this.value() || (typeof(this.value()) === "number")) {
         setTimeout(() => this.mdcComponent.value = this.value(), 1);
     }
 };

@@ -68,7 +68,7 @@ TextField.prototype.koDescendantsComplete = function (node) {
     }
 
     this.mdcComponent = new mdc.textField.MDCTextField(root);
-    if (this.value()) {
+    if (this.value() || (typeof(this.value()) === "number")) {
         setTimeout(() => this.mdcComponent.value = this.value(), 1);
     }
 };

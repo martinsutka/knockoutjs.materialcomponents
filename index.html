@@ -135,6 +135,62 @@
                         <pre><code class="language-xml" data-bind="html: circularProgressHtml"></code></pre>
                     </div>
                     <!-- /ko -->
+                    <!-- ko if: section() === 'linear-rogress'-->
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <p class="mdc-typography--body1">
+                            The Linear Progress component is a spec-aligned linear progress indicator component adhering to the <a href="https://material.io/go/design-progress-indicators" rel="nofollow">Material Design progress &amp; activity requirements</a>.
+                        </p>
+                        <h6 class="mdc-typography--headline6">Demo</h6>
+                        <div class="center" style="width: 100%">
+                            <mat-linear-progress params="isOpen: linearPogress.isOpen, isDeterminate: linearPogress.isDeterminate, progress: linearPogress.progress, buffer: linearPogress.buffer"></mat-linear-progress>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Parameters</h6>
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'progress', 
+                                    type: ko.materialcomponents.TextField.TYPE.number,
+                                    min: 0,
+                                    max: 1,
+                                    step: 0.1, 
+                                    value: linearPogress.progress, 
+                                    note: 'Sets the progress bar to this value, value should be between 0 and 1',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'buffer', 
+                                    type: ko.materialcomponents.TextField.TYPE.number,
+                                    min: 0,
+                                    max: 1,
+                                    step: 0.1, 
+                                    value: linearPogress.buffer, 
+                                    note: 'Sets the buffer bar to this value, value should be between 0 and 1',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div> 
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isDeterminate',
+                                    isChecked: linearPogress.isDeterminate,
+                                    value: true,
+                                    note: 'Toggles the component between the determinate and indeterminate state',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isOpen',
+                                    isChecked: linearPogress.isOpen,
+                                    value: true,
+                                    note: 'Puts the component in the open state',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Html</h6>
+                        <pre><code class="language-xml" data-bind="html: linearPogressHtml"></code></pre>
+                    </div>
+                    <!-- /ko -->
                 </div>
             </div>
 
@@ -146,15 +202,7 @@
 
 
             
-            <!-- Linear Progress -->
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <h5 class="mdc-typography--headline5">Linear Progress</h5>
-            </div>
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <mat-linear-progress params="buffer: .3, progress: .1"></mat-linear-progress>
-                <br/>
-                <mat-linear-progress params="isDeterminate: false"></mat-linear-progress>
-            </div>
+            
             <!-- Tooltip -->
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                 <h5 class="mdc-typography--headline5">Tooltip</h5>
@@ -478,7 +526,8 @@
                 section: ko.observable(""),
                 menu: [
                     { text: "Icon", url: "#icon" }, 
-                    { text: "Circular Progress", url: "#circular-progress" }
+                    { text: "Circular Progress", url: "#circular-progress" },
+                    { text: "Linear Progress", url: "#linear-rogress" }
                 ],
                 icon: {
                     icon: ko.observable("favorite")
@@ -488,6 +537,12 @@
                     progress: ko.observable(0.6),
                     isDeterminate: ko.observable(true),
                     isOpen: ko.observable(true)
+                },
+                linearPogress: {
+                    progress: ko.observable(0.6),
+                    isDeterminate: ko.observable(true),
+                    isOpen: ko.observable(true),
+                    buffer: ko.observable(0.8)
                 },
                 navigateTo: (e) => global.location.hash = e.url,
                 areChecked: ko.observableArray([]),
@@ -505,7 +560,7 @@
                 const html = `<mat-icon params="icon: '${icon}'"></mat-icon>`;
                 return global.hljs.highlight(html, { language: 'xml' }).value;
             });
-            
+                        
             global.app.circularProgressHtml = ko.computed(() => {
                 const size = app.circularProgress.size();
                 const tag = (size == 1) ? "mat-circular-progress" :
@@ -516,6 +571,17 @@
                 const isOpen = app.circularProgress.isOpen();
                 const html = `<${tag} params="progress: ${progress}, isDeterminate: ${isDeterminate ? 'true' : 'false'}, isOpen: ${isOpen ? 'true' : 'false'}"></${tag}>`;
                 return global.hljs.highlight(html, { language: 'xml' }).value;
+            });
+            
+            global.app.linearPogressHtml = ko.computed(() => {
+                const progress = app.linearPogress.progress();
+                const buffer = app.linearPogress.buffer();
+                const isDeterminate = app.linearPogress.isDeterminate();
+                const isOpen = app.linearPogress.isOpen();
+
+                const html = `<mat-linear-progress params="progress: ${progress}, buffer: ${buffer}, isDeterminate: ${isDeterminate ? 'true' : 'false'}, isOpen: ${isOpen ? 'true' : 'false'}"></mat-linear-progress>`;
+                return global.hljs.highlight(html, { language: 'xml' }).value;
+                return global.hljs.highlight("<p>TODO</p>", { language: 'xml' }).value;
             });
 
             ko.applyBindings(app, doc.body);
