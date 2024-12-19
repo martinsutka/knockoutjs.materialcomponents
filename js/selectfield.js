@@ -51,6 +51,9 @@ SelectField.prototype.koDescendantsComplete = function (node) {
     root.after(helper);
 
     this.mdcComponent = new mdc.textField.MDCTextField(root);
+    if (this.value()) {
+        setTimeout(() => this.mdcComponent.value = this.value(), 1);
+    }
 };
 
 

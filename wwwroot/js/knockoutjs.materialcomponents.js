@@ -1,5 +1,5 @@
 /*!
- * knockoutjs.materialcomponents v1.0.184
+ * knockoutjs.materialcomponents v1.0.194
  * 2024-12-19
  */
 
@@ -2397,6 +2397,9 @@ TextField.prototype.koDescendantsComplete = function (node) {
     }
 
     this.mdcComponent = new mdc.textField.MDCTextField(root);
+    if (this.value()) {
+        setTimeout(() => this.mdcComponent.value = this.value(), 1);
+    }
 };
 
 
@@ -2589,6 +2592,9 @@ SelectField.prototype.koDescendantsComplete = function (node) {
     root.after(helper);
 
     this.mdcComponent = new mdc.textField.MDCTextField(root);
+    if (this.value()) {
+        setTimeout(() => this.mdcComponent.value = this.value(), 1);
+    }
 };
 
 
