@@ -59,8 +59,13 @@
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                         <h6 class="mdc-typography--headline6">Parameters</h6>
                         <div class="mdc-layout-grid__inner">
-                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                                <mat-text-field params="text: 'icon', value: icon.icon, isAutoSelect: true, note: 'Name of the icon', isNotePersistent: true"></mat-text-field>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'icon', 
+                                    value: icon.icon, 
+                                    isAutoSelect: true, 
+                                    note: 'Name of the icon', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
                             </div> 
                         </div>
                     </div>
@@ -69,8 +74,63 @@
                         <pre><code class="language-xml" data-bind="html: iconHtml"></code></pre>
                     </div>
                     <!-- /ko -->
+                    <!-- ko if: section() === 'circular-progress'-->
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <p class="mdc-typography--body1">
+                            The Circular Progress component is a spec-aligned circular progress indicator component adhering to the <a href="https://material.io/go/design-progress-indicators" rel="nofollow">Material Design progress &amp; activity requirements</a>.
+                        </p>
+                        <h6 class="mdc-typography--headline6">Demo</h6>
+                        <div class="center">
+                            <!-- ko if: circularProgress.size() == 1 -->
+                            <mat-circular-progress params="progress: circularProgress.progress"></mat-circular-progress>
+                            <!-- /ko -->
+                            <!-- ko if: circularProgress.size() == 2 -->
+                            <mat-circular-progress-medium params="progress: circularProgress.progress"></mat-circular-progress-medium>
+                            <!-- /ko -->
+                            <!-- ko if: circularProgress.size() == 3 -->
+                            <mat-circular-progress-small params="progress: circularProgress.progress"></mat-circular-progress-small>
+                            <!-- /ko -->
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Parameters</h6>
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-select-field params="text: 'size',
+                                    value: circularProgress.size,
+                                    options: [{ text: 'Normal', value: 1 }, { text: 'Medium', value: 2 }, { text: 'Small', value: 3 }],
+                                    note: 'Size of the circular progress',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-select-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'progress', 
+                                    type: ko.materialcomponents.TextField.TYPE.number,
+                                    min: 0,
+                                    max: 1,
+                                    step: 0.1, 
+                                    value: circularProgress.progress, 
+                                    note: 'Sets the progress bar to this value, value should be between 0 and 1',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Html</h6>
+                        <pre><code class="language-xml" data-bind="html: circularProgressHtml"></code></pre>
+                    </div>
+                    <!-- /ko -->
                 </div>
             </div>
+
+
+
+
+
+
+
+
             <!-- Circular Progress -->
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                 <h5 class="mdc-typography--headline5">Circular Progress</h5>
@@ -418,6 +478,10 @@
                 icon: {
                     icon: ko.observable("favorite")
                 },
+                circularProgress: {
+                    size: ko.observable(1),
+                    progress: ko.observable(0.6)
+                },
                 navigateTo: (e) => global.location.hash = e.url,
                 areChecked: ko.observableArray([]),
                 radioValue: ko.observable(),
@@ -432,6 +496,16 @@
             global.app.iconHtml = ko.computed(() => {
                 const icon = app.icon.icon();
                 const html = `<mat-icon params="icon: '${icon}'"></mat-icon>`;
+                return global.hljs.highlight(html, { language: 'xml' }).value;
+            });
+            
+            global.app.circularProgressHtml = ko.computed(() => {
+                const size = app.circularProgress.size();
+                const tag = (size == 1) ? "mat-circular-progress" :
+                            (size == 2) ? "mat-circular-progress-medium" :
+                            "mat-circular-progress-small";
+                const progress = app.circularProgress.progress();
+                const html = `<${tag} params="progress: ${progress}"></${tag}>`;
                 return global.hljs.highlight(html, { language: 'xml' }).value;
             });
 
