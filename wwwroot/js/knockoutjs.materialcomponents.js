@@ -1,6 +1,6 @@
 /*!
- * knockoutjs.materialcomponents v1.0.183
- * 2024-12-18
+ * knockoutjs.materialcomponents v1.0.184
+ * 2024-12-19
  */
 
 (function (root, factory) {

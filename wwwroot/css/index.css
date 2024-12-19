@@ -54,6 +54,7 @@ pre {
   background: rgba(0, 0, 0, 0.1);
   padding: 0.625rem;
   border-radius: 0.25rem;
+  white-space: break-spaces;
 }
 .container {
   margin: 0 auto;
