@@ -481,6 +481,83 @@
                         <pre><code class="language-xml" data-bind="html: floatingActionButtonHtml"></code></pre>
                     </div>
                     <!-- /ko -->
+                     <!-- ko if: section() === 'button'-->
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <p class="mdc-typography--body1">
+                            Buttons allow users to take actions, and make choices, with a single tap.
+                        </p>
+                        <h6 class="mdc-typography--headline6">Demo</h6>
+                        <div class="center">
+                            <mat-button params="icon: button.icon, text: button.text, iconPosition: button.iconPosition, type: button.type, isEnabled: button.isEnabled, isFocused: button.isFocused, isLoading: button.isLoading, onClick: alertSync"></mat-button>
+                        </div>
+                        <h6 class="mdc-typography--headline6">Demo Async Action</h6>
+                        <div class="center">
+                            <mat-button params="icon: button.icon, text: button.text, iconPosition: button.iconPosition, type: button.type, isEnabled: button.isEnabled, isFocused: button.isFocused, isLoading: button.isLoading, onClick: alertAsync"></mat-button>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Parameters</h6>
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'text', 
+                                    value: button.text, 
+                                    isAutoSelect: true, 
+                                    note: 'Button\'s text', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>                            
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'icon', 
+                                    value: button.icon, 
+                                    isAutoSelect: true, 
+                                    note: 'Name of the icon', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-select-field params="text: 'iconPosition',
+                                    value: button.iconPosition,
+                                    options: [{ text: 'Start', value: 0 }, { text: 'End', value: 1 }],
+                                    note: 'Specify the position of the icon',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-select-field>
+                            </div>                              
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-select-field params="text: 'type',
+                                    value: button.type,
+                                    options: [{ text: 'Text', value: 0 }, { text: 'Outlined', value: 1 }, { text: 'Raised', value: 2 }],
+                                    note: 'Specify the type of the button',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-select-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isEnabled',
+                                    isChecked: button.isEnabled,
+                                    value: true,
+                                    note: 'Toggles the component between the enabled and disabled state',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isFocused',
+                                    isChecked: button.isFocused,
+                                    value: true,
+                                    note: 'Toggles the component between the focused and blured state',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isLoading',
+                                    isChecked: button.isLoading,
+                                    value: true,
+                                    note: 'Toggles the component between the loading and loaded state',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>    
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Html</h6>
+                        <pre><code class="language-xml" data-bind="html: buttonHtml"></code></pre>
+                    </div>
+                    <!-- /ko -->
                 </div>
             </div>
 
@@ -500,23 +577,6 @@
             
             
 
-            <!-- Button -->
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <h5 class="mdc-typography--headline5">Button</h5>
-            </div>
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <mat-button params="text: 'alert', onClick: () => alert('Message')"></mat-button><br/><br/>
-                <mat-button params="text: 'alert async left icon', icon: 'bookmark', onClick: alertAsync"></mat-button><br/><br/>
-                <mat-button params="text: 'alert async outlined', type: ko.materialcomponents.Button.TYPE.outlined, onClick: alertAsync"></mat-button><br/><br/>
-                <mat-button params="text: 'outlined left icon', icon: 'bookmark', type: ko.materialcomponents.Button.TYPE.outlined"></mat-button><br/><br/>
-                <mat-button params="text: 'raised alert async', type: ko.materialcomponents.Button.TYPE.raised, onClick: alertAsync"></mat-button><br/><br/>
-                <mat-button params="text: 'raised left icon', icon: 'bookmark', type: ko.materialcomponents.Button.TYPE.raised"></mat-button><br/><br/>
-                <mat-button params="text: 'raised right icon', icon: 'bookmark', iconPosition: ko.materialcomponents.Button.ICON_POSITION.end, type: ko.materialcomponents.Button.TYPE.raised"></mat-button><br/><br/>
-                <mat-button params="text: 'disabled', isEnabled: false"></mat-button><br/><br/>
-                <mat-button params="text: 'disabled left icon', icon: 'bookmark', isEnabled: false"></mat-button><br/><br/>
-                <mat-button params="text: 'disabled outlined', type: ko.materialcomponents.Button.TYPE.outlined, isEnabled: false"></mat-button><br/><br/>
-                <mat-button params="text: 'disabled raised', type: ko.materialcomponents.Button.TYPE.raised, isEnabled: false"></mat-button>
-            </div>
             <!-- Switch -->
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                 <h5 class="mdc-typography--headline5">Switch</h5>
@@ -762,7 +822,8 @@
                     { text: "Tooltip", url: "#tooltip" },
                     { text: "Rich Tooltip", url: "#rich-tooltip" },
                     { text: "Icon Button", url: "#icon-button" },
-                    { text: "Floating Action Button", url: "#floating-action-button" }
+                    { text: "Floating Action Button", url: "#floating-action-button" },
+                    { text: "Button", url: "#button" }
                 ],
                 icon: {
                     icon: ko.observable("favorite")
@@ -801,6 +862,15 @@
                 floatingActionButton: {
                     icon: ko.observable("favorite"),
                     text: ko.observable(""),
+                    iconPosition: ko.observable(0),
+                    type: ko.observable(0),
+                    isEnabled: ko.observable(true),
+                    isFocused: ko.observable(false),
+                    isLoading: ko.observable(false)
+                },
+                button: {
+                    icon: ko.observable(""),
+                    text: ko.observable("Alert"),
                     iconPosition: ko.observable(0),
                     type: ko.observable(0),
                     isEnabled: ko.observable(true),
@@ -901,6 +971,18 @@
                 const isFocused = app.floatingActionButton.isFocused();
                 const isLoading = app.floatingActionButton.isLoading();
                 const html = `<mat-fab params="icon: '${icon}', text: '${text}', iconPosition: ${iconPosition}, type: ${type}, isEnabled: ${isEnabled ? 'true' : 'false'}, isFocused: ${isFocused ? 'true' : 'false'}, isLoading: ${isLoading ? 'true' : 'false'}, onClick: alertSync"></mat-fab>`;
+                return global.hljs.highlight(html, { language: 'xml' }).value;
+            });
+
+            global.app.buttonHtml = ko.computed(() => {
+                const icon = app.button.icon();
+                const text = app.button.text();
+                const iconPosition = app.button.iconPosition();
+                const type = app.button.type();
+                const isEnabled = app.button.isEnabled();
+                const isFocused = app.button.isFocused();
+                const isLoading = app.button.isLoading();
+                const html = `<mat-button params="icon: '${icon}', text: '${text}', iconPosition: ${iconPosition}, type: ${type}, isEnabled: ${isEnabled ? 'true' : 'false'}, isFocused: ${isFocused ? 'true' : 'false'}, isLoading: ${isLoading ? 'true' : 'false'}, onClick: alertSync"></mat-button>`;
                 return global.hljs.highlight(html, { language: 'xml' }).value;
             });
 
