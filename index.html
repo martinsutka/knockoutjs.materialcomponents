@@ -404,6 +404,83 @@
                         <pre><code class="language-xml" data-bind="html: iconButtonHtml"></code></pre>
                     </div>
                     <!-- /ko -->
+                    <!-- ko if: section() === 'floating-action-button'-->
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <p class="mdc-typography--body1">
+                            A floating action button (FAB) represents the primary action of a screen.
+                        </p>
+                        <h6 class="mdc-typography--headline6">Demo</h6>
+                        <div class="center">
+                            <mat-fab params="icon: floatingActionButton.icon, text: floatingActionButton.text, iconPosition: floatingActionButton.iconPosition, type: floatingActionButton.type, isEnabled: floatingActionButton.isEnabled, isFocused: floatingActionButton.isFocused, isLoading: floatingActionButton.isLoading, onClick: alertSync"></mat-fab>
+                        </div>
+                        <h6 class="mdc-typography--headline6">Demo Async Action</h6>
+                        <div class="center">
+                            <mat-fab params="icon: floatingActionButton.icon, text: floatingActionButton.text, iconPosition: floatingActionButton.iconPosition, type: floatingActionButton.type, isEnabled: floatingActionButton.isEnabled, isFocused: floatingActionButton.isFocused, isLoading: floatingActionButton.isLoading, onClick: alertAsync"></mat-fab>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Parameters</h6>
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'icon', 
+                                    value: floatingActionButton.icon, 
+                                    isAutoSelect: true, 
+                                    note: 'Name of the icon', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-select-field params="text: 'type',
+                                    value: floatingActionButton.type,
+                                    options: [{ text: 'Regular', value: 0 }, { text: 'Mini', value: 1 }, { text: 'Extended', value: 2 }],
+                                    note: 'Specify the type of the button',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-select-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-select-field params="text: 'iconPosition',
+                                    value: floatingActionButton.iconPosition,
+                                    options: [{ text: 'Start', value: 0 }, { text: 'End', value: 1 }],
+                                    note: 'Specify the position of the icon',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-select-field>
+                            </div>                              
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'text', 
+                                    value: floatingActionButton.text, 
+                                    isAutoSelect: true, 
+                                    note: 'Button\'s text', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isEnabled',
+                                    isChecked: floatingActionButton.isEnabled,
+                                    value: true,
+                                    note: 'Toggles the component between the enabled and disabled state',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isFocused',
+                                    isChecked: floatingActionButton.isFocused,
+                                    value: true,
+                                    note: 'Toggles the component between the focused and blured state',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isLoading',
+                                    isChecked: floatingActionButton.isLoading,
+                                    value: true,
+                                    note: 'Toggles the component between the loading and loaded state',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>                            
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Html</h6>
+                        <pre><code class="language-xml" data-bind="html: floatingActionButtonHtml"></code></pre>
+                    </div>
+                    <!-- /ko -->
                 </div>
             </div>
 
@@ -445,7 +522,7 @@
                 <h5 class="mdc-typography--headline5">Floating Action Button</h5>
             </div>
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <mat-fab params="icon: 'arrow_back', onClick: () => alert('Message')"></mat-fab>
+                <mat-fab params="icon: 'arrow_back', onClick: alertSync"></mat-fab>
                 <mat-fab params="icon: 'arrow_back', onClick: alertAsync"></mat-fab>
                 <mat-fab params="icon: 'edit', type: ko.materialcomponents.Fab.TYPE.mini, onClick: alertAsync"></mat-fab>
                 <mat-fab params="icon: 'edit', type: ko.materialcomponents.Fab.TYPE.extended, text: 'Icon on Left', onClick: alertAsync"></mat-fab>
@@ -695,7 +772,8 @@
                     { text: "Linear Progress", url: "#linear-rogress" },
                     { text: "Tooltip", url: "#tooltip" },
                     { text: "Rich Tooltip", url: "#rich-tooltip" },
-                    { text: "Icon Button", url: "#icon-button" }
+                    { text: "Icon Button", url: "#icon-button" },
+                    { text: "Floating Action Button", url: "#floating-action-button" }
                 ],
                 icon: {
                     icon: ko.observable("favorite")
@@ -727,6 +805,15 @@
                 },
                 iconButton: {
                     icon: ko.observable("favorite"),
+                    isEnabled: ko.observable(true),
+                    isFocused: ko.observable(false),
+                    isLoading: ko.observable(false)
+                },
+                floatingActionButton: {
+                    icon: ko.observable("favorite"),
+                    text: ko.observable(""),
+                    iconPosition: ko.observable(0),
+                    type: ko.observable(0),
                     isEnabled: ko.observable(true),
                     isFocused: ko.observable(false),
                     isLoading: ko.observable(false)
@@ -816,6 +903,18 @@
                 return global.hljs.highlight(html, { language: 'xml' }).value;
             });
             
+            global.app.floatingActionButtonHtml = ko.computed(() => {
+                const icon = app.floatingActionButton.icon();
+                const text = app.floatingActionButton.text();
+                const iconPosition = app.floatingActionButton.iconPosition();
+                const type = app.floatingActionButton.type();
+                const isEnabled = app.floatingActionButton.isEnabled();
+                const isFocused = app.floatingActionButton.isFocused();
+                const isLoading = app.floatingActionButton.isLoading();
+                const html = `<mat-fab params="icon: '${icon}', text: '${text}', iconPosition: ${iconPosition}, type: ${type}, isEnabled: ${isEnabled ? 'true' : 'false'}, isFocused: ${isFocused ? 'true' : 'false'}, isLoading: ${isLoading ? 'true' : 'false'}, onClick: alertSync"></mat-fab>`;
+                return global.hljs.highlight(html, { language: 'xml' }).value;
+            });
+
             ko.applyBindings(app, doc.body);
 
             onHashChanged();
