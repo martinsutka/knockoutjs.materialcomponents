@@ -21,6 +21,8 @@ const Fab = function(args) {
     this.classes = ko.isObservable(args.classes) ? args.classes : ko.observable(args.classes || "");
 
     this.onClick = ko.isObservable(args.onClick) ? args.onClick : ko.observable(typeof(args.onClick) === "function" ? args.onClick : null);
+
+    this.progressClasses = ko.computed(this._getProgressClasses, this);
 };
 
 //#endregion
@@ -49,7 +51,31 @@ Fab.prototype.koDescendantsComplete = function (node) {
 Fab.prototype.dispose = function () {
     console.log("~Fab()");
 
+    this.progressClasses.dispose();
     this.mdcComponent.destroy();
+};
+
+//#endregion
+
+
+//#region [ Methods : Private ]
+
+/**
+ * Gets dynamic classes for the progress indicator.
+ */
+Fab.prototype._getProgressClasses = function() {
+    const type = this.type();
+    const iconPosition = this.iconPosition();
+
+    if (type === Fab.TYPE.mini) {
+        return "mdc-circular-progress--fab-mini";
+    }
+
+    if (type === Fab.TYPE.extended) {
+        return iconPosition === Fab.ICON_POSITION.start ? "mdc-circular-progress--fab-extended-start" : "mdc-circular-progress--fab-extended-end";
+    }
+
+    return "mdc-circular-progress--fab";
 };
 
 //#endregion
@@ -130,9 +156,7 @@ Fab.template =
        data-bind="text: icon, visible: icon().length && iconPosition() === ${Fab.ICON_POSITION.end}, style: { visibility: isLoading() ? 'hidden' : 'visible' }"></i>
     <mat-circular-progress-small params="isDeterminate: false,
                                          isOpen: isLoading,
-                                         classes: type() === ${Fab.TYPE.mini} ? 'mdc-circular-progress--fab-mini' : 
-                                                  type() === ${Fab.TYPE.extended} && iconPosition() === ${Fab.ICON_POSITION.start} ? 'mdc-circular-progress--fab-extended-start' : 
-                                                  type() === ${Fab.TYPE.extended} && iconPosition() === ${Fab.ICON_POSITION.end} ? 'mdc-circular-progress--fab-extended-end' : 'mdc-circular-progress--fab'"></mat-circular-progress-small>
+                                         classes: progressClasses"></mat-circular-progress-small>
 </button>`;
 
 //#endregion
