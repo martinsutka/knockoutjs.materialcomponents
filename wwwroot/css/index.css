@@ -44,6 +44,9 @@ body {
   margin-bottom: var(--mdc-typography-headline6-margin);
   color: var(--mdc-theme-secondary);
 }
+.mdc-deprecated-list-group__subheader {
+  font-weight: 600;
+}
 .center {
   position: relative;
   left: 50%;
