@@ -14,10 +14,10 @@ const IconButton = function(args) {
     this.icon = ko.isObservable(args.icon) ? args.icon : ko.observable(args.icon || "");
     this.isEnabled = ko.isObservable(args.isEnabled) ? args.isEnabled : ko.observable(typeof(args.isEnabled) === "boolean" ? args.isEnabled : true);
     this.isFocused = ko.isObservable(args.isFocused) ? args.isFocused : ko.observable(typeof(args.isFocused) === "boolean" ? args.isFocused : false);
+    this.isLoading = ko.isObservable(args.isLoading) ? args.isLoading : ko.observable(typeof(args.isLoading) === "boolean" ? args.isLoading : false);
     this.classes = ko.isObservable(args.classes) ? args.classes : ko.observable(args.classes || "");
-    this.isLoading = ko.observable(false);
-
-    this.onClick = args.onClick;
+    
+    this.onClick = ko.isObservable(args.onClick) ? args.onClick : ko.observable(typeof(args.onClick) === "function" ? args.onClick : null);
 };
 
 //#endregion
@@ -61,17 +61,19 @@ IconButton.prototype.dispose = function () {
  * @param {object} e Event arguments.
  **/
 IconButton.prototype._onClick = function (e) {
+    const click = this.onClick();
+
     // Check for the supplied callback function
-    if (typeof (this.onClick) !== "function") {
+    if (typeof (click) !== "function") {
         console.debug("IconButton : _onClick(): Callback for the 'click' event is not defined.");
         return;
     }
 
     // Call the function
-    const p = this.onClick();
+    const p = click();
 
     // Check if it is a promise
-    if ((typeof(p) === "object") && (typeof(p.then) === "function")) {
+    if (p instanceof Promise) {
         this.isFocused(false);
         this.isEnabled(false);
         this.isLoading(true);
