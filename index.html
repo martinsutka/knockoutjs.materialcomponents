@@ -671,6 +671,88 @@
                         <pre><code class="language-xml" data-bind="html: chipHtml"></code></pre>
                     </div>
                     <!-- /ko -->
+                    <!-- ko if: section() === 'slider'-->
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <p class="mdc-typography--body1">
+                            Sliders allow users to make selections from a range of values.
+                        </p>
+                        <h6 class="mdc-typography--headline6">Demo</h6>
+                        <div class="center" style="width: 100%">
+                            <mat-slider params="name: slider.name, min: slider.min, max: slider.max, value: slider.value, isEnabled: slider.isEnabled, isDiscrete: slider.isDiscrete, showTickMarks: slider.showTickMarks"></mat-slider>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Parameters</h6>
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'name', 
+                                    value: slider.name, 
+                                    isAutoSelect: true, 
+                                    note: 'Name of the slider', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'min', 
+                                    type: ko.materialcomponents.TextField.TYPE.number,
+                                    min: 0,
+                                    max: 100,
+                                    step: 1, 
+                                    value: slider.min, 
+                                    note: 'Sets the slider minimum value',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div> 
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'max', 
+                                    type: ko.materialcomponents.TextField.TYPE.number,
+                                    min: 0,
+                                    max: 100,
+                                    step: 1, 
+                                    value: slider.max, 
+                                    note: 'Sets the slider maximum value',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div> 
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'value', 
+                                    type: ko.materialcomponents.TextField.TYPE.number,
+                                    min: slider.min,
+                                    max: slider.max,
+                                    step: 1, 
+                                    value: slider.value, 
+                                    note: 'Sets the slider value',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isEnabled',
+                                    isChecked: slider.isEnabled,
+                                    value: true,
+                                    note: 'Toggles the component between the enabled and disabled state',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isDiscrete',
+                                    isChecked: slider.isDiscrete,
+                                    value: true,
+                                    note: 'Toggles the component between the discrete and non-discrete state',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'showTickMarks',
+                                    isChecked: slider.showTickMarks,
+                                    value: true,
+                                    note: 'Show tick marks',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Html</h6>
+                        <pre><code class="language-xml" data-bind="html: sliderHtml"></code></pre>
+                    </div>
+                    <!-- /ko -->
                 </div>
             </div>
 
@@ -691,16 +773,8 @@
             
 
             
-            <!-- Slider -->
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <h5 class="mdc-typography--headline5">Slider</h5>
-            </div>
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <mat-slider params="value: 10"></mat-slider>
-                <mat-slider params="value: 10, isEnabled: false"></mat-slider>
-                <mat-slider params="value: 20, isDiscrete: true"></mat-slider>
-                <mat-slider params="value: 20, isDiscrete: true, showTickMarks: true"></mat-slider>
-            </div>
+            
+            
             <!-- Range Slider -->
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                 <h5 class="mdc-typography--headline5">Range Slider</h5>
@@ -899,7 +973,8 @@
                     { text: "Floating Action Button", url: "#floating-action-button" },
                     { text: "Button", url: "#button" },
                     { text: "Switch", url: "#switch" },
-                    { text: "Chip", url: "#chip" }
+                    { text: "Chip", url: "#chip" },
+                    { text: "Slider", url: "#slider" }
                 ],
                 icon: {
                     icon: ko.observable("favorite")
@@ -963,6 +1038,15 @@
                     icon: ko.observable(""),
                     trailingIcon: ko.observable(""),
                     isChecked: ko.observable(false)
+                },
+                slider: {
+                    name: ko.observable(""),
+                    min: ko.observable(0),
+                    max: ko.observable(100),
+                    value: ko.observable(10),
+                    isEnabled: ko.observable(true),
+                    isDiscrete: ko.observable(false),
+                    showTickMarks: ko.observable(false)
                 },
                 navigateTo: (e) => global.location.hash = e.url,
                 areChecked: ko.observableArray([]),
@@ -1091,6 +1175,18 @@
     <mat-chip params="type: ${type}, icon: '${icon}', trailingIcon: '${trailingIcon}', text: '${text + ' Two'}'"></mat-chip>
     <mat-chip params="type: ${type}, icon: '${icon}', trailingIcon: '${trailingIcon}', text: '${text + ' Three'}'"></mat-chip>
 </div>`;
+                return global.hljs.highlight(html, { language: 'xml' }).value;
+            });
+
+            global.app.sliderHtml = ko.computed(() => {
+                const name = app.slider.name();
+                const min = app.slider.min();
+                const max = app.slider.max();
+                const value = app.slider.value();
+                const isEnabled = app.slider.isEnabled();
+                const isDiscrete = app.slider.isDiscrete();
+                const showTickMarks = app.slider.showTickMarks();
+                const html = `<mat-slider params="name: '${name}', min: ${min}, max: ${max}, value: ${value}, isEnabled: ${isEnabled ? 'true' : 'false'}, isDiscrete: ${isDiscrete ? 'true' : 'false'}, showTickMarks: ${showTickMarks ? 'true' : 'false'}"></mat-slider>`;
                 return global.hljs.highlight(html, { language: 'xml' }).value;
             });
 
