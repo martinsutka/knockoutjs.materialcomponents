@@ -18,8 +18,8 @@ const Chip = function(args) {
     this.isChecked = ko.isObservable(args.isChecked) ? args.isChecked : ko.observable(typeof(args.isChecked) === "boolean" ? args.isChecked : false);
     this.classes = ko.isObservable(args.classes) ? args.classes : ko.observable(args.classes || "");
 
-    this.onClick = args.onClick;
-    this.onTrailClick = args.onTrailClick;
+    this.onClick = ko.isObservable(args.onClick) ? args.onClick : ko.observable(typeof(args.onClick) === "function" ? args.onClick : null);
+    this.onTrailClick = ko.isObservable(args.onTrailClick) ? args.onTrailClick : ko.observable(typeof(args.onTrailClick) === "function" ? args.onTrailClick : null);
 };
 
 //#endregion
@@ -68,12 +68,13 @@ Chip.prototype._onMdcComponentInteraction = function(e) {
     }
 
     // Check for the supplied callback function
-    if (typeof (this.onClick) !== "function") {
+    const click = this.onClick();
+    if (typeof (click) !== "function") {
         console.debug("Chip : _onClick(): Callback for the 'click' event is not defined.");
         return;
     }
 
-    this.onClick(this);
+    click(this);
 };
 
 
@@ -86,12 +87,13 @@ Chip.prototype._onMdcComponentTrailingIconInteraction = function(vm, e) {
     e.stopPropagation();
 
     // Check for the supplied callback function
-    if (typeof (this.onTrailClick) !== "function") {
+    const click = this.onTrailClick();
+    if (typeof (click) !== "function") {
         console.debug("Chip : _onMdcComponentTrailingIconInteraction(): Callback for the 'trailclick' event is not defined.");
         return;
     }
 
-    this.onTrailClick(this);
+    click(this);
 };
 
 //#endregion

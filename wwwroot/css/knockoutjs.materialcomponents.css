@@ -42,6 +42,9 @@
   --mdc-switch-selected-hover-handle-color: var(--mdc-theme-primary);
   --mdc-switch-selected-pressed-handle-color: var(--mdc-theme-primary);
 }
+.mdc-chip-set--choice .mdc-chip.mdc-chip--selected .mdc-chip__icon--leading {
+  color: var(--mdc-theme-primary);
+}
 .mdc-checkbox__note {
   color: var(--mdc-theme-text-secondary-on-background);
   margin-top: -0.25rem;
