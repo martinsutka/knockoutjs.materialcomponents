@@ -491,7 +491,7 @@
                         <pre><code class="language-xml" data-bind="html: floatingActionButtonHtml"></code></pre>
                     </div>
                     <!-- /ko -->
-                     <!-- ko if: section() === 'button'-->
+                    <!-- ko if: section() === 'button'-->
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                         <p class="mdc-typography--body1">
                             Buttons allow users to take actions, and make choices, with a single tap.
@@ -568,6 +568,41 @@
                         <pre><code class="language-xml" data-bind="html: buttonHtml"></code></pre>
                     </div>
                     <!-- /ko -->
+                    <!-- ko if: section() === 'switch'-->
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <p class="mdc-typography--body1">
+                            Selection controls allow the user to select options.
+                        </p>
+                        <h6 class="mdc-typography--headline6">Demo</h6>
+                        <div class="center">
+                            <mat-switch params="id: 'switch-demo', isChecked: $data.switch.isChecked, isEnabled: $data.switch.isEnabled"></mat-switch>
+                            <label for="switch-demo">off/on</label>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Parameters</h6>
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isEnabled',
+                                    isChecked: $data.switch.isEnabled,
+                                    value: true,
+                                    note: 'Toggles the component between the enabled and disabled state',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isChecked',
+                                    isChecked: $data.switch.isChecked,
+                                    value: true,
+                                    note: 'Toggles the component between the checked and unchecked state',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Html</h6>
+                        <pre><code class="language-xml" data-bind="html: switchHtml"></code></pre>
+                    </div>
+                    <!-- /ko -->
                 </div>
             </div>
 
@@ -587,22 +622,7 @@
             
             
 
-            <!-- Switch -->
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <h5 class="mdc-typography--headline5">Switch</h5>
-            </div>
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <mat-switch params="id: 'basic-switch'"></mat-switch>
-                <label for="basic-switch">off/on</label>
-                <br>
-                <br>
-                <mat-switch params="id: 'checked-switch', isChecked: true"></mat-switch>
-                <label for="checked-switch">checked off/on</label>
-                <br>
-                <br>
-                <mat-switch params="id: 'dsabled-switch', isEnabled: false"></mat-switch>
-                <label for="dsabled-switch">disabled off/on</label>
-            </div>
+            
             <!-- Chips -->
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                 <h5 class="mdc-typography--headline5">Chips</h5>
@@ -834,7 +854,8 @@
                     { text: "Rich Tooltip", url: "#rich-tooltip" },
                     { text: "Icon Button", url: "#icon-button" },
                     { text: "Floating Action Button", url: "#floating-action-button" },
-                    { text: "Button", url: "#button" }
+                    { text: "Button", url: "#button" },
+                    { text: "Switch", url: "#switch" }
                 ],
                 icon: {
                     icon: ko.observable("favorite")
@@ -887,6 +908,10 @@
                     isEnabled: ko.observable(true),
                     isFocused: ko.observable(false),
                     isLoading: ko.observable(false)
+                },
+                switch: {
+                    isEnabled: ko.observable(true),
+                    isChecked: ko.observable(false)
                 },
                 navigateTo: (e) => global.location.hash = e.url,
                 areChecked: ko.observableArray([]),
@@ -994,6 +1019,13 @@
                 const isFocused = app.button.isFocused();
                 const isLoading = app.button.isLoading();
                 const html = `<mat-button params="icon: '${icon}', text: '${text}', iconPosition: ${iconPosition}, type: ${type}, isEnabled: ${isEnabled ? 'true' : 'false'}, isFocused: ${isFocused ? 'true' : 'false'}, isLoading: ${isLoading ? 'true' : 'false'}, onClick: alertSync"></mat-button>`;
+                return global.hljs.highlight(html, { language: 'xml' }).value;
+            });
+            
+            global.app.switchHtml = ko.computed(() => {
+                const isChecked = app.switch.isChecked();
+                const isEnabled = app.switch.isEnabled();
+                const html = `<mat-switch params="isEnabled: ${isEnabled ? 'true' : 'false'}, isChecked: ${isChecked ? 'true' : 'false'}"></mat-switch>`;
                 return global.hljs.highlight(html, { language: 'xml' }).value;
             });
 
