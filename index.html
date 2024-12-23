@@ -54,9 +54,11 @@
             </div>
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-9-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-4-phone">
                 <div class="mdc-layout-grid__inner">
+                    <!-- ko if: (subTitle() || '').length -->
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                         <h5 class="mdc-typography--headline5" data-bind="text: subTitle"></h5>
                     </div>
+                    <!-- /ko -->
                     <!-- ko if: !(section() || '').length -->
                     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                         <p class="mdc-typography--body1">
@@ -990,6 +992,84 @@
                         <pre><code class="language-xml" data-bind="html: checkboxListHtml"></code></pre>
                     </div>
                     <!-- /ko -->
+                    <!-- ko if: section() === 'radio'-->
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <p class="mdc-typography--body1">
+                            Radio buttons allow the user to select one option from a set. Use radio buttons when the user needs to see all available options. If available options can be collapsed, consider using a dropdown menu because it uses less space.
+                        </p>
+                        <h6 class="mdc-typography--headline6">Demo</h6>
+                        <div class="center">
+                            <mat-radio params="name: radio.name, value: radio.value, text: radio.text, note: radio.note, isEnabled: radio.isEnabled, isChecked: radio.isChecked"></mat-radio>
+                        </div>
+                        <h6 class="mdc-typography--headline6">Demo Radio List</h6>
+                        <div class="center">
+                            <mat-radio params="text: 'First', name: 'opts', value: 1, isChecked: radio.radioValue"></mat-radio>
+                            <mat-radio params="text: 'Second', name: 'opts', value: 2, isChecked: radio.radioValue"></mat-radio>
+                            <mat-radio params="text: 'Last', name: 'opts', value: 3, isChecked: radio.radioValue"></mat-radio>
+                            <br/>
+                            <div data-bind="text: radio.radioValue"></div>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Parameters</h6>
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'text', 
+                                    value: radio.text, 
+                                    isAutoSelect: true, 
+                                    note: 'Radio\'s text', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'note', 
+                                    value: radio.note, 
+                                    isAutoSelect: true, 
+                                    note: 'Radio\'s note', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'value', 
+                                    value: radio.value, 
+                                    isAutoSelect: true, 
+                                    note: 'Radio\'s value', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'name', 
+                                    value: radio.name, 
+                                    isAutoSelect: true, 
+                                    note: 'Radio\'s name', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isEnabled',
+                                    isChecked: radio.isEnabled,
+                                    value: true,
+                                    note: 'Toggles the component between the enabled and disabled state',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isChecked',
+                                    isChecked: radio.isChecked,
+                                    value: true,
+                                    note: 'Toggles the component between the checked and unchecked state',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Html</h6>
+                        <pre><code class="language-xml" data-bind="html: radioHtml"></code></pre>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Html Radio List</h6>
+                        <pre><code class="language-xml" data-bind="html: radioListHtml"></code></pre>
+                    </div>
+                    <!-- /ko -->
                 </div>
             </div>
 
@@ -1016,27 +1096,7 @@
             
             
             
-            <!-- Radio -->
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <h5 class="mdc-typography--headline5">Radio</h5>
-            </div>
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <mat-radio params="value: 111"></mat-radio><br/>
-                <mat-radio params="text: 'My Radio', value: 123"></mat-radio><br/>
-                <mat-radio params="text: 'This one is disabled', value: 123, isEnabled: false"></mat-radio><br/>
-                <mat-radio params="text: 'Checked by default', value: 123, isChecked: true, note: 'This is som very long note for this beatufil material design radio'"></mat-radio>
-            </div>
-            <!-- Radio List -->
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <h5 class="mdc-typography--headline5">Radio List</h5>
-            </div>
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <mat-radio params="text: 'Option 1', name: 'options', value: '1', isChecked: radioValue"></mat-radio>
-                <mat-radio params="text: 'Option 2', name: 'options', value: '2', isChecked: radioValue"></mat-radio>
-                <mat-radio params="text: 'Option 3', name: 'options', value: '3', isChecked: radioValue"></mat-radio>
-                <br/>
-                <div data-bind="text: radioValue"></div>
-            </div>
+            
             <!-- Text Field -->
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                 <h5 class="mdc-typography--headline5">Text Field</h5>
@@ -1168,7 +1228,8 @@
                     { text: "Range Slider", url: "#range-slider" },
                     { text: "Tab", url: "#tab" },
                     { text: "Tab Bar", url: "#tab-bar" },
-                    { text: "Checkbox", url: "#checkbox" }
+                    { text: "Checkbox", url: "#checkbox" },
+                    { text: "Radio", url: "#radio" }
                 ],
                 icon: {
                     icon: ko.observable("favorite")
@@ -1274,9 +1335,16 @@
                     isIndeterminate: ko.observable(false),
                     areChecked: ko.observableArray([])
                 },
+                radio: {
+                    name: ko.observable(""),
+                    text: ko.observable("Radio demo"),
+                    note: ko.observable(""),
+                    value: ko.observable(true),
+                    isEnabled: ko.observable(true),
+                    isChecked: ko.observable(false),
+                    radioValue: ko.observable()
+                },
                 navigateTo: (e) => global.location.hash = e.url,
-                areChecked: ko.observableArray([]),
-                radioValue: ko.observable(),
                 options: ko.observableArray([
                     { text: "Apple touch icon", value: 1 }, 
                     { text: "Windows tile", value: 2 }, 
@@ -1472,6 +1540,29 @@
 <mat-checkbox params="text: 'Last', value: 'last', isChecked: areChecked"></mat-checkbox>
 
 <div data-bind="text: areChecked().join(', ')"></div>`;
+                return global.hljs.highlight(html, { language: 'xml' }).value;
+            });
+
+            global.app.radioHtml = ko.computed(() => {
+                const text = app.radio.text();
+                const note = app.radio.note();
+                const value = app.radio.value();
+                const name = app.radio.name();
+                const isEnabled = app.radio.isEnabled();
+                const isChecked = app.radio.isChecked();
+
+                const html = `<mat-radio params="name: '${name}', value: ${value}, text: '${text}', note: '${note}', isEnabled: ${isEnabled ? 'true' : 'false'}, isChecked: ${isChecked ? 'true' : 'false'}"></mat-radio>`;
+                return global.hljs.highlight(html, { language: 'xml' }).value;
+            });
+
+            global.app.radioListHtml = ko.computed(() => {
+                const html = `let radioValue = ko.observable();
+
+<mat-radio params="text: 'First', name: 'opts', value: 1, isChecked: radioValue"></mat-radio>
+<mat-radio params="text: 'Second', name: 'opts', value: 2, isChecked: radioValue"></mat-radio>
+<mat-radio params="text: 'Last', name: 'opts', value: 3, isChecked: radioValue"></mat-radio>
+
+<div data-bind="text: radioValue"></div>`;
                 return global.hljs.highlight(html, { language: 'xml' }).value;
             });
 
