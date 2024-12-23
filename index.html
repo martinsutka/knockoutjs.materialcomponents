@@ -867,6 +867,52 @@
                         <pre><code class="language-xml" data-bind="html: tabHtml"></code></pre>
                     </div>
                     <!-- /ko -->
+                    <!-- ko if: section() === 'tab-bar'-->
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <p class="mdc-typography--body1">
+                            Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy. The Tab Bar contains the Tab Scroller and Tab components.
+                        </p>
+                        <h6 class="mdc-typography--headline6">Demo</h6>
+                        <div class="center" style="width: 100%">
+                            <mat-tab-bar params="activeTab: tabbar.activeTab, isFocusedWhenActivate: tabbar.isFocusedWhenActivate, isAutomaticallyActivated: tabbar.isAutomaticallyActivated">
+                                <mat-tab params="icon: 'arrow_back_ios', text: 'Go Back', tabs: tabs"></mat-tab>
+                                <mat-tab params="icon: 'favorite', text: 'Add to favorites', tabs: tabs"></mat-tab>
+                                <mat-tab params="icon: 'arrow_forward_ios', text: 'Go Forward', tabs: tabs"></mat-tab>
+                            </mat-tab-bar>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Parameters</h6>
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isFocusedWhenActivate',
+                                    isChecked: tabbar.isFocusedWhenActivate,
+                                    value: true,
+                                    note: 'Sets whether tabs focus themselves when activated',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isAutomaticallyActivated',
+                                    isChecked: tabbar.isAutomaticallyActivated,
+                                    value: true,
+                                    note: 'Sets how tabs activate in response to keyboard interaction',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'activeTab', 
+                                    type: ko.materialcomponents.TextField.TYPE.number,
+                                    value: tabbar.activeTab, 
+                                    note: 'Sets the active tab',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Html</h6>
+                        <pre><code class="language-xml" data-bind="html: tabbarHtml"></code></pre>
+                    </div>
+                    <!-- /ko -->
                 </div>
             </div>
 
@@ -891,17 +937,7 @@
             
             
             
-            <!-- Tab Bar -->
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <h5 class="mdc-typography--headline5">Tab Bar</h5>
-            </div>
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <mat-tab-bar params="activeTab: 1">
-                    <mat-tab params="icon: 'arrow_back_ios', text: 'Go Back', tabs: tabs"></mat-tab>
-                    <mat-tab params="icon: 'favorite', text: 'Add to favorites', tabs: tabs"></mat-tab>
-                    <mat-tab params="icon: 'arrow_forward_ios', text: 'Go Forward', tabs: tabs"></mat-tab>
-                </mat-tab-bar>
-            </div>
+            
             <!-- Checkbox -->
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                 <h5 class="mdc-typography--headline5">Checkbox</h5>
@@ -1075,7 +1111,8 @@
                     { text: "Chip", url: "#chip" },
                     { text: "Slider", url: "#slider" },
                     { text: "Range Slider", url: "#range-slider" },
-                    { text: "Tab", url: "#tab" }
+                    { text: "Tab", url: "#tab" },
+                    { text: "Tab Bar", url: "#tab-bar" }
                 ],
                 icon: {
                     icon: ko.observable("favorite")
@@ -1166,6 +1203,11 @@
                     isActive: ko.observable(false),
                     isStacked: ko.observable(false),
                     isMinWidth: ko.observable(false)
+                },
+                tabbar: {
+                    isFocusedWhenActivate: ko.observable(false),
+                    isAutomaticallyActivated: ko.observable(true),
+                    activeTab: ko.observable(1)
                 },
                 navigateTo: (e) => global.location.hash = e.url,
                 areChecked: ko.observableArray([]),
@@ -1331,6 +1373,18 @@
                 const isStacked = app.tab.isStacked();
                 const isMinWidth = app.tab.isMinWidth();
                 const html = `<mat-tab params="text: '${text}', icon: '${icon}', isActive: ${isActive ? 'true' : 'false'}, isStacked: ${isStacked ? 'true' : 'false'}, isMinWidth: ${isMinWidth ? 'true' : 'false'}, indicator: ${indicator}, onClick: alertSync"></mat-tab>`;
+                return global.hljs.highlight(html, { language: 'xml' }).value;
+            });
+
+            global.app.tabbarHtml = ko.computed(() => {
+                const activeTab = app.tabbar.activeTab();
+                const isAutomaticallyActivated = app.tabbar.isAutomaticallyActivated();
+                const isFocusedWhenActivate = app.tabbar.isFocusedWhenActivate();
+                const html = `<mat-tab-bar params="activeTab: ${activeTab}, isFocusedWhenActivate: ${isFocusedWhenActivate ? 'true' : 'false'}, isAutomaticallyActivated: ${isAutomaticallyActivated ? 'true' : 'false'}">
+    <mat-tab params="icon: 'arrow_back_ios', text: 'Go Back', tabs: tabs"></mat-tab>
+    <mat-tab params="icon: 'favorite', text: 'Add to favorites', tabs: tabs"></mat-tab>
+    <mat-tab params="icon: 'arrow_forward_ios', text: 'Go Forward', tabs: tabs"></mat-tab>
+</mat-tab-bar>`;
                 return global.hljs.highlight(html, { language: 'xml' }).value;
             });
 
