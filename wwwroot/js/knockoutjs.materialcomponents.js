@@ -1,6 +1,6 @@
 /*!
- * knockoutjs.materialcomponents v1.0.211
- * 2024-12-22
+ * knockoutjs.materialcomponents v1.0.212
+ * 2024-12-23
  */
 
 (function (root, factory) {
@@ -1848,7 +1848,7 @@ const Tab = function(args) {
         args.tabs.push(this);
     }
 
-    this.onClick = args.onClick;
+    this.onClick = ko.isObservable(args.onClick) ? args.onClick : ko.observable(typeof(args.onClick) === "function" ? args.onClick : null);
 };
 
 //#endregion
@@ -1893,12 +1893,13 @@ Tab.prototype.dispose = function () {
  */
 Tab.prototype._onMdcComponentInteracted = function(e) {
     // Check for the supplied callback function
-    if (typeof (this.onClick) !== "function") {
+    const click = this.onClick();
+    if (typeof (click) !== "function") {
         console.debug("Tab : _onClick(): Callback for the 'click' event is not defined.");
         return;
     }
 
-    this.onClick(this);
+    click(this);
 };
 
 //#endregion

@@ -802,6 +802,71 @@
                         <pre><code class="language-xml" data-bind="html: rangesliderHtml"></code></pre>
                     </div>
                     <!-- /ko -->
+                    <!-- ko if: section() === 'tab'-->
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <p class="mdc-typography--body1">
+                            Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy. Each Tab governs the visibility of one group of content.
+                        </p>
+                        <h6 class="mdc-typography--headline6">Demo</h6>
+                        <div class="center">
+                            <mat-tab params="text: tab.text, icon: tab.icon, isActive: tab.isActive, isStacked: tab.isStacked, isMinWidth: tab.isMinWidth, indicator: tab.indicator, onClick: alertSync"></mat-tab>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Parameters</h6>
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'text', 
+                                    value: tab.text, 
+                                    isAutoSelect: true, 
+                                    note: 'Tabs\'s text', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'icon', 
+                                    value: tab.icon, 
+                                    isAutoSelect: true, 
+                                    note: 'Name of the icon', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isActive',
+                                    isChecked: tab.isActive,
+                                    value: true,
+                                    note: 'Toggles the component between the active and inactive state',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isStacked',
+                                    isChecked: tab.isStacked,
+                                    value: true,
+                                    note: 'Indicates that the tab icon and label should flow vertically instead of horizontally',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isMinWidth',
+                                    isChecked: tab.isMinWidth,
+                                    value: true,
+                                    note: ' Indicates that the tab should shrink in size to be as narrow as possible without causing text to wrap',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-select-field params="text: 'indicator',
+                                    value: tab.indicator,
+                                    options: [{ text: 'Default', value: 0 }, { text: 'Only Content', value: 1 }],
+                                    note: 'Specify the type of the indicator',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-select-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Html</h6>
+                        <pre><code class="language-xml" data-bind="html: tabHtml"></code></pre>
+                    </div>
+                    <!-- /ko -->
                 </div>
             </div>
 
@@ -825,15 +890,7 @@
             
             
             
-            <!-- Tab -->
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <h5 class="mdc-typography--headline5">Tab</h5>
-            </div>
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <mat-tab params="icon: 'arrow_back_ios', text: 'Go Back', isActive: true, onClick: (e) => alert('Message')"></mat-tab>
-                <mat-tab params="icon: 'favorite', text: 'Add to favorites', isActive: true, isStacked: true"></mat-tab>
-                <mat-tab params="icon: 'arrow_forward_ios', text: 'Go Forward', isActive: true, indicator: ko.materialcomponents.Tab.INDICATOR.onlyContent"></mat-tab>
-            </div>
+            
             <!-- Tab Bar -->
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                 <h5 class="mdc-typography--headline5">Tab Bar</h5>
@@ -1017,7 +1074,8 @@
                     { text: "Switch", url: "#switch" },
                     { text: "Chip", url: "#chip" },
                     { text: "Slider", url: "#slider" },
-                    { text: "Range Slider", url: "#range-slider" }
+                    { text: "Range Slider", url: "#range-slider" },
+                    { text: "Tab", url: "#tab" }
                 ],
                 icon: {
                     icon: ko.observable("favorite")
@@ -1100,6 +1158,14 @@
                     isEnabled: ko.observable(true),
                     isDiscrete: ko.observable(false),
                     showTickMarks: ko.observable(false)
+                },
+                tab: {
+                    text: ko.observable("Favorite"),
+                    icon: ko.observable("favorite"),
+                    indicator: ko.observable(0),
+                    isActive: ko.observable(false),
+                    isStacked: ko.observable(false),
+                    isMinWidth: ko.observable(false)
                 },
                 navigateTo: (e) => global.location.hash = e.url,
                 areChecked: ko.observableArray([]),
@@ -1254,6 +1320,17 @@
                 const isDiscrete = app.rangeslider.isDiscrete();
                 const showTickMarks = app.rangeslider.showTickMarks();
                 const html = `<mat-range-slider params="name: '${name}', minRange: ${minRange}, min: ${min}, max: ${max}, value: [${value}], isEnabled: ${isEnabled ? 'true' : 'false'}, isDiscrete: ${isDiscrete ? 'true' : 'false'}, showTickMarks: ${showTickMarks ? 'true' : 'false'}"></mat-range-slider>`;
+                return global.hljs.highlight(html, { language: 'xml' }).value;
+            });
+
+            global.app.tabHtml = ko.computed(() => {
+                const text = app.tab.text();
+                const icon = app.tab.icon();
+                const indicator = app.tab.indicator();
+                const isActive = app.tab.isActive();
+                const isStacked = app.tab.isStacked();
+                const isMinWidth = app.tab.isMinWidth();
+                const html = `<mat-tab params="text: '${text}', icon: '${icon}', isActive: ${isActive ? 'true' : 'false'}, isStacked: ${isStacked ? 'true' : 'false'}, isMinWidth: ${isMinWidth ? 'true' : 'false'}, indicator: ${indicator}, onClick: alertSync"></mat-tab>`;
                 return global.hljs.highlight(html, { language: 'xml' }).value;
             });
 
