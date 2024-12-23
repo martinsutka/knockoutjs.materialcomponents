@@ -753,6 +753,55 @@
                         <pre><code class="language-xml" data-bind="html: sliderHtml"></code></pre>
                     </div>
                     <!-- /ko -->
+                    <!-- ko if: section() === 'range-slider'-->
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <p class="mdc-typography--body1">
+                            Sliders allow users to make selections from a range of values.
+                        </p>
+                        <h6 class="mdc-typography--headline6">Demo</h6>
+                        <div class="center" style="width: 100%">
+                            <mat-range-slider params="name: rangeslider.name, minRange: rangeslider.minRange, min: rangeslider.min, max: rangeslider.max, isEnabled: rangeslider.isEnabled, isDiscrete: rangeslider.isDiscrete, showTickMarks: rangeslider.showTickMarks, value: rangeslider.value"></mat-range-slider>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Parameters</h6>
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'name', 
+                                    value: rangeslider.name, 
+                                    isAutoSelect: true, 
+                                    note: 'Name of the slider', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isEnabled',
+                                    isChecked: rangeslider.isEnabled,
+                                    value: true,
+                                    note: 'Toggles the component between the enabled and disabled state',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isDiscrete',
+                                    isChecked: rangeslider.isDiscrete,
+                                    value: true,
+                                    note: 'Toggles the component between the discrete and non-discrete state',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'showTickMarks',
+                                    isChecked: rangeslider.showTickMarks,
+                                    value: true,
+                                    note: 'Show tick marks',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Html</h6>
+                        <pre><code class="language-xml" data-bind="html: rangesliderHtml"></code></pre>
+                    </div>
+                    <!-- /ko -->
                 </div>
             </div>
 
@@ -775,14 +824,7 @@
             
             
             
-            <!-- Range Slider -->
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <h5 class="mdc-typography--headline5">Range Slider</h5>
-            </div>
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <mat-range-slider params="value: [30, 70]"></mat-range-slider>
-                <mat-range-slider params="value: [30, 70], isDiscrete: true"></mat-range-slider>
-            </div>
+            
             <!-- Tab -->
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                 <h5 class="mdc-typography--headline5">Tab</h5>
@@ -974,7 +1016,8 @@
                     { text: "Button", url: "#button" },
                     { text: "Switch", url: "#switch" },
                     { text: "Chip", url: "#chip" },
-                    { text: "Slider", url: "#slider" }
+                    { text: "Slider", url: "#slider" },
+                    { text: "Range Slider", url: "#range-slider" }
                 ],
                 icon: {
                     icon: ko.observable("favorite")
@@ -1048,6 +1091,16 @@
                     isDiscrete: ko.observable(false),
                     showTickMarks: ko.observable(false)
                 },
+                rangeslider: {
+                    name: ko.observable(""),
+                    minRange: ko.observable(10),
+                    min: ko.observable({ start: 0, end: 100 }),
+                    max: ko.observable({ start: 0, end: 100 }),
+                    value: ko.observable([30, 70]),
+                    isEnabled: ko.observable(true),
+                    isDiscrete: ko.observable(false),
+                    showTickMarks: ko.observable(false)
+                },
                 navigateTo: (e) => global.location.hash = e.url,
                 areChecked: ko.observableArray([]),
                 radioValue: ko.observable(),
@@ -1064,7 +1117,7 @@
                 const html = `<mat-icon params="icon: '${icon}'"></mat-icon>`;
                 return global.hljs.highlight(html, { language: 'xml' }).value;
             });
-                                    
+                                                
             global.app.circularProgressHtml = ko.computed(() => {
                 const size = app.circularProgress.size();
                 const tag = (size == 1) ? "mat-circular-progress" :
@@ -1187,6 +1240,20 @@
                 const isDiscrete = app.slider.isDiscrete();
                 const showTickMarks = app.slider.showTickMarks();
                 const html = `<mat-slider params="name: '${name}', min: ${min}, max: ${max}, value: ${value}, isEnabled: ${isEnabled ? 'true' : 'false'}, isDiscrete: ${isDiscrete ? 'true' : 'false'}, showTickMarks: ${showTickMarks ? 'true' : 'false'}"></mat-slider>`;
+                return global.hljs.highlight(html, { language: 'xml' }).value;
+            });
+
+            
+            global.app.rangesliderHtml = ko.computed(() => {
+                const name = app.rangeslider.name();
+                const minRange = app.rangeslider.minRange();
+                const min = JSON.stringify(app.rangeslider.min()).replace(/"/gi, "");
+                const max = JSON.stringify(app.rangeslider.max()).replace(/"/gi, "");
+                const value = app.rangeslider.value();
+                const isEnabled = app.rangeslider.isEnabled();
+                const isDiscrete = app.rangeslider.isDiscrete();
+                const showTickMarks = app.rangeslider.showTickMarks();
+                const html = `<mat-range-slider params="name: '${name}', minRange: ${minRange}, min: ${min}, max: ${max}, value: [${value}], isEnabled: ${isEnabled ? 'true' : 'false'}, isDiscrete: ${isDiscrete ? 'true' : 'false'}, showTickMarks: ${showTickMarks ? 'true' : 'false'}"></mat-range-slider>`;
                 return global.hljs.highlight(html, { language: 'xml' }).value;
             });
 
