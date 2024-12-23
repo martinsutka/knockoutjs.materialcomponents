@@ -849,7 +849,7 @@
                                 <mat-checkbox params="text: 'isMinWidth',
                                     isChecked: tab.isMinWidth,
                                     value: true,
-                                    note: ' Indicates that the tab should shrink in size to be as narrow as possible without causing text to wrap',
+                                    note: 'Indicates that the tab should shrink in size to be as narrow as possible without causing text to wrap',
                                     classes: 'mdc-text-field--full-width'"></mat-checkbox>
                             </div>
                             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
@@ -913,6 +913,83 @@
                         <pre><code class="language-xml" data-bind="html: tabbarHtml"></code></pre>
                     </div>
                     <!-- /ko -->
+                    <!-- ko if: section() === 'checkbox'-->
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <p class="mdc-typography--body1">
+                            Checkboxes allow the user to select one or more items from a set. Checkboxes can be used to turn an option on or off.
+                        </p>
+                        <h6 class="mdc-typography--headline6">Demo</h6>
+                        <div class="center">
+                            <mat-checkbox params="text: checkbox.text, note: checkbox.note, value: checkbox.value, isEnabled: checkbox.isEnabled, isChecked: checkbox.isChecked, isIndeterminate: checkbox.isIndeterminate"></mat-checkbox>
+                        </div>
+                        <h6 class="mdc-typography--headline6">Demo Checkbox List</h6>
+                        <div class="center">
+                            <mat-checkbox params="text: 'First', value: 'first', isChecked: checkbox.areChecked"></mat-checkbox>
+                            <mat-checkbox params="text: 'Second', value: 'second', isChecked: checkbox.areChecked"></mat-checkbox>
+                            <mat-checkbox params="text: 'Last', value: 'last', isChecked: checkbox.areChecked"></mat-checkbox>
+                            <br/>
+                            <div data-bind="text: checkbox.areChecked().join(', ')"></div>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Parameters</h6>
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'text', 
+                                    value: checkbox.text, 
+                                    isAutoSelect: true, 
+                                    note: 'Checkbox\'s text', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'note', 
+                                    value: checkbox.note, 
+                                    isAutoSelect: true, 
+                                    note: 'Checkbox\'s note', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'value', 
+                                    value: checkbox.value, 
+                                    isAutoSelect: true, 
+                                    note: 'Checkbox\'s text', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isEnabled',
+                                    isChecked: checkbox.isEnabled,
+                                    value: true,
+                                    note: 'Toggles the component between the enabled and disabled state',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isChecked',
+                                    isChecked: checkbox.isChecked,
+                                    value: true,
+                                    note: 'Toggles the component between the checked and unchecked state',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isIndeterminate',
+                                    isChecked: checkbox.isIndeterminate,
+                                    value: true,
+                                    note: 'Toggles the component indeterminate state on or off',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Html</h6>
+                        <pre><code class="language-xml" data-bind="html: checkboxHtml"></code></pre>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Html Checkbox List</h6>
+                        <pre><code class="language-xml" data-bind="html: checkboxListHtml"></code></pre>
+                    </div>
+                    <!-- /ko -->
                 </div>
             </div>
 
@@ -938,29 +1015,7 @@
             
             
             
-            <!-- Checkbox -->
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <h5 class="mdc-typography--headline5">Checkbox</h5>
-            </div>
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
-                <mat-checkbox params="value: true"></mat-checkbox><br/>
-                <mat-checkbox params="text: 'My Checkbox', value: true"></mat-checkbox><br/>
-                <mat-checkbox params="text: 'This one is disabled', isEnabled: false, value: true"></mat-checkbox><br/>
-                <mat-checkbox params="text: 'Checked by default', isChecked: true, value: true"></mat-checkbox><br/>
-                <mat-checkbox params="text: 'Indeterminate  by default', isIndeterminate: true, value: true"></mat-checkbox><br/>
-                <mat-checkbox params="text: 'With some notes', note: 'This is som very long note for this beatufil material design checkbox', value: true, classes: 'mdc-form-field--full-width'"></mat-checkbox><br/>
-            </div>
-            <!-- Checkbox List -->
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <h5 class="mdc-typography--headline5">Checkbox List</h5>
-            </div>
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <mat-checkbox params="text: 'First', value: 'first', isChecked: areChecked"></mat-checkbox>
-                <mat-checkbox params="text: 'Second', value: 'second', isChecked: areChecked"></mat-checkbox>
-                <mat-checkbox params="text: 'Last', value: 'last', isChecked: areChecked"></mat-checkbox>
-                <br/>
-                <div data-bind="text: areChecked().join(', ')"></div>
-            </div>
+            
             <!-- Radio -->
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                 <h5 class="mdc-typography--headline5">Radio</h5>
@@ -1112,7 +1167,8 @@
                     { text: "Slider", url: "#slider" },
                     { text: "Range Slider", url: "#range-slider" },
                     { text: "Tab", url: "#tab" },
-                    { text: "Tab Bar", url: "#tab-bar" }
+                    { text: "Tab Bar", url: "#tab-bar" },
+                    { text: "Checkbox", url: "#checkbox" }
                 ],
                 icon: {
                     icon: ko.observable("favorite")
@@ -1208,6 +1264,15 @@
                     isFocusedWhenActivate: ko.observable(false),
                     isAutomaticallyActivated: ko.observable(true),
                     activeTab: ko.observable(1)
+                },
+                checkbox: {
+                    text: ko.observable("Checkbox demo"),
+                    note: ko.observable(""),
+                    value: ko.observable(true),
+                    isEnabled: ko.observable(true),
+                    isChecked: ko.observable(false),
+                    isIndeterminate: ko.observable(false),
+                    areChecked: ko.observableArray([])
                 },
                 navigateTo: (e) => global.location.hash = e.url,
                 areChecked: ko.observableArray([]),
@@ -1385,6 +1450,28 @@
     <mat-tab params="icon: 'favorite', text: 'Add to favorites', tabs: tabs"></mat-tab>
     <mat-tab params="icon: 'arrow_forward_ios', text: 'Go Forward', tabs: tabs"></mat-tab>
 </mat-tab-bar>`;
+                return global.hljs.highlight(html, { language: 'xml' }).value;
+            });
+
+            global.app.checkboxHtml = ko.computed(() => {
+                const text = app.checkbox.text();
+                const note = app.checkbox.note();
+                const value = app.checkbox.value();
+                const isEnabled = app.checkbox.isEnabled();
+                const isChecked = app.checkbox.isChecked();
+                const isIndeterminate = app.checkbox.isIndeterminate();
+                const html = `<mat-checkbox params="text: '${text}', note: '${note}', value: ${value}, isEnabled: ${isEnabled ? 'true' : 'false'}, isChecked: ${isChecked ? 'true' : 'false'}, isIndeterminate: ${isIndeterminate ? 'true' : 'false'}"></mat-checkbox>`;
+                return global.hljs.highlight(html, { language: 'xml' }).value;
+            });
+
+            global.app.checkboxListHtml = ko.computed(() => {
+                const html = `let areChecked = ko.observableArray([]);
+
+<mat-checkbox params="text: 'First', value: 'first', isChecked: areChecked"></mat-checkbox>
+<mat-checkbox params="text: 'Second', value: 'second', isChecked: areChecked"></mat-checkbox>
+<mat-checkbox params="text: 'Last', value: 'last', isChecked: areChecked"></mat-checkbox>
+
+<div data-bind="text: areChecked().join(', ')"></div>`;
                 return global.hljs.highlight(html, { language: 'xml' }).value;
             });
 
