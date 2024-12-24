@@ -135,6 +135,7 @@ TextField.template =
                         'mdc-text-field--filled': style() === ${TextField.STYLE.filled},
                         'mdc-text-field--textarea': isMultiline,
                         'mdc-text-field--no-label': !text().length,
+                        'mdc-text-field--invalid': error().length,
                         'mdc-text-field--with-leading-icon': icon().length && iconPosition() === ${TextField.ICON_POSITION.start},
                         'mdc-text-field--with-trailing-icon': icon().length && iconPosition() === ${TextField.ICON_POSITION.end}
                    }">

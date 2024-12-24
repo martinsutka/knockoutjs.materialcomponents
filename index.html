@@ -1070,6 +1070,256 @@
                         <pre><code class="language-xml" data-bind="html: radioListHtml"></code></pre>
                     </div>
                     <!-- /ko -->
+                    <!-- ko if: section() === 'text-field'-->
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <p class="mdc-typography--body1">
+                            Text fields let users enter and edit text.
+                        </p>
+                        <h6 class="mdc-typography--headline6">Demo</h6>
+                        <div class="center" style="width: 320px">
+                            <mat-text-field params="type: textfield.type, style: textfield.style, value: textfield.value, text: textfield.text, icon: textfield.icon,
+                                iconPosition: textfield.iconPosition, note: textfield.note, isNotePersistent: textfield.isNotePersistent,
+                                isEnabled: textfield.isEnabled, isRequired: textfield.isRequired, isReadonly: textfield.isReadonly,
+                                isAutoSelect: textfield.isAutoSelect, isMultiline: textfield.isMultiline, showCounter: textfield.showCounter,
+                                error: textfield.error, pattern: textfield.pattern, prefix: textfield.prefix, suffix: textfield.suffix,
+                                min: textfield.min, max: textfield.max, step: textfield.step, minLength: textfield.minLength, maxLength: textfield.maxLength, rows: textfield.rows, cols: textfield.cols,
+                                classes: 'mdc-text-field--full-width'"></mat-text-field>
+                        </div>
+                        <h6 class="mdc-typography--headline6">Demo Custom Style</h6>
+                        <div class="center" style="width: 320px">
+                            <mat-text-field params="type: textfield.type, style: textfield.style, value: textfield.value, text: textfield.text, icon: textfield.icon,
+                                iconPosition: textfield.iconPosition, note: textfield.note, isNotePersistent: textfield.isNotePersistent,
+                                isEnabled: textfield.isEnabled, isRequired: textfield.isRequired, isReadonly: textfield.isReadonly,
+                                isAutoSelect: textfield.isAutoSelect, isMultiline: textfield.isMultiline, showCounter: textfield.showCounter,
+                                error: textfield.error, pattern: textfield.pattern, prefix: textfield.prefix, suffix: textfield.suffix,
+                                min: textfield.min, max: textfield.max, step: textfield.step, minLength: textfield.minLength, maxLength: textfield.maxLength, rows: textfield.rows, cols: textfield.cols,
+                                classes: 'mdc-text-field--full-width mdc-text-field--rounded'"></mat-text-field>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Parameters</h6>
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-select-field params="text: 'type',
+                                    value: textfield.type,
+                                    options: [{ text: 'text', value: 'text' }, { text: 'number', value: 'number' }, { text: 'color', value: 'color' }, { text: 'date', value: 'date' }, { text: 'time', value: 'time' }, { text: 'email', value: 'email' }, { text: 'password', value: 'password' }],
+                                    note: 'Specify the type of the textfield',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-select-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-select-field params="text: 'style',
+                                    value: textfield.style,
+                                    options: [{ text: 'Outlined', value: 0 }, { text: 'Filled', value: 1 }],
+                                    note: 'Specify the text field style',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-select-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'value',
+                                    value: textfield.value, 
+                                    isAutoSelect: true, 
+                                    note: 'Text field\'s value', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'text',
+                                    value: textfield.text, 
+                                    isAutoSelect: true, 
+                                    note: 'Text field\'s label', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'note',
+                                    value: textfield.note, 
+                                    isAutoSelect: true, 
+                                    note: 'Helper text', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isNotePersistent',
+                                    isChecked: textfield.isNotePersistent,
+                                    value: true,
+                                    note: 'If set to true, note will be always displayed',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'icon',
+                                    value: textfield.icon, 
+                                    isAutoSelect: true, 
+                                    note: 'Text field\'s icon', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-select-field params="text: 'iconPosition',
+                                    value: textfield.iconPosition,
+                                    options: [{ text: 'Start', value: 0 }, { text: 'End', value: 1 }],
+                                    note: 'Specify the position of the icon',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-select-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'error',
+                                    value: textfield.error, 
+                                    isAutoSelect: true, 
+                                    note: 'Error message', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isEnabled',
+                                    isChecked: textfield.isEnabled,
+                                    value: true,
+                                    note: 'Switch between the component enabled and disabled state',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isRequired',
+                                    isChecked: textfield.isRequired,
+                                    value: true,
+                                    note: 'If set to true, the field is required',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isReadonly',
+                                    isChecked: textfield.isReadonly,
+                                    value: true,
+                                    note: 'If set to true, the field is readonly',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isAutoSelect',
+                                    isChecked: textfield.isAutoSelect,
+                                    value: true,
+                                    note: 'If set to true, the field\'s text will be selected on focus',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isMultiline',
+                                    isChecked: textfield.isMultiline,
+                                    value: true,
+                                    note: 'Set to true for the multiline field',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'showCounter',
+                                    isChecked: textfield.showCounter,
+                                    value: true,
+                                    note: 'If set to true the counter will be displayed',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'pattern',
+                                    value: textfield.pattern, 
+                                    isAutoSelect: true, 
+                                    note: 'Text field\'s pattern', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'prefix',
+                                    value: textfield.prefix, 
+                                    isAutoSelect: true, 
+                                    note: 'Text field\'s prefix', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'suffix',
+                                    value: textfield.suffix, 
+                                    isAutoSelect: true, 
+                                    note: 'Text field\'s suffix', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'min', 
+                                    type: ko.materialcomponents.TextField.TYPE.number,
+                                    min: 0,
+                                    max: 100,
+                                    step: 1, 
+                                    value: textfield.min, 
+                                    note: 'Sets the minimum value',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'max', 
+                                    type: ko.materialcomponents.TextField.TYPE.number,
+                                    min: 0,
+                                    max: 100,
+                                    step: 1, 
+                                    value: textfield.max, 
+                                    note: 'Sets the maximum value',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'step', 
+                                    type: ko.materialcomponents.TextField.TYPE.number,
+                                    min: 0,
+                                    max: 100,
+                                    step: 1, 
+                                    value: textfield.step, 
+                                    note: 'Sets the step value',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'minLength', 
+                                    type: ko.materialcomponents.TextField.TYPE.number,
+                                    min: 0,
+                                    max: 100,
+                                    step: 1, 
+                                    value: textfield.minLength, 
+                                    note: 'Sets the minimum length',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'maxLength', 
+                                    type: ko.materialcomponents.TextField.TYPE.number,
+                                    min: 0,
+                                    max: 100,
+                                    step: 1, 
+                                    value: textfield.maxLength, 
+                                    note: 'Sets the maximum length',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'rows', 
+                                    type: ko.materialcomponents.TextField.TYPE.number,
+                                    min: 1,
+                                    max: 100,
+                                    step: 1, 
+                                    value: textfield.rows, 
+                                    note: 'Sets the number of rows for the multiline text field',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'cols', 
+                                    type: ko.materialcomponents.TextField.TYPE.number,
+                                    min: 1,
+                                    max: 100,
+                                    step: 1, 
+                                    value: textfield.cols, 
+                                    note: 'Sets the number of columns for the multiline text field',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Html</h6>
+                        <pre><code class="language-xml" data-bind="html: textfieldHtml"></code></pre>
+                    </div>
+                    <!-- /ko -->
                 </div>
             </div>
 
@@ -1097,28 +1347,7 @@
             
             
             
-            <!-- Text Field -->
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <h5 class="mdc-typography--headline5">Text Field</h5>
-            </div>
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                No label: <mat-text-field params=""></mat-text-field><br/><br/>
-                <mat-text-field params="text: 'Text field', isAutoSelect: true"></mat-text-field><br/><br/>
-                <mat-text-field params="text: 'Filled Text field', style: ko.materialcomponents.TextField.STYLE.filled"></mat-text-field><br/><br/>
-                <mat-text-field params="text: 'Filled Text field', style: ko.materialcomponents.TextField.STYLE.filled, icon: 'lock'"></mat-text-field><br/><br/>
-                <mat-text-field params="text: 'Custom style', classes: 'mdc-text-field--rounded'"></mat-text-field><br /><br />
-                <mat-text-field params="text: 'Disabled field', isEnabled: false"></mat-text-field><br/><br/>
-                <mat-text-field params="text: 'Readonly field', value: 'Read this', isReadonly: true"></mat-text-field><br/><br/>
-                <mat-text-field params="text: 'Pattern', pattern: '\\d\\d\\d', error: 'Invalid pattern'"></mat-text-field><br/><br/>
-                <mat-text-field params="text: 'Precentage', min: 16, max: 32, step: 2, type: ko.materialcomponents.TextField.TYPE.number, suffix: '%'"></mat-text-field><br /><br />
-                <mat-text-field params="text: 'Pixels', note: 'This is som very long note for this beatufil material design checkbox', isNotePersistent: true, type: ko.materialcomponents.TextField.TYPE.number, suffix: 'px'"></mat-text-field><br /><br />
-                <mat-text-field params="text: 'Color', type: ko.materialcomponents.TextField.TYPE.color, classes: 'mdc-text-field--color'"></mat-text-field><br /><br />
-                <mat-text-field params="text: 'Date', type: ko.materialcomponents.TextField.TYPE.date, icon: 'bookmark', iconPosition: ko.materialcomponents.TextField.ICON_POSITION.end"></mat-text-field><br /><br />
-                <mat-text-field params="text: 'Time', type: ko.materialcomponents.TextField.TYPE.time"></mat-text-field><br /><br />
-                <mat-text-field params="text: 'Password', type: ko.materialcomponents.TextField.TYPE.password, isRequired: true, icon: 'lock', iconPosition: ko.materialcomponents.Button.ICON_POSITION.start"></mat-text-field><br /><br />
-                <mat-text-field params="text: 'Email', type: ko.materialcomponents.TextField.TYPE.email, minLength: 5, maxLength: 15, showCounter: true"></mat-text-field><br /><br />
-                <mat-text-field params="text: 'Multi line text field', isMultiline: true, showCounter: true, maxLength: 150"></mat-text-field><br/><br/>
-            </div>
+            
             <!-- Select Field -->
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                 <h5 class="mdc-typography--headline5">Select Field</h5>
@@ -1229,7 +1458,8 @@
                     { text: "Tab", url: "#tab" },
                     { text: "Tab Bar", url: "#tab-bar" },
                     { text: "Checkbox", url: "#checkbox" },
-                    { text: "Radio", url: "#radio" }
+                    { text: "Radio", url: "#radio" },
+                    { text: "Text Field", url: "#text-field" }
                 ],
                 icon: {
                     icon: ko.observable("favorite")
@@ -1343,6 +1573,33 @@
                     isEnabled: ko.observable(true),
                     isChecked: ko.observable(false),
                     radioValue: ko.observable()
+                },
+                textfield: {
+                    type: ko.observable("text"),
+                    style: ko.observable(0),
+                    value: ko.observable(""),
+                    text: ko.observable("Enter text"),
+                    icon: ko.observable(""),
+                    iconPosition: ko.observable(0),
+                    note: ko.observable(""),
+                    isNotePersistent: ko.observable(false),
+                    error: ko.observable(""),
+                    isEnabled: ko.observable(true),
+                    isRequired: ko.observable(false),
+                    isReadonly: ko.observable(false),
+                    isAutoSelect: ko.observable(false),
+                    isMultiline: ko.observable(false),
+                    showCounter: ko.observable(false),
+                    prefix: ko.observable(""),
+                    suffix: ko.observable(""),
+                    pattern: ko.observable("*"),
+                    min: ko.observable(null),
+                    max: ko.observable(null),
+                    step: ko.observable(null),
+                    minLength: ko.observable(null),
+                    maxLength: ko.observable(null),
+                    rows: ko.observable(8),
+                    cols: ko.observable(40)
                 },
                 navigateTo: (e) => global.location.hash = e.url,
                 options: ko.observableArray([
@@ -1563,6 +1820,37 @@
 <mat-radio params="text: 'Last', name: 'opts', value: 3, isChecked: radioValue"></mat-radio>
 
 <div data-bind="text: radioValue"></div>`;
+                return global.hljs.highlight(html, { language: 'xml' }).value;
+            });
+
+            global.app.textfieldHtml = ko.computed(() => {
+                const type = app.textfield.type();
+                const style = app.textfield.style();
+                const value = app.textfield.value();
+                const text = app.textfield.text();
+                const icon = app.textfield.icon();
+                const iconPosition = app.textfield.iconPosition();
+                const note = app.textfield.note();
+                const isNotePersistent = app.textfield.isNotePersistent();
+                const error = app.textfield.error();
+                const isEnabled = app.textfield.isEnabled();
+                const isRequired = app.textfield.isRequired();
+                const isReadonly = app.textfield.isReadonly();
+                const isAutoSelect = app.textfield.isAutoSelect();
+                const isMultiline = app.textfield.isMultiline();
+                const showCounter = app.textfield.showCounter();
+                const prefix = app.textfield.prefix();
+                const suffix = app.textfield.suffix();
+                const pattern = app.textfield.pattern();
+                const min = app.textfield.min();
+                const max = app.textfield.max();
+                const step = app.textfield.step();
+                const minLength = app.textfield.minLength();
+                const maxLength = app.textfield.maxLength();
+                const rows = app.textfield.rows();
+                const cols = app.textfield.cols();
+
+                const html = `<mat-text-field params="type: '${type}', style: ${style}, value: '${value}', text: '${text}', icon: '${icon}', iconPosition: ${iconPosition}, note: '${note}', isNotePersistent: ${isNotePersistent ? 'true' : 'false'}, error: '${error}', isEnabled: ${isEnabled ? 'true' : 'false'}, isRequired: ${isRequired ? 'true' : 'false'}, isReadonly: ${isReadonly ? 'true' : 'false'}, isAutoSelect: ${isAutoSelect ? 'true' : 'false'}, isMultiline: ${isMultiline ? 'true' : 'false'}, showCounter: ${showCounter ? 'true' : 'false'}, prefix: '${prefix}', suffix: '${suffix}', pattern: '${pattern}', min: ${min}, max: ${max}, step: ${step}, minLength: ${minLength}, maxLength: ${maxLength}, rows: ${rows}, cols: ${cols}"></mat-text-field>`;
                 return global.hljs.highlight(html, { language: 'xml' }).value;
             });
 
