@@ -1,6 +1,6 @@
 /*!
- * knockoutjs.materialcomponents v1.0.216
- * 2024-12-24
+ * knockoutjs.materialcomponents v1.0.219
+ * 2024-12-25
  */
 
 (function (root, factory) {
@@ -2431,14 +2431,7 @@ TextField.prototype.koDescendantsComplete = function (node) {
     node.replaceWith(root);
     root.after(helper);
 
-    if (this.isAutoSelect()) {
-        const input = root.querySelector("input");
-        input.addEventListener("focus", function() {
-            if (typeof (this.select) === "function") {
-                this.select();
-            }
-        });
-    }
+    root.querySelector("input").addEventListener("focus", this._onFocus);
 
     this.mdcComponent = new mdc.textField.MDCTextField(root);
     if (this.value() || (typeof(this.value()) === "number")) {
@@ -2454,6 +2447,23 @@ TextField.prototype.dispose = function () {
     console.log("~TextField()");
 
     this.mdcComponent.destroy();
+};
+
+//#endregion
+
+
+//#region [ Event Handlers ]
+
+TextField.prototype._onFocus = function(e) {
+    const isAutoSelect = ko.dataFor(this.parentElement).isAutoSelect();
+
+    if (!isAutoSelect) {
+        return;
+    }
+
+    if (typeof (this.select) === "function") {
+        this.select();
+    }
 };
 
 //#endregion
