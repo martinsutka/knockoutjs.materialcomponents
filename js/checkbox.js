@@ -21,6 +21,7 @@ const Checkbox = function(args) {
     this.classes = ko.isObservable(args.classes) ? args.classes : ko.observable(args.classes || "");
 
     this._isIndeterminateChangedSubscribe = null;
+    this._isCheckedChangedSubscribe = null;
 };
 
 //#endregion

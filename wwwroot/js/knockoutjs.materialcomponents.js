@@ -1,5 +1,5 @@
 /*!
- * knockoutjs.materialcomponents v1.0.219
+ * knockoutjs.materialcomponents v1.0.221
  * 2024-12-25
  */
 
@@ -2141,6 +2141,7 @@ const Checkbox = function(args) {
     this.classes = ko.isObservable(args.classes) ? args.classes : ko.observable(args.classes || "");
 
     this._isIndeterminateChangedSubscribe = null;
+    this._isCheckedChangedSubscribe = null;
 };
 
 //#endregion
@@ -2410,6 +2411,8 @@ const TextField = function(args) {
     this.rows = ko.isObservable(args.rows) ? args.rows : ko.observable(typeof(args.rows) === "number" ? args.rows : 8);
     this.cols = ko.isObservable(args.cols) ? args.cols : ko.observable(typeof(args.cols) === "number" ? args.cols : 40);
     this.classes = ko.isObservable(args.classes) ? args.classes : ko.observable(args.classes || "");
+
+    this._valueChangedSubscribe = null;
 };
 
 //#endregion
@@ -2434,9 +2437,10 @@ TextField.prototype.koDescendantsComplete = function (node) {
     root.querySelector("input").addEventListener("focus", this._onFocus);
 
     this.mdcComponent = new mdc.textField.MDCTextField(root);
-    if (this.value() || (typeof(this.value()) === "number")) {
-        setTimeout(() => this.mdcComponent.value = this.value(), 1);
-    }
+
+    this._valueChangedSubscribe = this.value.subscribe(this._valueChanged, this);
+
+    this.value.valueHasMutated();
 };
 
 
@@ -2446,6 +2450,7 @@ TextField.prototype.koDescendantsComplete = function (node) {
 TextField.prototype.dispose = function () {
     console.log("~TextField()");
 
+    this._valueChangedSubscribe.dispose();
     this.mdcComponent.destroy();
 };
 
@@ -2454,6 +2459,23 @@ TextField.prototype.dispose = function () {
 
 //#region [ Event Handlers ]
 
+/**
+ * Handles the isChecked property change event.
+ * 
+ * @param {boolean} value If set to true, the checkbox is checked.
+ **/
+TextField.prototype._valueChanged = function (value) {
+    if (value || (typeof(value) === "number")) {
+        setTimeout(() => this.mdcComponent.value = value, 1);
+    }
+};
+
+
+/**
+ * Handles the focus event.
+ *  
+ * @param {object} e Event arguments. 
+ */
 TextField.prototype._onFocus = function(e) {
     const isAutoSelect = ko.dataFor(this.parentElement).isAutoSelect();
 
