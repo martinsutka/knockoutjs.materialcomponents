@@ -8,6 +8,7 @@
 const SelectField = function(args) {
     console.debug("SelectField()");
 
+    this.rootNode = null;
     this.mdcComponent = null;
 
     this.id = ko.isObservable(args.id) ? args.id : ko.observable(args.id || "_selectfield_" + utils.guid());
@@ -29,6 +30,10 @@ const SelectField = function(args) {
     this.prefix = ko.isObservable(args.prefix) ? args.prefix : ko.observable(args.prefix || "");
     this.suffix = ko.isObservable(args.suffix) ? args.suffix : ko.observable(args.suffix || "");
     this.classes = ko.isObservable(args.classes) ? args.classes : ko.observable(args.classes || "");
+
+    this._onValueChangedSubscribe = null;
+    this._onErrorChangedSubscribe = null;
+    this._onStyleChangedSubscribe = null;
 };
 
 //#endregion
@@ -44,16 +49,21 @@ const SelectField = function(args) {
  */
 SelectField.prototype.koDescendantsComplete = function (node) {
     // Replace custom element placehoder
-    const root = node.children[0];
+    this.rootNode = node.children[0];
     const helper = node.children[1];
 
-    node.replaceWith(root);
-    root.after(helper);
+    node.replaceWith(this.rootNode);
+    this.rootNode.after(helper);
 
-    this.mdcComponent = new mdc.textField.MDCTextField(root);
-    if (this.value() || (typeof(this.value()) === "number")) {
-        setTimeout(() => this.mdcComponent.value = this.value(), 1);
-    }
+    this.mdcComponent = new mdc.textField.MDCTextField(this.rootNode);
+    this.mdcComponent.useNativeValidation = false;
+
+    this._onValueChangedSubscribe = this.value.subscribe(this._onValueChanged, this);
+    this._onErrorChangedSubscribe = this.error.subscribe(this._onErrorChanged, this);
+    this._onStyleChangedSubscribe = this.style.subscribe(this._onStyleChanged, this);
+
+    this.value.valueHasMutated();
+    this.error.valueHasMutated();
 };
 
 
@@ -63,7 +73,51 @@ SelectField.prototype.koDescendantsComplete = function (node) {
 SelectField.prototype.dispose = function () {
     console.log("~SelectField()");
 
+    this._onValueChangedSubscribe.dispose();
+    this._onErrorChangedSubscribe.dispose();
+    this._onStyleChangedSubscribe.dispose();
     this.mdcComponent.destroy();
+};
+
+//#endregion
+
+
+//#region [ Event Handlers ]
+
+/**
+ * Handles the value property change event.
+ * 
+ * @param {string} value Current value.
+ **/
+SelectField.prototype._onValueChanged = function (value) {
+    if (value || (typeof(value) === "number")) {
+        setTimeout(() => this.mdcComponent.value = value, 1);
+    }
+};
+
+
+/**
+ * Handles the error property change event.
+ * 
+ * @param {string} value Current error message.
+ **/
+SelectField.prototype._onErrorChanged = function (value) {
+    this.mdcComponent.valid = !(value || "").length;
+};
+
+
+/**
+ * Handles the style property change event.
+ * 
+ * @param {string} value Current text field style.
+ **/
+SelectField.prototype._onStyleChanged = function (value) {
+    this.mdcComponent.destroy();
+    this.mdcComponent = new mdc.textField.MDCTextField(this.rootNode);
+    this.mdcComponent.useNativeValidation = false;
+
+    this.value.valueHasMutated();
+    this.error.valueHasMutated();
 };
 
 //#endregion
@@ -114,7 +168,11 @@ SelectField.template =
                        optionsValue: optionsValue(),
                        optionsCaption: optionsCaption"></select>
     <i class="material-icons mdc-text-field__icon mdc-text-field__icon--trailing" tabindex="0" role="button"
-       data-bind="text: icon, visible: icon().length && iconPosition() === ${TextField.ICON_POSITION.end}"></i>
+       data-bind="text: icon, 
+                  visible: icon().length && iconPosition() === ${TextField.ICON_POSITION.end},
+                  css: {
+                    'mdc-text-field__icon--affix': suffix().length
+                  }"></i>
     <!-- ko if: suffix().length -->
         <span class="mdc-text-field__affix mdc-text-field__affix--suffix" data-bind="text: suffix"></span>
     <!-- /ko -->

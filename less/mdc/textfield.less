@@ -102,6 +102,14 @@
     &--select {
         select {
             padding-right: rem(16px);
+
+            + .mdc-text-field__icon--trailing:not(.mdc-text-field__icon--affix) {
+                margin-right: rem(24px);
+            }
+            
+            ~ .mdc-text-field__affix--suffix {
+                margin-right: rem(32px);
+            }
         }
 
         option {

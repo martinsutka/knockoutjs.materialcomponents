@@ -135,6 +135,12 @@
 .mdc-text-field--select select {
   padding-right: 1rem;
 }
+.mdc-text-field--select select + .mdc-text-field__icon--trailing:not(.mdc-text-field__icon--affix) {
+  margin-right: 1.5rem;
+}
+.mdc-text-field--select select ~ .mdc-text-field__affix--suffix {
+  margin-right: 2rem;
+}
 .mdc-text-field--select option {
   font-family: var(--mdc-typography-button-font-family);
 }
