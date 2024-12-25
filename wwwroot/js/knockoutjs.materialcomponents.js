@@ -1,5 +1,5 @@
 /*!
- * knockoutjs.materialcomponents v1.0.221
+ * knockoutjs.materialcomponents v1.0.223
  * 2024-12-25
  */
 
@@ -2412,7 +2412,8 @@ const TextField = function(args) {
     this.cols = ko.isObservable(args.cols) ? args.cols : ko.observable(typeof(args.cols) === "number" ? args.cols : 40);
     this.classes = ko.isObservable(args.classes) ? args.classes : ko.observable(args.classes || "");
 
-    this._valueChangedSubscribe = null;
+    this._onValueChangedSubscribe = null;
+    this._onErrorChangedSubscribe = null;
 };
 
 //#endregion
@@ -2437,8 +2438,10 @@ TextField.prototype.koDescendantsComplete = function (node) {
     root.querySelector("input").addEventListener("focus", this._onFocus);
 
     this.mdcComponent = new mdc.textField.MDCTextField(root);
+    this.mdcComponent.useNativeValidation = false;
 
-    this._valueChangedSubscribe = this.value.subscribe(this._valueChanged, this);
+    this._onValueChangedSubscribe = this.value.subscribe(this._onValueChanged, this);
+    this._onErrorChangedSubscribe = this.error.subscribe(this._onErrorChanged, this);
 
     this.value.valueHasMutated();
 };
@@ -2450,7 +2453,8 @@ TextField.prototype.koDescendantsComplete = function (node) {
 TextField.prototype.dispose = function () {
     console.log("~TextField()");
 
-    this._valueChangedSubscribe.dispose();
+    this._onValueChangedSubscribe.dispose();
+    this._onErrorChangedSubscribe.dispose();
     this.mdcComponent.destroy();
 };
 
@@ -2460,14 +2464,24 @@ TextField.prototype.dispose = function () {
 //#region [ Event Handlers ]
 
 /**
- * Handles the isChecked property change event.
+ * Handles the value property change event.
  * 
- * @param {boolean} value If set to true, the checkbox is checked.
+ * @param {string} value Current value.
  **/
-TextField.prototype._valueChanged = function (value) {
+TextField.prototype._onValueChanged = function (value) {
     if (value || (typeof(value) === "number")) {
         setTimeout(() => this.mdcComponent.value = value, 1);
     }
+};
+
+
+/**
+ * Handles the error property change event.
+ * 
+ * @param {string} value Current error message.
+ **/
+TextField.prototype._onErrorChanged = function (value) {
+    this.mdcComponent.valid = !(value || "").length;
 };
 
 
