@@ -1320,6 +1320,176 @@
                         <pre><code class="language-xml" data-bind="html: textfieldHtml"></code></pre>
                     </div>
                     <!-- /ko -->
+                    <!-- ko if: section() === 'select-field'-->
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <p class="mdc-typography--body1">
+                            Select provides single-option select menus using native select element.
+                        </p>
+                        <h6 class="mdc-typography--headline6">Demo</h6>
+                        <div class="center" style="width: 320px">
+                            <mat-select-field params="style: selectfield.style, value: selectfield.value, 
+                                text: selectfield.text, options: selectfield.options, optionsText: selectfield.optionsText,
+                                optionsValue: selectfield.optionsValue, optionsCaption: selectfield.optionsCaption,
+                                icon: selectfield.icon, iconPosition: selectfield.iconPosition, note: selectfield.note,
+                                isNotePersistent: selectfield.isNotePersistent, error: selectfield.error,
+                                isEnabled: selectfield.isEnabled, isRequired: selectfield.isRequired, isReadonly: selectfield.isReadonly,
+                                prefix: selectfield.prefix, suffix: selectfield.suffix,
+                                classes: 'mdc-text-field--full-width'"></mat-select-field>
+                        </div>
+                        <h6 class="mdc-typography--headline6">Demo Custom Style</h6>
+                        <div class="center" style="width: 320px">
+                            <mat-select-field params="style: selectfield.style, value: selectfield.value, 
+                                text: selectfield.text, options: selectfield.options, optionsText: selectfield.optionsText,
+                                optionsValue: selectfield.optionsValue, optionsCaption: selectfield.optionsCaption,
+                                icon: selectfield.icon, iconPosition: selectfield.iconPosition, note: selectfield.note,
+                                isNotePersistent: selectfield.isNotePersistent, error: selectfield.error,
+                                isEnabled: selectfield.isEnabled, isRequired: selectfield.isRequired, isReadonly: selectfield.isReadonly,
+                                prefix: selectfield.prefix, suffix: selectfield.suffix,
+                                classes: 'mdc-text-field--full-width mdc-text-field--rounded'"></mat-select-field>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Parameters</h6>
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-select-field params="text: 'style',
+                                    value: selectfield.style,
+                                    options: [{ text: 'Outlined', value: 0 }, { text: 'Filled', value: 1 }],
+                                    note: 'Specify the select field style',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-select-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'value',
+                                    value: selectfield.value, 
+                                    isAutoSelect: true, 
+                                    note: 'Select field\'s value', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'text',
+                                    value: selectfield.text, 
+                                    isAutoSelect: true, 
+                                    note: 'Select field\'s label', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'options',
+                                    value: '[{\'text\':\'Apple touch icon\',\'value\':1}, ...]', 
+                                    isReadonly: true, 
+                                    note: 'Select field\'s options', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'optionsText',
+                                    value: selectfield.optionsText, 
+                                    isAutoSelect: true, 
+                                    note: 'Property which should be used as the option\'s text', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'optionsValue',
+                                    value: selectfield.optionsValue, 
+                                    isAutoSelect: true, 
+                                    note: 'Property which should be used as the option\'s value', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'optionsCaption',
+                                    value: selectfield.optionsCaption, 
+                                    isAutoSelect: true, 
+                                    note: 'Property which should be used as the caption', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'note',
+                                    value: selectfield.note, 
+                                    isAutoSelect: true, 
+                                    note: 'Helper text', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isNotePersistent',
+                                    isChecked: selectfield.isNotePersistent,
+                                    value: true,
+                                    note: 'If set to true, note will be always displayed',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'icon',
+                                    value: selectfield.icon, 
+                                    isAutoSelect: true, 
+                                    note: 'Select field\'s icon', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-select-field params="text: 'iconPosition',
+                                    value: selectfield.iconPosition,
+                                    options: [{ text: 'Start', value: 0 }, { text: 'End', value: 1 }],
+                                    note: 'Specify the position of the icon',
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-select-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'error',
+                                    value: selectfield.error, 
+                                    isAutoSelect: true, 
+                                    note: 'Error message', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isEnabled',
+                                    isChecked: selectfield.isEnabled,
+                                    value: true,
+                                    note: 'Switch between the component enabled and disabled state',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isRequired',
+                                    isChecked: selectfield.isRequired,
+                                    value: true,
+                                    note: 'If set to true, the field is required',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-checkbox params="text: 'isReadonly',
+                                    isChecked: selectfield.isReadonly,
+                                    value: true,
+                                    note: 'If set to true, the field is readonly',
+                                    classes: 'mdc-text-field--full-width'"></mat-checkbox>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'prefix',
+                                    value: selectfield.prefix, 
+                                    isAutoSelect: true, 
+                                    note: 'Select field\'s prefix', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                <mat-text-field params="text: 'suffix',
+                                    value: selectfield.suffix, 
+                                    isAutoSelect: true, 
+                                    note: 'Select field\'s suffix', 
+                                    isNotePersistent: true,
+                                    classes: 'mdc-text-field--full-width'"></mat-text-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                        <h6 class="mdc-typography--headline6">Html</h6>
+                        <pre><code class="language-xml" data-bind="html: selectfieldHtml"></code></pre>
+                    </div>
+                    <!-- /ko -->
                 </div>
             </div>
 
@@ -1348,14 +1518,7 @@
             
             
             
-            <!-- Select Field -->
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <h5 class="mdc-typography--headline5">Select Field</h5>
-            </div>
-            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
-                <mat-select-field params="text: 'Select field', options: options"></mat-select-field><br/><br/>
-                <mat-select-field params="text: 'Select field', options: options, style: ko.materialcomponents.TextField.STYLE.filled"></mat-select-field><br/><br/>
-            </div>
+            
             <!-- Lists -->
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
                 <h5 class="mdc-typography--headline5">Lists</h5>
@@ -1459,7 +1622,8 @@
                     { text: "Tab Bar", url: "#tab-bar" },
                     { text: "Checkbox", url: "#checkbox" },
                     { text: "Radio", url: "#radio" },
-                    { text: "Text Field", url: "#text-field" }
+                    { text: "Text Field", url: "#text-field" },
+                    { text: "Select Field", url: "#select-field" }
                 ],
                 icon: {
                     icon: ko.observable("favorite")
@@ -1601,13 +1765,31 @@
                     rows: ko.observable(8),
                     cols: ko.observable(40)
                 },
+                selectfield: {
+                    style: ko.observable(0),
+                    value: ko.observable(""),
+                    text: ko.observable("Enter text"),
+                    icon: ko.observable(""),
+                    iconPosition: ko.observable(0),
+                    note: ko.observable(""),
+                    isNotePersistent: ko.observable(false),
+                    error: ko.observable(""),
+                    isEnabled: ko.observable(true),
+                    isRequired: ko.observable(false),
+                    isReadonly: ko.observable(false),
+                    prefix: ko.observable(""),
+                    suffix: ko.observable(""),
+                    options: ko.observableArray([
+                        { text: "Apple touch icon", value: 1 }, 
+                        { text: "Windows tile", value: 2 }, 
+                        { text: "Windows tile wide", value: 3 },
+                        { text: "Azure DevOps Extension Preview Image", value: 4 }
+                    ]),
+                    optionsText: ko.observable("text"),
+                    optionsValue: ko.observable("value"),
+                    optionsCaption: ko.observable("")
+                },
                 navigateTo: (e) => global.location.hash = e.url,
-                options: ko.observableArray([
-                    { text: "Apple touch icon", value: 1 }, 
-                    { text: "Windows tile", value: 2 }, 
-                    { text: "Windows tile wide", value: 3 },
-                    { text: "Azure DevOps Extension Preview Image", value: 4 }
-                ])
             };
 
             global.app.iconHtml = ko.computed(() => {
@@ -1851,6 +2033,29 @@
                 const cols = app.textfield.cols();
 
                 const html = `<mat-text-field params="type: '${type}', style: ${style}, value: '${value}', text: '${text}', icon: '${icon}', iconPosition: ${iconPosition}, note: '${note}', isNotePersistent: ${isNotePersistent ? 'true' : 'false'}, error: '${error}', isEnabled: ${isEnabled ? 'true' : 'false'}, isRequired: ${isRequired ? 'true' : 'false'}, isReadonly: ${isReadonly ? 'true' : 'false'}, isAutoSelect: ${isAutoSelect ? 'true' : 'false'}, isMultiline: ${isMultiline ? 'true' : 'false'}, showCounter: ${showCounter ? 'true' : 'false'}, prefix: '${prefix}', suffix: '${suffix}', pattern: '${pattern}', min: ${min}, max: ${max}, step: ${step}, minLength: ${minLength}, maxLength: ${maxLength}, rows: ${rows}, cols: ${cols}"></mat-text-field>`;
+                return global.hljs.highlight(html, { language: 'xml' }).value;
+            });
+
+            global.app.selectfieldHtml = ko.computed(() => {
+                const style = app.selectfield.style();
+                const value = app.selectfield.value();
+                const text = app.selectfield.text();
+                const icon = app.selectfield.icon();
+                const iconPosition = app.selectfield.iconPosition();
+                const note = app.selectfield.note();
+                const isNotePersistent = app.selectfield.isNotePersistent();
+                const error = app.selectfield.error();
+                const isEnabled = app.selectfield.isEnabled();
+                const isRequired = app.selectfield.isRequired();
+                const isReadonly = app.selectfield.isReadonly();
+                const prefix = app.selectfield.prefix();
+                const suffix = app.selectfield.suffix();
+                const options = "[{'text':'Apple touch icon','value':1}, ...]";
+                const optionsText = app.selectfield.optionsText();
+                const optionsValue = app.selectfield.optionsValue();
+                const optionsCaption = app.selectfield.optionsCaption();
+
+                const html = `<mat-select-field params="style: ${style}, value: ${value}, text: '${text}', options: ${options}, optionsText: '${optionsText}', optionsValue: '${optionsValue}', optionsCaption: '${optionsCaption}', icon: '${icon}', iconPosition: ${iconPosition}, note: '${note}', isNotePersistent: ${isNotePersistent ? 'true' : 'false'}, error: '${error}', isEnabled: ${isEnabled ? 'true' : 'false'}, isRequired: ${isRequired ? 'true' : 'false'}, isReadonly: ${isReadonly ? 'true' : 'false'}, prefix: '${prefix}', suffix: '${suffix}', classes: 'mdc-text-field--full-width'"></mat-select-field>`;
                 return global.hljs.highlight(html, { language: 'xml' }).value;
             });
 
