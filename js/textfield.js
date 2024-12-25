@@ -8,6 +8,7 @@
 const TextField = function(args) {
     console.debug("TextField()");
 
+    this.rootNode = null;
     this.mdcComponent = null;
 
     this.id = ko.isObservable(args.id) ? args.id : ko.observable(args.id || "_textfield_" + utils.guid());
@@ -40,6 +41,7 @@ const TextField = function(args) {
 
     this._onValueChangedSubscribe = null;
     this._onErrorChangedSubscribe = null;
+    this._onStyleChangedSubscribe = null;
 };
 
 //#endregion
@@ -55,21 +57,23 @@ const TextField = function(args) {
  */
 TextField.prototype.koDescendantsComplete = function (node) {
     // Replace custom element placehoder
-    const root = node.children[0];
+    this.rootNode = node.children[0];
     const helper = node.children[1];
 
-    node.replaceWith(root);
-    root.after(helper);
+    node.replaceWith(this.rootNode);
+    this.rootNode.after(helper);
 
-    root.querySelector("input").addEventListener("focus", this._onFocus);
+    this.rootNode.querySelector("input").addEventListener("focus", this._onFocus);
 
-    this.mdcComponent = new mdc.textField.MDCTextField(root);
+    this.mdcComponent = new mdc.textField.MDCTextField(this.rootNode);
     this.mdcComponent.useNativeValidation = false;
 
     this._onValueChangedSubscribe = this.value.subscribe(this._onValueChanged, this);
     this._onErrorChangedSubscribe = this.error.subscribe(this._onErrorChanged, this);
+    this._onStyleChangedSubscribe = this.style.subscribe(this._onStyleChanged, this);
 
     this.value.valueHasMutated();
+    this.error.valueHasMutated();
 };
 
 
@@ -81,6 +85,7 @@ TextField.prototype.dispose = function () {
 
     this._onValueChangedSubscribe.dispose();
     this._onErrorChangedSubscribe.dispose();
+    this._onStyleChangedSubscribe.dispose();
     this.mdcComponent.destroy();
 };
 
@@ -108,6 +113,21 @@ TextField.prototype._onValueChanged = function (value) {
  **/
 TextField.prototype._onErrorChanged = function (value) {
     this.mdcComponent.valid = !(value || "").length;
+};
+
+
+/**
+ * Handles the style property change event.
+ * 
+ * @param {string} value Current text field style.
+ **/
+TextField.prototype._onStyleChanged = function (value) {
+    this.mdcComponent.destroy();
+    this.mdcComponent = new mdc.textField.MDCTextField(this.rootNode);
+    this.mdcComponent.useNativeValidation = false;
+
+    this.value.valueHasMutated();
+    this.error.valueHasMutated();
 };
 
 
